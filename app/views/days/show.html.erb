@@ -1,0 +1,19 @@
+<p>
+  <strong>Day Title:</strong>  <%= @day.title %>
+</p>
+<p>
+  <strong>Day Info:</strong>  <%= @day.text %>
+</p>
+<br><br>
+<p><strong>Exercises:</strong></p>
+<%= render @day.exercises %>
+
+<br><br>
+
+<p><strong>Add an exercise:</strong></p>
+<%= render "exercises/form" %>
+
+<br><br>
+
+<%= link_to 'Days List', days_path %>
+| <%= link_to 'Edit day info', edit_day_path(@day) %>

@@ -1,0 +1,6 @@
+<p>
+  <%= exercise.title %>, <strong><%= exercise.reps %></strong>
+  <%= link_to 'Delete', [exercise.day, exercise],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
