@@ -1,14 +1,14 @@
 class DaysController < ApplicationController
 
-http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
-
 def new
   @day = Day.new
 end
 
 
 def create
-  @day = Day.new(day_params)
+    @user = User.find(current_user.id)
+    @day = @user.days.create(day_params)
+#   @day = Day.new(day_params)
 
  if @day.save
     redirect_to @day
@@ -24,7 +24,12 @@ end
 
 
 def index
-  @days = Day.all
+ if current_user
+  @user = User.find(current_user.id)
+  @days = @user.days.all
+ else 
+    redirect_to 'sign_in'
+ end
 end
 
 def edit
@@ -48,11 +53,9 @@ def destroy
   redirect_to days_path
 end
 
-
 private
   def day_params
     params.require(:day).permit(:title, :text)
   end
-
 
 end

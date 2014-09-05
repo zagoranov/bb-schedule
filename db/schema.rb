@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902150101) do
+ActiveRecord::Schema.define(version: 20140905142050) do
 
   create_table "days", force: true do |t|
     t.string   "title"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "days", ["user_id"], name: "index_days_on_user_id"
 
   create_table "exercises", force: true do |t|
     t.string   "title"
@@ -26,8 +29,20 @@ ActiveRecord::Schema.define(version: 20140902150101) do
     t.integer  "day_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "maxweight"
   end
 
   add_index "exercises", ["day_id"], name: "index_exercises_on_day_id"
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+    t.string   "password_hash"
+    t.string   "password_salt"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

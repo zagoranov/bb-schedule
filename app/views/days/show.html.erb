@@ -1,12 +1,28 @@
 <p>
-  <strong>Day Title:</strong>  <%= @day.title %>
+  <strong><%= @day.title %></strong>  
 </p>
 <p>
-  <strong>Day Info:</strong>  <%= @day.text %>
+  <%= @day.text %>
 </p>
+
 <br><br>
+
 <p><strong>Exercises:</strong></p>
-<%= render @day.exercises %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Reps</th>
+    <th>Max Weight</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+      <%= render @day.exercises %>
+ </tbody>
+</table>
+
+
 
 <br><br>
 
@@ -15,5 +31,6 @@
 
 <br><br>
 
-<%= link_to 'Days List', days_path %>
-| <%= link_to 'Edit day info', edit_day_path(@day) %>
+<br><br>
+<%= link_to 'Days List', days_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to 'Edit day info', edit_day_path(@day), :method => "get", :class => 'btn btn-primary' %>

@@ -5,11 +5,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.1'
 
 # Use sqlite3 as the database for Active Record
-group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-end
+
 group :production do
-  gem 'pg'
+	gem 'pg'
+	gem 'thin'
+	gem 'rails_12factor'
+end
+
+group :development, :test do
+	gem 'sqlite3'
 end
 
 
@@ -48,3 +52,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 #New stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bcrypt'

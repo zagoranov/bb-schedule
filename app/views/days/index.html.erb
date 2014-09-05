@@ -1,24 +1,27 @@
-<h1>Training Days</h1>
+<h1>Schedule</h1>
  
-<table>
+<table class="table table-striped">
+  <thead>
   <tr>
     <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
+    <th>Info</th>
+    <th>Actions</th>
   </tr>
- 
+  </thead>
+  <tbody>
   <% @days.each do |day| %>
     <tr>
-      <td><%= day.title %></td>
-      <td><%= day.text %></td>
-    <td><%= link_to '| Show', day_path(day) %></td>
-    <td><%= link_to '| Edit', edit_day_path(day) %></td>
-    <td><%= link_to '| Delete |', day_path(day),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= day.title %></td>
+    <td><%= day.text %></td>
+    <td><%= button_to('Show', day_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    <td><%= button_to('Edit', edit_day_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    <td><%= button_to('Delete', day_path(day), 
+             method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>
   <% end %>
+ </tbody>
 </table>
 
 <br><br>
 
-<%= link_to '| New day |', new_day_path %>
+<%= link_to 'Add New', new_day_path, :method => "get", :class => 'btn btn-primary' %>

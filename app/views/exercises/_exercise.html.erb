@@ -1,6 +1,15 @@
-<p>
-  <%= exercise.title %>, <strong><%= exercise.reps %></strong>
+<!--<p>
+  <%= exercise.title %>, <strong><%= exercise.reps %></strong>, <%= exercise.maxweight %>
   <%= link_to 'Delete', [exercise.day, exercise],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
-</p>
+</p>-->
+
+  <tr>
+  <td><%= exercise.title %></td>
+  <td><%= exercise.reps %></td>
+  <td><%= exercise.maxweight %></td>
+  <td><%= button_to('Delete', [exercise.day, exercise], 
+             method: :delete, 
+             data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
+</tr>

@@ -1,11 +1,19 @@
 <%= form_for([@day, @day.exercises.build]) do |f| %>
-  <p>
-    <%= f.label :title %>: <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :reps %>: <%= f.text_field :reps %>
-  </p>
-  <p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Reps</th>
+    <th>Max Weight</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td><%= f.text_field :title %></td>
+    <td><%= f.text_field :reps %></td>
+    <td><%= f.text_field :maxweight %></td>
+    </tr>
+ </tbody>
+</table>
     <%= f.submit %>
-  </p>
 <% end %>
