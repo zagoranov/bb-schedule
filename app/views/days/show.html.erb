@@ -1,8 +1,8 @@
 <p>
-  <strong><%= @day.title %></strong>  
+  <h3><%= @day.title %></h3>  
 </p>
 <p>
-  <%= @day.text %>
+  <h4><%= @day.text %></h4>
 </p>
 
 <br><br>
@@ -21,6 +21,9 @@
       <%= render @day.exercises %>
  </tbody>
 </table>
+<% if @day.exercises.size == 0 %>
+  <em> Day is empty yet. Add some exercises!<br><br> </em>
+<% end %>
 
 
 

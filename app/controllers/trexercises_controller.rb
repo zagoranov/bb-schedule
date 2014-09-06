@@ -1,0 +1,2 @@
+class TrexercisesController < ApplicationController
+end

@@ -8,7 +8,6 @@ end
 def create
     @user = User.find(current_user.id)
     @day = @user.days.create(day_params)
-#   @day = Day.new(day_params)
 
  if @day.save
     redirect_to @day

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905142050) do
+ActiveRecord::Schema.define(version: 20140906002612) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -29,10 +29,31 @@ ActiveRecord::Schema.define(version: 20140905142050) do
     t.integer  "day_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "maxweight"
+    t.float    "maxweight"
   end
 
   add_index "exercises", ["day_id"], name: "index_exercises_on_day_id"
+
+  create_table "trainings", force: true do |t|
+    t.float    "weight"
+    t.text     "info"
+    t.integer  "day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trainings", ["day_id"], name: "index_trainings_on_day_id"
+
+  create_table "trexercises", force: true do |t|
+    t.string   "title"
+    t.string   "reps"
+    t.integer  "training_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "maxweight"
+  end
+
+  add_index "trexercises", ["training_id"], name: "index_trexercises_on_training_id"
 
   create_table "users", force: true do |t|
     t.string   "email"
