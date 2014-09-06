@@ -1,0 +1,22 @@
+<h3>Editing Training Info</h3>
+
+<br><br>
+
+<%= form_for ([@day, @training]) do |f| %>
+  <p>
+    <strong>Body Weight</strong><br>
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <strong>Training`s Description</strong><br>
+    <%= f.text_area :info %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<br><br>
+
+<%= button_to('Back to Trainings', day_trainings_path(@training.day), :method => "get", :class => 'btn btn-primary') %>

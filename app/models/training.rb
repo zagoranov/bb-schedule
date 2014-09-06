@@ -1,4 +1,4 @@
 class Training < ActiveRecord::Base
   belongs_to :day
-  has_many  :trexercises, dependent: :destroy
+  has_many  :trexercises
 end

@@ -6,8 +6,8 @@ end
 
 
 def create
-    @user = User.find(current_user.id)
-    @day = @user.days.create(day_params)
+ @user = User.find(current_user.id)
+ @day = @user.days.create(day_params)
 
  if @day.save
     redirect_to @day
@@ -31,9 +31,11 @@ def index
  end
 end
 
+
 def edit
   @day = Day.find(params[:id])
 end
+
 
 def update
   @day = Day.find(params[:id])
@@ -44,6 +46,7 @@ def update
     render 'edit'
   end
 end
+
 
 def destroy
   @day = Day.find(params[:id])

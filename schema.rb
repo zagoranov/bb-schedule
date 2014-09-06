@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20140906002612) do
     t.integer  "user_id"
   end
 
+  add_index "days", ["user_id"], name: "index_days_on_user_id"
+
   create_table "exercises", force: true do |t|
     t.string   "title"
     t.string   "reps"
@@ -30,6 +32,8 @@ ActiveRecord::Schema.define(version: 20140906002612) do
     t.float    "maxweight"
   end
 
+  add_index "exercises", ["day_id"], name: "index_exercises_on_day_id"
+
   create_table "trainings", force: true do |t|
     t.float    "weight"
     t.text     "info"
@@ -37,6 +41,8 @@ ActiveRecord::Schema.define(version: 20140906002612) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "trainings", ["day_id"], name: "index_trainings_on_day_id"
 
   create_table "trexercises", force: true do |t|
     t.string   "title"
@@ -47,6 +53,8 @@ ActiveRecord::Schema.define(version: 20140906002612) do
     t.float    "maxweight"
   end
 
+  add_index "trexercises", ["training_id"], name: "index_trexercises_on_training_id"
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
@@ -55,5 +63,7 @@ ActiveRecord::Schema.define(version: 20140906002612) do
     t.string   "password_hash"
     t.string   "password_salt"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

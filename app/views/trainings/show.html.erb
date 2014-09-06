@@ -1,7 +1,40 @@
+<p><h3>Training</h3></p>
+
+<br><br>
+
 <p>
-  <h3><%= @training.weight %></h3>  
+  <h4>Date: <%= @training.created_at.to_s(:ru_datetime) %></h4>  
 </p>
 <p>
-  <h4><%= @training.info %></h4>
+  <h4>Weight: <%= @training.weight %></h4>  
+</p>
+<p>
+  <h4>Info: <%= @training.info %></h4>
 </p>
 
+<br><br>
+
+<p><strong>Exercises:</strong></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Reps</th>
+    <th>Max Weight</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @training.trexercises.each do |trex| %> 
+  <tr>
+  <td><%= trex.title %></td>
+  <td><%= trex.reps %></td>
+  <td><%= trex.maxweight %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+
+<br><br>
+
+<%= button_to('Back to Trainings', day_trainings_path(@training.day), :method => "get", :class => 'btn btn-primary') %>

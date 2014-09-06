@@ -1,3 +1,5 @@
+<p><h3>New Training</h3></p>
+
 <br><br>
 
 <p><strong>Exercises:</strong></p>
@@ -15,7 +17,8 @@
   <tr>
   <td><%= trex.title %></td>
   <td><%= trex.reps %></td>
-  <td><%= trex.maxweight %></td>
+<!--  <td><%= trex.maxweight %></td>   -->   
+  <td><input type="text" value="<%= trex.maxweight %>" name="<%= trex.id %>" class="field left" onchange="checkInput(this);"></td>     
   </tr>
   <% end %>
  </tbody>
@@ -40,4 +43,19 @@
 
 <br><br>
 
-<%= link_to 'Cancel', days_path, :method => "get", :class => 'btn btn-mini' %>
+<%= button_to('Cancel', days_path, :method => "get", :class => 'btn btn-primary') %>
+
+<!--
+<script type="text/javascript" languge="javascript">
+function checkInput(obj) 
+{
+  $.ajax({
+      url: 'setmaxweight',
+      dataType: 'json',
+      type: 'POST',
+      data: { id: obj.name, maxweight: obj.value }
+        } );
+  alert(obj.name + ' ' + obj.value);
+}
+</script>
+-->

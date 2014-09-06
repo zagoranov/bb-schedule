@@ -15,9 +15,10 @@
     <td><%= day.text %></td>
     <td><%= button_to('Show', day, :method => "get", :class => 'btn btn-mini')  %> </td>
     <td><%= button_to('Edit Info', edit_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
-    <td><%= button_to('Train!', new_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    <td><%= button_to('Train!', new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
     <td><%= button_to('Delete', day, 
              method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= link_to 'Past Trainings', day_trainings_path(day), :method => "get", :class => 'btn btn-primary' %></td>
     </tr>
   <% end %>
  </tbody>
@@ -30,3 +31,6 @@
 <br><br>
 
 <%= link_to 'Add New Day', new_day_path, :method => "get", :class => 'btn btn-primary' %>
+
+<br><br>
+

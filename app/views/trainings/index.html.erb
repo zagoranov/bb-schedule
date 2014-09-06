@@ -6,16 +6,17 @@
     <th>Date Time</th>
     <th>Body Weight</th>
     <th>Info</th>
+    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
   <% @trainings.each do |train| %> 
     <tr>
-    <td><%= train.created_at %></td>
+    <td><%= train.created_at.to_s(:ru_datetime) %></td>
     <td><%= train.weight %></td>
-    <td><%= train.weight %></td>
-    <td><%= button_to('Show', train, :method => "get", :class => 'btn btn-mini')  %> </td>
-<!--    <td><%= button_to('Edit Info', edit_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>  -->
+    <td><%= train.info %></td>
+    <td><%= button_to('Show', train, :method => "get", :class => 'btn btn-mini')  %> </td>  
+    <td><%= button_to('Edit Info', edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
     <td><%= button_to('Delete', train, 
              method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>
@@ -26,8 +27,6 @@
   <em> No trainings?!<br><br> </em>
 <% end %>
 
-
 <br><br>
 
-<%= link_to 'Cancel', days_path, :method => "get", :class => 'btn btn-mini' %>
-
+<%= button_to('Back to Schedule', days_path, :method => "get", :class => 'btn btn-primary') %>
