@@ -1,0 +1,43 @@
+<br><br>
+
+<p><strong>Exercises:</strong></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Reps</th>
+    <th>Max Weight</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @training.trexercises.each do |trex| %> 
+  <tr>
+  <td><%= trex.title %></td>
+  <td><%= trex.reps %></td>
+  <td><%= trex.maxweight %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+
+<br><br>
+
+<%= form_for @training, url: { action: "create" } do |f| %>
+  <p>
+    <strong>Today Body Weight</strong><br>
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <strong>Today Training`s Description</strong><br>
+    <%= f.text_area :info %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+<br><br>
+
+<%= link_to 'Cancel', days_path, :method => "get", :class => 'btn btn-mini' %>
