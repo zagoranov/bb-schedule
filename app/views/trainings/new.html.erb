@@ -23,7 +23,7 @@
 
 <br><br>
 
-<%= form_for @training, url: { action: "create" } do |f| %>
+<%= form_for ([@day, @training]) do |f| %>
   <p>
     <strong>Today Body Weight</strong><br>
     <%= f.text_field :weight %>
