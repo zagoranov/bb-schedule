@@ -1,0 +1,24 @@
+<h3>Edit Exercise</h3>
+
+<br><br>
+
+<%= form_for ([@day, @training, @trexercise]) do |f| %>
+  <p>
+    <strong>Exercise</strong><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <strong>Reps</strong><br>
+    <%= f.text_area :reps %>
+  </p>
+  <p>
+    <strong>Max Weight</strong><br>
+    <%= f.text_area :maxweight %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+

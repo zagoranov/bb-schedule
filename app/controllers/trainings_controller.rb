@@ -1,12 +1,9 @@
 class TrainingsController < ApplicationController
 
+
 def new
   @day = Day.find(params[:day_id])
   @training = @day.trainings.new
-  @day.exercises.each do |exer|  
-     trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight)
-     trexercise.save
-  end
 end
 
 
@@ -21,7 +18,11 @@ def create
    @training = @day.trainings.create(training_params)
 
    if @training.save
-     redirect_to day_training_path
+     @day.exercises.each do |exer|  
+        trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight)
+        trexercise.save
+     end
+     redirect_to edit_training_path(@training)
    else
      render 'new'
   end
@@ -30,6 +31,7 @@ end
 
 def edit
   @training = Training.find(params[:id])
+  @day = @training.day
 end
 
 
@@ -57,17 +59,9 @@ def destroy
 end
 
 
-def setmaxweight
-   @trexercise = Trexercise.find(id: params[:id].to_i)
-   @trexercise.maxweight = params[:maxweight].to_f
-   @trexercise.save
-end
-
-
 private
   def training_params
     params.require(:training).permit(:weight, :info)
   end
-
 
 end

@@ -1,14 +1,39 @@
-<h3>Editing Training Info</h3>
+<p><h3>Edit Training</h3></p>
+
+<br><br>
+
+<p><strong>Exercises:</strong></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Reps</th>
+    <th>Max Weight</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @training.trexercises.each do |trex| %> 
+  <tr>
+  <td><%= trex.title %></td>
+  <td><%= trex.reps %></td>
+  <td><%= trex.maxweight %></td>
+  <td><%= button_to('Change', edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
 
 <br><br>
 
 <%= form_for ([@day, @training]) do |f| %>
   <p>
-    <strong>Body Weight</strong><br>
+    <strong>Today Body Weight</strong><br>
     <%= f.text_field :weight %>
   </p>
   <p>
-    <strong>Training`s Description</strong><br>
+    <strong>Today Training`s Description</strong><br>
     <%= f.text_area :info %>
   </p>
   <p>
@@ -19,4 +44,4 @@
 
 <br><br>
 
-<%= button_to('Back to Trainings', day_trainings_path(@training.day), :method => "get", :class => 'btn btn-primary') %>
+<%= button_to('Back to Schedule', days_path, :method => "get", :class => 'btn btn-primary') %>
