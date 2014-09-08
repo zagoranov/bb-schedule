@@ -1,0 +1,27 @@
+<h3><%= t :schedule %></h3>
+ 
+<br/><br/>
+<% @days.each do |day| %> 
+
+  <h4><%= day.title %></h4>  
+  <h5><%= day.text %></h5>
+
+  <table class="table table-striped">
+  <tbody>
+  <% day.exercises.each do |exercise| %>   
+    <tr>
+      <td><%= exercise.title %></td>
+      <td><%= exercise.reps %></td>
+      <td><%= exercise.maxweight %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+
+
+<% end %>
+
+<br><br>
+
+<%= link_to t(:back), days_path, :method => "get", :class => 'btn btn-primary' %>
+

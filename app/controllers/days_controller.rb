@@ -22,6 +22,12 @@ def show
 end
 
 
+def wholeweek
+  @user = User.find(current_user.id)
+  @days = @user.days.all 
+end
+
+
 def index
  if current_user
   @user = User.find(current_user.id)

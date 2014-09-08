@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  helper_method :current_user
+
+
   def set_locale
 #    I18n.locale = params[:locale] || I18n.default_locale
      if extract_locale_from_accept_language_header == "ru"
@@ -16,9 +19,6 @@ class ApplicationController < ActionController::Base
      end
   end
 
-
-
-helper_method :current_user
 
 private
 def current_user

@@ -1,0 +1,101 @@
+2014-09-08T18:42:53.398525+00:00 heroku[api]: Release v9 created by pijammer@gmail.com
+2014-09-08T18:43:38.666481+00:00 heroku[web.1]: State changed from down to starting
+2014-09-08T18:43:38.666234+00:00 heroku[web.1]: Unidling
+2014-09-08T18:43:42.169058+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 37154 -e production`
+2014-09-08T18:43:46.929971+00:00 app[web.1]: => Rails 4.1.1 application starting in production on http://0.0.0.0:37154
+2014-09-08T18:43:46.929953+00:00 app[web.1]: => Booting Thin
+2014-09-08T18:43:46.929976+00:00 app[web.1]: => Ctrl-C to shutdown server
+2014-09-08T18:43:46.929973+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2014-09-08T18:43:46.930074+00:00 app[web.1]: Listening on 0.0.0.0:37154, CTRL+C to stop
+2014-09-08T18:43:46.930040+00:00 app[web.1]: Maximum connections set to 1024
+2014-09-08T18:43:46.929975+00:00 app[web.1]: => Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+2014-09-08T18:43:46.929978+00:00 app[web.1]: Thin web server (v1.6.2 codename Doc Brown)
+2014-09-08T18:43:47.235651+00:00 heroku[web.1]: State changed from starting to up
+2014-09-08T18:43:48.725840+00:00 app[web.1]: Started GET "/" for 54.89.204.229 at 2014-09-08 18:43:48 +0000
+2014-09-08T18:43:48.898657+00:00 app[web.1]: Completed 500 Internal Server Error in 26ms
+2014-09-08T18:43:48.900421+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=20b65f96-5d14-4431-86ce-34a3afdf59de fwd="54.89.204.229" dyno=web.1 connect=1ms service=182ms status=500 bytes=402
+2014-09-08T18:43:48.870979+00:00 app[web.1]: Processing by SessionsController#new as */*
+2014-09-08T18:43:48.900708+00:00 app[web.1]: 
+2014-09-08T18:43:48.900715+00:00 app[web.1]:   app/controllers/application_controller.rb:30:in `extract_locale_from_accept_language_header'
+2014-09-08T18:43:48.900719+00:00 app[web.1]: 
+2014-09-08T18:43:48.900716+00:00 app[web.1]:   app/controllers/application_controller.rb:12:in `set_locale'
+2014-09-08T18:43:48.900717+00:00 app[web.1]: 
+2014-09-08T18:43:48.900713+00:00 app[web.1]: NoMethodError (undefined method `scan' for nil:NilClass):
+2014-09-08T18:44:48.393639+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=c9559e48-25cc-42f4-8173-937f5d8974bc fwd="37.110.47.216" dyno=web.1 connect=1ms service=52ms status=500 bytes=956
+2014-09-08T18:44:48.349588+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 18:44:48 +0000
+2014-09-08T18:44:48.388399+00:00 app[web.1]: Completed 500 Internal Server Error in 24ms
+2014-09-08T18:44:48.390218+00:00 app[web.1]: 
+2014-09-08T18:44:48.390221+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T18:44:48.390222+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T18:44:48.390224+00:00 app[web.1]: 
+2014-09-08T18:44:48.390225+00:00 app[web.1]: 
+2014-09-08T18:44:48.363990+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T18:44:48.994747+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=bb-schedule.herokuapp.com request_id=99579279-2a06-4024-9313-c3264b5096a0 fwd="37.110.47.216" dyno=web.1 connect=1ms service=7ms status=200 bytes=845
+2014-09-08T18:44:52.240078+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=5de8b612-7ab2-48fe-ad8d-2513b91f55cc fwd="37.110.47.216" dyno=web.1 connect=1ms service=14ms status=500 bytes=931
+2014-09-08T18:44:52.232014+00:00 app[web.1]: Completed 500 Internal Server Error in 1ms
+2014-09-08T18:44:52.225963+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 18:44:52 +0000
+2014-09-08T18:44:52.235754+00:00 app[web.1]: 
+2014-09-08T18:44:52.231010+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T18:44:52.235758+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T18:44:52.235760+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T18:44:52.235761+00:00 app[web.1]: 
+2014-09-08T18:44:52.235762+00:00 app[web.1]: 
+2014-09-08T18:46:10.131755+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=8fa60df6-c9a0-4e11-82c7-eb86dbd4b179 fwd="37.110.47.216" dyno=web.1 connect=1ms service=7ms status=500 bytes=905
+2014-09-08T18:46:10.129461+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T18:46:10.131354+00:00 app[web.1]: 
+2014-09-08T18:46:10.131357+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T18:46:10.131360+00:00 app[web.1]: 
+2014-09-08T18:46:10.131361+00:00 app[web.1]: 
+2014-09-08T18:46:10.131359+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T18:46:10.130148+00:00 app[web.1]: Completed 500 Internal Server Error in 1ms
+2014-09-08T18:46:10.125966+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 18:46:10 +0000
+2014-09-08T18:46:10.845846+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=bb-schedule.herokuapp.com request_id=ce4bfe00-ad08-4b9d-b015-41cc9399b621 fwd="37.110.47.216" dyno=web.1 connect=1ms service=2ms status=304 bytes=895
+2014-09-08T18:57:57.969756+00:00 app[web.1]: Started GET "/" for 46.121.203.224 at 2014-09-08 18:57:57 +0000
+2014-09-08T18:57:57.981444+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T18:57:58.391342+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=1639c3b5-2d50-40da-81d2-459d413116cc fwd="46.121.203.224" dyno=web.1 connect=2ms service=426ms status=302 bytes=936
+2014-09-08T18:57:58.391013+00:00 app[web.1]: Completed 302 Found in 404ms (ActiveRecord: 71.3ms)
+2014-09-08T18:57:58.385216+00:00 app[web.1]: Redirected to http://bb-schedule.herokuapp.com/days
+2014-09-08T18:57:58.846911+00:00 app[web.1]: Started GET "/days" for 46.121.203.224 at 2014-09-08 18:57:58 +0000
+2014-09-08T18:57:59.039143+00:00 app[web.1]:   Rendered days/index.html.erb within layouts/application (98.9ms)
+2014-09-08T18:57:58.854197+00:00 app[web.1]: Processing by DaysController#index as HTML
+2014-09-08T18:57:59.085564+00:00 app[web.1]: Completed 200 OK in 228ms (Views: 148.5ms | ActiveRecord: 17.3ms)
+2014-09-08T18:57:59.088828+00:00 heroku[router]: at=info method=GET path="/days" host=bb-schedule.herokuapp.com request_id=ec0f5c8f-a79d-4290-a03c-7488800e42f4 fwd="46.121.203.224" dyno=web.1 connect=3ms service=247ms status=200 bytes=1104
+2014-09-08T18:57:59.622046+00:00 heroku[router]: at=info method=GET path="/assets/application-63e7b2d1c460f4c84d544d892da4a137.js" host=bb-schedule.herokuapp.com request_id=3df52d0d-1bc4-445d-84e4-f0456c2e42f1 fwd="46.121.203.224" dyno=web.1 connect=1ms service=2ms status=304 bytes=1160
+2014-09-08T18:57:59.589314+00:00 heroku[router]: at=info method=GET path="/assets/application-491e2cbba27489f93ffccfac3fb48b65.css" host=bb-schedule.herokuapp.com request_id=13e04c31-1e9d-4576-aa2d-e77fac629847 fwd="46.121.203.224" dyno=web.1 connect=2ms service=3ms status=304 bytes=1176
+2014-09-08T18:58:24.582719+00:00 app[web.1]: Started GET "/days/1" for 46.121.203.224 at 2014-09-08 18:58:24 +0000
+2014-09-08T18:58:24.681080+00:00 app[web.1]:   Rendered exercises/_form.html.erb (8.3ms)
+2014-09-08T18:58:24.590423+00:00 app[web.1]:   Parameters: {"id"=>"1"}
+2014-09-08T18:58:24.700385+00:00 app[web.1]: Completed 200 OK in 110ms (Views: 69.6ms | ActiveRecord: 25.4ms)
+2014-09-08T18:58:24.590412+00:00 app[web.1]: Processing by DaysController#show as HTML
+2014-09-08T18:58:24.661644+00:00 app[web.1]:   Rendered exercises/_exercise.html.erb (10.7ms)
+2014-09-08T18:58:24.691917+00:00 app[web.1]:   Rendered days/show.html.erb within layouts/application (83.6ms)
+2014-09-08T18:58:24.704159+00:00 heroku[router]: at=info method=GET path="/days/1" host=bb-schedule.herokuapp.com request_id=65f79472-70d6-47a7-8369-1eb65f50d90e fwd="46.121.203.224" dyno=web.1 connect=1ms service=126ms status=200 bytes=1164
+2014-09-08T19:26:46.668694+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=410f5787-88b3-4877-923d-3c9d6094acde fwd="37.110.47.216" dyno=web.1 connect=13ms service=12ms status=500 bytes=932
+2014-09-08T19:26:46.664820+00:00 app[web.1]: Completed 500 Internal Server Error in 1ms
+2014-09-08T19:26:46.659538+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 19:26:46 +0000
+2014-09-08T19:26:46.663716+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T19:26:46.667197+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T19:26:46.667198+00:00 app[web.1]: 
+2014-09-08T19:26:46.667200+00:00 app[web.1]: 
+2014-09-08T19:26:46.667190+00:00 app[web.1]: 
+2014-09-08T19:26:46.667196+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T19:26:47.298043+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=bb-schedule.herokuapp.com request_id=da35c2e1-51fe-4785-b6fa-3ad3162bf056 fwd="37.110.47.216" dyno=web.1 connect=2ms service=2ms status=304 bytes=895
+2014-09-08T19:37:51.820325+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 19:37:51 +0000
+2014-09-08T19:37:51.824168+00:00 app[web.1]: Completed 500 Internal Server Error in 1ms
+2014-09-08T19:37:51.825448+00:00 app[web.1]: 
+2014-09-08T19:37:51.823415+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T19:37:51.825444+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T19:37:51.825450+00:00 app[web.1]: 
+2014-09-08T19:37:51.825440+00:00 app[web.1]: 
+2014-09-08T19:37:51.825446+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T19:37:51.826732+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=68e21b7c-006e-4458-bffb-5f853290cef2 fwd="37.110.47.216" dyno=web.1 connect=3ms service=8ms status=500 bytes=931
+2014-09-08T19:37:52.415610+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=bb-schedule.herokuapp.com request_id=13c04911-404b-4c68-93c2-598c06446600 fwd="37.110.47.216" dyno=web.1 connect=2ms service=3ms status=304 bytes=895
+2014-09-08T19:37:57.402579+00:00 heroku[router]: at=info method=GET path="/" host=bb-schedule.herokuapp.com request_id=9b11777e-8b2b-4964-923d-079f8a99a45a fwd="37.110.47.216" dyno=web.1 connect=1ms service=11ms status=500 bytes=931
+2014-09-08T19:37:57.400241+00:00 app[web.1]: Completed 500 Internal Server Error in 1ms
+2014-09-08T19:37:57.393226+00:00 app[web.1]: Started GET "/" for 37.110.47.216 at 2014-09-08 19:37:57 +0000
+2014-09-08T19:37:57.399593+00:00 app[web.1]: Processing by SessionsController#new as HTML
+2014-09-08T19:37:57.401487+00:00 app[web.1]: 
+2014-09-08T19:37:57.401489+00:00 app[web.1]: I18n::InvalidLocale (:ru is not a valid locale):
+2014-09-08T19:37:57.401491+00:00 app[web.1]:   app/controllers/application_controller.rb:13:in `set_locale'
+2014-09-08T19:37:57.401492+00:00 app[web.1]: 
+2014-09-08T19:37:57.401493+00:00 app[web.1]: 

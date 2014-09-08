@@ -1,0 +1,75 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  hello: "Привет, мир"
+  title: "Название"
+  description: "Описание"
+  actions: "Действия"
+  schedule: "Расписание"
+  root: "Главная"
+  pages: "Страницы"
+  back: "Назад"
+  cancel: "Отмена"
+  confirm: "Вы уверены?"
+  destroy: "Удалить"
+  new: "Создать"
+  edit: "Изменить"
+  train: "Тренироваться!"
+  past_train: "Прошлые тренировки"
+  add_new_day: "Добавить день"
+  show: "Посмотреть"
+  sch_empty: "В расписании пока пусто. Срочно добавьте в него тренировочные дни!"
+  edit_day: "Изменение описания"
+  back_to_sch: "Вернуться в Расписание"
+  save: "Записать"
+  new_day: "Новый тренировочный день"
+  exercises: "Упражнения"
+  reps: "Повторения"
+  max_weight: "Максимальный вес"
+  day_empty: "День пуст. Добавьте в него упражений!"
+  add_exercise: "Добавить упражнение"
+  email: "Е-мейл"
+  password: "Пароль"
+  log_in: "Войти"
+  log_out: "Выйти"
+  welcome_back: "Снова здравствуйте!"
+  logged_in: "Добро пожаловать!"
+  logged_out: "Всего хорошего!"
+  invalid_user: "Е-мейл или пароль не подходят :("
+  sign_up: "Регистрация"
+  signed_up: "Вы зарегистрированы!"
+  logged_as: "Вы: "
+  training: "Тренировка"
+  trainings: "Тренировки"
+  edit_training: "Меняем тренировку"
+  today_body_w: "Вес тела сегодня"
+  today_tr_desc: "Описание тренировки сегодня"
+  date_time: "Когда"
+  body_weight: "Вес тела"
+  no_trainings: "Пусто?!"
+  new_training: "Новая тренировка"
+  start_training: "Начать!"
+  edit_exercise: "Изменить упражнение"
+  new_exercise: "Добавить упражнение"
+  password_confirmation: "Подтверждение пароля"
+  edit_desc: "Изменить описание"
+  whole_schedule: "Таблица"

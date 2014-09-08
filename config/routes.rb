@@ -5,7 +5,10 @@ root :to => "sessions#new"  #"users#new"
   resources :users
 
    resources :days do
-      resources :exercises
+        collection do
+            get 'wholeweek'
+         end
+        resources :exercises
    end
 
    resources :days do

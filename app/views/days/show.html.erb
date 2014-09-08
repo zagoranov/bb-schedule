@@ -5,9 +5,11 @@
   <h4><%= @day.text %></h4>
 </p>
 
+<td><%= button_to(t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-mini')  %> </td>
 <br><br>
 
 <p><h4><%= t :exercises%></h4></p>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -33,5 +35,6 @@
 
 <br><br>
 
+<%= button_to(t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary')  %> 
+<br>
 <%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>
-<%= link_to t(:edit_day), edit_day_path(@day), :method => "get", :class => 'btn btn-primary' %>

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :days
+  has_many :days, dependent: :destroy
   
   attr_accessor :password
   before_save :encrypt_password
