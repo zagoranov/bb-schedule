@@ -27,7 +27,7 @@ def index
   @user = User.find(current_user.id)
   @days = @user.days.all
  else 
-    redirect_to 'sign_in'
+    redirect_to 'log_in'
  end
 end
 
