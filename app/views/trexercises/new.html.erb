@@ -1,8 +1,8 @@
-<h3>Edit Exercise</h3>
+<h3>New Training Exercise</h3>
 
 <br><br>
 
-<%= form_for ([@day, @training, @trexercise]) do |f| %>
+<%= form_for ([@trexercise]) do |f| %>
   <p>
     <strong>Exercise</strong><br>
     <%= f.text_field :title %>
@@ -16,9 +16,6 @@
     <%= f.text_area :maxweight %>
   </p>
   <p>
-    <%= f.submit "Save Exercise"%>
+    <%= f.submit "Save Exercise" %>
   </p>
 <% end %>
-
-
-

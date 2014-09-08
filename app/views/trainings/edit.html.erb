@@ -20,10 +20,16 @@
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>
   <td><%= button_to('Change', edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
+  <td><%= button_to('Delete', trex, 
+            method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
   </tr>
   <% end %>
  </tbody>
 </table>
+<br><br>
+
+<p><strong>Add an exercise:</strong></p>
+<%= render "trexercises/form" %>
 
 <br><br>
 
@@ -37,7 +43,7 @@
     <%= f.text_area :info %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Save changes" %>
   </p>
 <% end %>
 

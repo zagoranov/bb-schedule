@@ -9,7 +9,9 @@ root :to => "sessions#new"  #"users#new"
    end
 
    resources :days do
-      resources :trainings
+      resources :trainings do
+         resources :trexercises 
+      end   
    end
 
    resources :trexercises 
@@ -21,7 +23,5 @@ root :to => "sessions#new"  #"users#new"
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
-
-#post "setmaxweight" => "trainings#setmaxweight", :as => "setmaxweight"
 
 end
