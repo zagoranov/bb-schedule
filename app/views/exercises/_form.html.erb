@@ -2,9 +2,9 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Reps</th>
-    <th>Max Weight</th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
   </tr>
   </thead>
   <tbody>
@@ -15,5 +15,5 @@
     </tr>
  </tbody>
 </table>
-    <%= f.submit "Add Exercise" %>
+    <%= f.submit t(:add_exercise) %>
 <% end %>

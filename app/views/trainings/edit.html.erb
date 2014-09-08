@@ -1,16 +1,32 @@
-<p><h3>Edit Training</h3></p>
+<p><h3><%= t :edit_training%></h3></p>
 
-<br><br>
+<br>
 
-<p><strong>Exercises:</strong></p>
+<%= form_for ([@day, @training]) do |f| %>
+  <p>
+    <strong><%= t :body_weight%></strong><br>
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <strong><%= t :today_tr_desc%></strong><br>
+    <%= f.text_area :info %>
+  </p>
+  <p>
+    <%= f.submit t(:save) %>
+  </p>
+<% end %>
+
+<br>
+
+<p><h4><%= t :exercises%></h4></p>
 
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Reps</th>
-    <th>Max Weight</th>
-    <th>Actions</th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
+    <th><%= t :actions%></th>
   </tr>
   </thead>
   <tbody>
@@ -19,35 +35,18 @@
   <td><%= trex.title %></td>
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>
-  <td><%= button_to('Change', edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
-  <td><%= button_to('Delete', trex, 
-            method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
+  <td><%= button_to(t(:edit), edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
+  <td><%= button_to(t(:destroy), trex, 
+            method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
   </tr>
   <% end %>
  </tbody>
 </table>
 <br><br>
 
-<p><strong>Add an exercise:</strong></p>
-<%= render "trexercises/form" %>
+<p><h4><%= t :add_exercise %></h4></p>
+<%= render "trexercises/trexercise" %>  <!-- "trexercises/form" -->
 
 <br><br>
 
-<%= form_for ([@day, @training]) do |f| %>
-  <p>
-    <strong>Today Body Weight</strong><br>
-    <%= f.text_field :weight %>
-  </p>
-  <p>
-    <strong>Today Training`s Description</strong><br>
-    <%= f.text_area :info %>
-  </p>
-  <p>
-    <%= f.submit "Save changes" %>
-  </p>
-<% end %>
-
-
-<br><br>
-
-<%= button_to('Back to Schedule', days_path, :method => "get", :class => 'btn btn-primary') %>
+<%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>

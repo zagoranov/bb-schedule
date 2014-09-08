@@ -1,12 +1,4 @@
-<h1>Sign Up</h1>
-
-
-  <% if current_user %>
-  <script type="text/javascript">
-    window.location.href="/days" 
-  </script>    
-  <% end %>
-
+<h1><%t :sign_up%></h1>
 
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
@@ -21,16 +13,16 @@
   <% end %>
 
   <p>
-    <%= f.label :email %><br />
+    <%= t :email %><br />
     <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.label :password %><br />
+    <%= t :password %><br />
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.label :password_confirmation %><br />
+    <%= t :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
-  <p class="button"><%= f.submit "Sign Up" %></p>
+  <p class="button"><%= f.submit t(:sign_up)" %></p>
 <% end %>

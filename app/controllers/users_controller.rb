@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
 def new
+  if current_user
+    redirect_to days_path, :notice => t(:welcome_back)
+  end 
   @user = User.new
 end
 
@@ -8,7 +11,7 @@ end
 def create
   @user = User.new(user_params)
   if @user.save
-    redirect_to days_path, :notice => "Signed up!"
+    redirect_to days_path, :notice => t(:signed_up)
   else
     render "new"
   end

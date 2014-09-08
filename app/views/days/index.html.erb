@@ -1,11 +1,12 @@
-<h3>Schedule</h3>
+
+<h3><%= t :schedule %></h3>
  
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Actions</th>
+    <th><%= t :title%></th>
+    <th><%= t :description%></th>
+    <th><%= t :actions%></th>
   </tr>
   </thead>
   <tbody>
@@ -13,24 +14,24 @@
     <tr>
     <td><%= day.title %></td>
     <td><%= day.text %></td>
-    <td><%= button_to('Show', day, :method => "get", :class => 'btn btn-mini')  %> </td>
-    <td><%= button_to('Edit Info', edit_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
-    <td><%= button_to('Train!', new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
-    <td><%= button_to('Delete', day, 
-             method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
-    <td><%= link_to 'Past Trainings', day_trainings_path(day), :method => "get", :class => 'btn btn-primary' %></td>
+    <td><%= button_to(t(:show), day, :method => "get", :class => 'btn btn-mini')  %> </td>
+    <td><%= button_to(t(:edit), edit_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
+    <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    <td><%= button_to(t(:destroy), day, 
+             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= link_to t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-primary' %></td>
     </tr>
   <% end %>
  </tbody>
 </table>
 <% if @days.size == 0 %>
-  <em> Schedule is empty yet. Add training days!<br><br> </em>
+  <em><%= t :sch_empty %></em>
 <% end %>
 
 
 <br><br>
 
-<%= link_to 'Add New Day', new_day_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %>
 
 <br><br>
 

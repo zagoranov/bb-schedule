@@ -1,12 +1,12 @@
-<h3>Trainings</h3>
+<h3><%= t(:trainings)%></h3>
  
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Date Time</th>
-    <th>Body Weight</th>
-    <th>Info</th>
-    <th>Actions</th>
+    <th><%= t :date_time %></th>
+    <th><%= t :body_weight %></th>
+    <th><%= t :description %></th>
+    <th><%= t :actions %></th>
   </tr>
   </thead>
   <tbody>
@@ -15,18 +15,18 @@
     <td><%= train.created_at.to_s(:ru_datetime) %></td>
     <td><%= train.weight %></td>
     <td><%= train.info %></td>
-    <td><%= button_to('Show', train, :method => "get", :class => 'btn btn-mini')  %> </td>  
-    <td><%= button_to('Edit Info', edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
-    <td><%= button_to('Delete', train, 
-             method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= button_to(t(:show), train, :method => "get", :class => 'btn btn-mini')  %> </td>  
+    <td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
+    <td><%= button_to(t(:destroy), train, 
+             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>
   <% end %>
  </tbody>
 </table>
 <% if @trainings.size == 0 %>
-  <em> No trainings?!<br><br> </em>
+  <em><%t :no_trainings%><br><br> </em>
 <% end %>
 
 <br><br>
 
-<%= button_to('Back to Schedule', days_path, :method => "get", :class => 'btn btn-primary') %>
+<%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>

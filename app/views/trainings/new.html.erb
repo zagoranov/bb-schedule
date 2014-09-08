@@ -1,18 +1,18 @@
-<h3>New Training</h3>
+<h3><%= t :new_training%></h3>
 
 <br><br>
 
 <%= form_for ([@day, @training]) do |f| %>
   <p>
-    <strong>Body Weight</strong><br>
+    <strong><%= t :body_weight%></strong><br>
     <%= f.text_field :weight %>
   </p>
   <p>
-    <strong>Training`s Description</strong><br>
+    <strong><%= t :description%></strong><br>
     <%= f.text_area :info %>
   </p>
   <p>
-    <%= f.submit "Start Training" %>
+    <%= f.submit t(:start_training) %>
   </p>
 <% end %>
 

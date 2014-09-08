@@ -2,7 +2,7 @@
   <td><%= exercise.title %></td>
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
-  <td><%= button_to('Delete', [exercise.day, exercise], 
+  <td><%= button_to(t(:destroy), [exercise.day, exercise], 
              method: :delete, 
-             data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger')  %> </td>
+             data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
 </tr>

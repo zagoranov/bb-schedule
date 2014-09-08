@@ -1,27 +1,27 @@
-<p><h3>Training</h3></p>
+<p><h3><%= t :training%></h3></p>
 
-<br><br>
+<br>
 
 <p>
-  <h4>Date: <%= @training.created_at.to_s(:ru_datetime) %></h4>  
+  <h4><%= t :date_time%>: <%= @training.created_at.to_s(:ru_datetime) %></h4>  
 </p>
 <p>
-  <h4>Weight: <%= @training.weight %></h4>  
+  <h4><%= t :body_weight%>: <%= @training.weight %></h4>  
 </p>
 <p>
-  <h4>Info: <%= @training.info %></h4>
+  <h4><%= t :description%>: <%= @training.info %></h4>
 </p>
 
-<br><br>
+<br>
 
-<p><strong>Exercises:</strong></p>
+<p><h4><%= t :exercises%></h4></p>
 
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Reps</th>
-    <th>Max Weight</th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
   </tr>
   </thead>
   <tbody>
@@ -34,7 +34,10 @@
   <% end %>
  </tbody>
 </table>
+<% if @training.trexercises.size == 0 %>
+  <em><%= t :sch_empty %></em>
+<% end %>
 
 <br><br>
 
-<%= button_to('Back to Trainings', day_trainings_path(@training.day), :method => "get", :class => 'btn btn-primary') %>
+<%= link_to t(:back), day_trainings_path(@day), :method => "get", :class => 'btn btn-primary' %>

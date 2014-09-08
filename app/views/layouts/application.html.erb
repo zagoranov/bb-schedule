@@ -50,11 +50,11 @@
           <ul class="nav navbar-nav">
 
   <% if current_user %>
-    <li>Logged in as <%= current_user.email %>.</li>
-    <li><%= link_to "Log out", log_out_path %></li>
+<!--    <li> <%= t :logged_as%> <%= current_user.email %>.</li>   -->
+    <li><%= link_to t(:log_out), log_out_path %></li>
   <% else %>
-    <li><%= link_to "Sign up", sign_up_path %></li> 
-    <li><%= link_to "Log in", log_in_path %></li>
+    <li><%= link_to t(:sign_up), sign_up_path %></li> 
+    <li><%= link_to t(:log_in), log_in_path %></li>
   <% end %>
 
           </ul>

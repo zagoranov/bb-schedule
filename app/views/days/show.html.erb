@@ -7,14 +7,14 @@
 
 <br><br>
 
-<p><strong>Exercises:</strong></p>
+<p><h4><%= t :exercises%></h4></p>
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Title</th>
-    <th>Reps</th>
-    <th>Max Weight</th>
-    <th>Action</th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
+    <th><%= t :actions%></th>
   </tr>
   </thead>
   <tbody>
@@ -22,18 +22,16 @@
  </tbody>
 </table>
 <% if @day.exercises.size == 0 %>
-  <em> Day is empty yet. Add some exercises!<br><br> </em>
+  <em><%= t :day_empty%><br><br> </em>
 <% end %>
-
 
 
 <br><br>
 
-<p><strong>Add an exercise:</strong></p>
+<p><h4><%= t :add_exercise%></h4></p>
 <%= render "exercises/form" %>
 
 <br><br>
 
-<br><br>
-<%= link_to 'Back to Schedule', days_path, :method => "get", :class => 'btn btn-primary' %>
-<%= link_to 'Edit day info', edit_day_path(@day), :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:edit_day), edit_day_path(@day), :method => "get", :class => 'btn btn-primary' %>
