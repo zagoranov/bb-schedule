@@ -19,7 +19,7 @@ def create
 
    if @training.save
      @day.exercises.each do |exer|  
-        trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight)
+        trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number)
         trexercise.save
      end
      redirect_to edit_training_path(@training)
@@ -58,6 +58,9 @@ def destroy
   redirect_to day_trainings_path(@day)
 end
 
+def history
+   @trainings = Training.all
+end
 
 private
   def training_params

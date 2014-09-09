@@ -20,7 +20,7 @@
   </tr>
   </thead>
   <tbody>
-      <%= render @day.exercises %>
+      <%= render @day.exercises.order('number') %>
  </tbody>
 </table>
 <% if @day.exercises.size == 0 %>
@@ -35,6 +35,5 @@
 
 <br><br>
 
-<%= button_to(t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary')  %> 
-<br>
+<%= link_to t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %> 
 <%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>

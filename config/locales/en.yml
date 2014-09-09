@@ -51,7 +51,7 @@ en:
   password: "Password"
   log_in: "Log in"
   log_out: "Log out"
-  welcome_back: "Welcome back"
+  welcome_back: "Welcome back!"
   logged_in: "Logged in!"
   logged_out: "Logged out!"
   invalid_user: "Invalid email or password"
@@ -73,4 +73,6 @@ en:
   password_confirmation: "Password Confirmation"
   edit_desc: "Edit description"
   whole_schedule: "Table view"
-
+  up: "Up"
+  down: "Down"
+  history: "Training history"

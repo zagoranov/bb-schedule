@@ -30,12 +30,14 @@
   </tr>
   </thead>
   <tbody>
-  <% @training.trexercises.each do |trex| %> 
+  <% @training.trexercises.order('number').each do |trex| %> 
   <tr>
   <td><%= trex.title %></td>
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>
   <td><%= button_to(t(:edit), edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
+  <td><%= button_to(t(:up), up_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>
+  <td><%= button_to(t(:down), down_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>
   <td><%= button_to(t(:destroy), trex, 
             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
   </tr>

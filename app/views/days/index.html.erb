@@ -19,7 +19,6 @@
     <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>
     <td><%= button_to(t(:destroy), day, 
              method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
-    
     </tr>
   <% end %>
  </tbody>
@@ -28,11 +27,9 @@
   <em><%= t :sch_empty %></em>
 <% end %>
 
-
 <br><br>
 
-<%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %>
-<br>
-<br>
-<%= link_to t(:whole_schedule), wholeweek_days_path, :method => "get", :class => 'btn btn-primary' %>
 
+<%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
+<%= link_to t(:whole_schedule), wholeweek_days_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:history), history_trainings_path, :method => "get", :class => 'btn btn-primary' %>
