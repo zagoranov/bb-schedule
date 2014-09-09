@@ -17,6 +17,12 @@ def create
 def destroy
     @day = Day.find(params[:day_id])
     @exercise = @day.exercises.find(params[:id])
+    numb = @exercise.number
+    exercises = @day.exercises.where('number > ?', numb)
+    exercises.each do |exer|
+      exer.number = exer.number - 1
+      exer.save
+    end
     @exercise.destroy
     redirect_to day_path(@day)
   end

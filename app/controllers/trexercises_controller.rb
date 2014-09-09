@@ -40,6 +40,12 @@ end
 def destroy
   @trexercise = Trexercise.find(params[:id])
   @training = @trexercise.training
+    numb = @trexercise.number
+    trexercises = @training.trexercises.where('number > ?', numb)
+    trexercises.each do |trexer|
+      trexer.number = trexer.number - 1
+      trexer.save
+    end
   @trexercise.destroy
   redirect_to edit_training_path(@training)
 end
