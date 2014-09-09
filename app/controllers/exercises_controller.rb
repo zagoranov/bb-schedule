@@ -4,7 +4,7 @@ def create
     @day = Day.find(params[:day_id])
     @exercise = @day.exercises.create(exercise_params)
     exercises = @day.exercises.all
-    numb = exercises.select("max(number) as mx").first.mx
+    numb = exercises.maximum("number")  
     if numb != nil
       @exercise.number = numb.to_i + 1
     else
@@ -31,11 +31,14 @@ def up
   exercise = Exercise.find(params[:id])
   numb = exercise.number
   if numb > 1
-    exer2 = Exercise.find_by_number(numb - 1)
-    exer2.number = numb
-    exer2.save
-    exercise.number = numb - 1
-    exercise.save
+    day = exercise.day
+    exer2 = day.exercises.find_by_number(numb - 1)
+    if exer2
+      exer2.number = numb
+      exer2.save
+      exercise.number = numb - 1
+      exercise.save
+    end
   end
   redirect_to exercise.day
 end
@@ -43,7 +46,8 @@ end
 def down
   exercise = Exercise.find(params[:id])
   numb = exercise.number
-  exer2 = Exercise.find_by_number(numb + 1)
+  day = exercise.day
+  exer2 = day.exercises.find_by_number(numb + 1)
   if exer2
     exer2.number = numb
     exer2.save

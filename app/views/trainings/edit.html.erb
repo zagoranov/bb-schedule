@@ -35,6 +35,7 @@
   <td><%= trex.title %></td>
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>
+  <td><%= trex.number %></td>      
   <td><%= button_to(t(:edit), edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
   <td><%= button_to(t(:up), up_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>
   <td><%= button_to(t(:down), down_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>

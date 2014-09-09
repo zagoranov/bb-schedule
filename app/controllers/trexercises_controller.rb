@@ -12,7 +12,7 @@ def create
     @training = Training.find(params[:training_id])
     @trexercise = @training.trexercises.create(trexercise_params)
       trexercises = @training.trexercises.all
-      numb = trexercises.select("max(number) as mx").first.mx
+      numb = trexercises.maximum("number")  
       if numb != nil
          @trexercise.number = numb.to_i + 1
       else
@@ -54,12 +54,15 @@ end
 def up
   trexercise = Trexercise.find(params[:id])
   numb = trexercise.number
-  if numb && numb > 1
-    trexer2 = Trexercise.find_by_number(numb - 1)
-    trexer2.number = numb
-    trexer2.save
-    trexercise.number = numb - 1
-    trexercise.save
+  if numb > 1
+    train = trexercise.training
+    trexer2 = train.trexercises.find_by_number(numb - 1)
+    if trexer2
+      trexer2.number = numb
+      trexer2.save
+      trexercise.number = numb - 1
+      trexercise.save
+    end
   end
   redirect_to edit_training_path(trexercise.training)
 end
@@ -67,15 +70,14 @@ end
 def down
   trexercise = Trexercise.find(params[:id])
   numb = trexercise.number
-  if numb
-    trexer2 = Trexercise.find_by_number(numb + 1)
+  train = trexercise.training
+  trexer2 = train.trexercises.find_by_number(numb + 1)
     if trexer2
       trexer2.number = numb
       trexer2.save
       trexercise.number = numb + 1
       trexercise.save
     end
-  end
   redirect_to edit_training_path(trexercise.training)
 end
 
