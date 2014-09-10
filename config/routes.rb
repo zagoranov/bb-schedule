@@ -9,24 +9,28 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :days do
-        collection do
-            get 'wholeweek'
-         end
-        resources :exercises
-  end
-
-  resources :days do
-      resources :trainings do
-         resources :trexercises
-    end   
-  end
-
-    resources :exercises do
+      collection do
+        get 'wholeweek'
+      end
       member do
         get 'up'
         get 'down'            
       end
+      resources :exercises
+  end
+
+  resources :days do
+    resources :trainings do
+      resources :trexercises
+    end   
+  end
+
+  resources :exercises do
+    member do
+      get 'up'
+      get 'down'            
     end
+  end
 
 
   resources :trexercises  do

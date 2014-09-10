@@ -8,7 +8,7 @@
 
   <table class="table table-striped">
   <tbody>
-  <% day.exercises.each do |exercise| %>   
+  <% day.exercises.order('number').each do |exercise| %>   
     <tr>
       <td><%= exercise.title %></td>
       <td><%= exercise.reps %></td>

@@ -12,9 +12,11 @@
   <tbody>
   <% @days.each do |day| %> 
     <tr>
-    <td><%= day.title %></td>
+    <td><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
-    <td><%= button_to(t(:show), day, :method => "get", :class => 'btn btn-mini')  %> </td>
+<!--    <td><%= link_to t(:show), day, :method => "get", :class => 'btn btn-mini'  %> </td>  -->
+    <td><%= button_to(t(:up), up_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
+    <td><%= button_to(t(:down), down_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
     <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>
     <td><%= button_to(t(:destroy), day, 
