@@ -1,5 +1,17 @@
-  <tr>
-  <td><%= exercise.title %></td>
+<tr>
+<td><%= if I18n.locale == 'en'
+          if exercise.dictitem && exercise.dictitem.url
+         	 link_to exercise.title, exercise.dictitem.url, :target => "_blank"
+           else
+         	 exercise.title
+           end
+     	else
+          if exercise.dictitem && exercise.dictitem.url_ru
+         	 link_to exercise.title, exercise.dictitem.url_ru, :target => "_blank"
+           else
+         	 exercise.title
+           end
+  end  %></td>
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
   <td><%= button_to(t(:up), up_exercise_path(exercise), :method => "get", :class => 'btn btn-mini')  %> </td>

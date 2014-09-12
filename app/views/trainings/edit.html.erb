@@ -32,7 +32,19 @@
   <tbody>
   <% @training.trexercises.order('number').each do |trex| %> 
   <tr>
-  <td><%= trex.title %></td>
+<td><%= if I18n.locale == 'en'
+          if trex.dictitem && trex.dictitem.url
+             link_to trex.title, trex.dictitem.url, :target => "_blank"
+           else
+             trex.title
+           end
+      else
+          if trex.dictitem && trex.dictitem.url_ru
+             link_to trex.title, trex.dictitem.url_ru, :target => "_blank" 
+           else
+             trex.title
+           end
+  end  %></td>
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>
   <td><%= button_to(t(:edit), edit_trexercise_path(trex), :method => "get", :class => 'btn btn-primary') %></td>
