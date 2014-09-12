@@ -1,4 +1,4 @@
-<p><h3><%= t :edit_training%></h3></p>
+<p><h3><%= t :training%></h3></p>
 
 <br>
 
@@ -12,7 +12,7 @@
     <%= f.text_area :info %>
   </p>
   <p>
-    <%= f.submit t(:save) %>
+    <%= f.submit t(:edit) %>
   </p>
 <% end %>
 
@@ -51,4 +51,5 @@
 
 <br><br>
 
-<%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:back), :back, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:back_to_sch), days_path, :method => "get", :class => 'btn btn-primary' %> 

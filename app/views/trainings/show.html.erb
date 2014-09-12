@@ -3,7 +3,7 @@
 <br>
 
 <p>
-  <h5><%= t :date_time%>:</h5> <h4><%= @training.created_at.to_s(:ru_datetime) %></h4>  
+  <h5><%= t :date_time%>:</h5> <h4><%= @training.created_at.strftime("%d.%m.%Y %H:%M") %></h4>  
 </p>
 <p>
   <h5><%= t :body_weight%>:</h5> <h4><%= @training.weight %></h4>  
@@ -40,4 +40,5 @@
 
 <br><br>
 
-<%= link_to t(:back), day_trainings_path(@day), :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:edit), edit_training_path(@training), :method => "get", :class => 'btn btn-primary'  %>
+<%= link_to t(:back), :back, :method => "get", :class => 'btn btn-primary' %>
