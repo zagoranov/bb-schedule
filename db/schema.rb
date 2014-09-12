@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910115534) do
+ActiveRecord::Schema.define(version: 20140911175654) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20140910115534) do
     t.integer  "number"
   end
 
+  create_table "dictitems", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name_ru"
+    t.string   "desc_ru"
+    t.string   "url_ru"
+  end
+
   create_table "exercises", force: true do |t|
     t.string   "title"
     t.string   "reps"
@@ -30,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140910115534) do
     t.datetime "updated_at"
     t.float    "maxweight"
     t.integer  "number"
+    t.integer  "dictitem_id"
   end
 
   create_table "trainings", force: true do |t|
@@ -48,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140910115534) do
     t.datetime "updated_at"
     t.float    "maxweight"
     t.integer  "number"
+    t.integer  "dictitem_id"
   end
 
   create_table "users", force: true do |t|

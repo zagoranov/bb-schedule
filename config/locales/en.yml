@@ -76,3 +76,7 @@ en:
   up: "Up"
   down: "Down"
   history: "Training history"
+  choose: "Choose"
+  custom: "Custom"
+  title_list: "Title List"
+  w_chart: "Weight chart"

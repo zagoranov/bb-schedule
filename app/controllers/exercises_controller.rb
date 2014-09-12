@@ -3,6 +3,15 @@ class ExercisesController < ApplicationController
 def create
     @day = Day.find(params[:day_id])
     @exercise = @day.exercises.create(exercise_params)
+
+    if @exercise.dictitem
+        if I18n.locale == 'en'
+          @exercise.title = @exercise.dictitem.name
+      else
+          @exercise.title = @exercise.dictitem.name_ru
+      end
+    end
+
     exercises = @day.exercises.all
     numb = exercises.maximum("number")  
     if numb != nil
@@ -62,6 +71,6 @@ end
 
   private
     def exercise_params
-      params.require(:exercise).permit(:title, :reps, :maxweight)
+      params.require(:exercise).permit(:title, :reps, :maxweight, :dictitem_id)
     end
 end

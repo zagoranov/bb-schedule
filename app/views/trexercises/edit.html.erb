@@ -4,8 +4,8 @@
 
 <%= form_for ([@day, @training, @trexercise]) do |f| %>
   <p>
-    <strong><%= t :exercise%></strong><br>
-    <%= f.text_field :title %>
+    <strong><%= t :title%></strong><br>
+    <%= f.text_field :title, :readonly => true%>
   </p>
   <p>
     <strong><%= t :reps%></strong><br>

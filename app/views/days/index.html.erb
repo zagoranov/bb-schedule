@@ -35,3 +35,25 @@
 <%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
 <%= link_to t(:whole_schedule), wholeweek_days_path, :method => "get", :class => 'btn btn-primary' %>
 <%= link_to t(:history), history_trainings_path, :method => "get", :class => 'btn btn-primary' %>
+
+<br><br>
+<br><br>
+
+
+
+
+<% require 'gchart' %>
+
+<img src="<%= Gchart.line( :data => @trainings.order('created_at').collect(&:weight), :size => '300x200', :title => t(:w_chart), :axis_with_labels => ['y']          ) %>"/>
+
+
+<!--
+
+#[Hash[ @trainings.order('created_at').map{ |u| [u.created_at.strftime("%d.%m.%Y"), u.weight] }]]
+
+#              :axis_labels => [['J', 'F', 'M', 'A', 'M']], 
+#              :axis_range => [[@trainings.minimum(:weight), @trainings.maximum(:weight), 5]]
+#:data => @trainings.order('created_at').collect(&:weight),
+#:data => [@trainings.order('created_at').each_with_object({}) { |o, hsh| hsh[o.created_at.strftime("%d.%m.%Y")] = o.weight }]
+
+-->

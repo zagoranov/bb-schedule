@@ -9,15 +9,17 @@
   </thead>
   <tbody>
   <% @trainings.each do |train| %> 
-    <tr>
-    <td><%= train.created_at.to_s(:ru_datetime) %></td>
-    <td><%= train.weight %></td>
-    <td><%= train.info %></td>
-    <td><%= button_to(t(:show), train, :method => "get", :class => 'btn btn-mini')  %> </td>  
-    <td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
-    <td><%= button_to(t(:destroy), train, 
-             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
-    </tr>
+	<% if train.day.user_id == current_user.id %>
+		<tr>
+		<td><%= train.created_at.to_s(:ru_datetime) %></td>
+		<td><%= train.weight %></td>
+		<td><%= train.info %></td>
+		<td><%= button_to(t(:show), train, :method => "get", :class => 'btn btn-mini')  %> </td>  
+		<td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
+		<td><%= button_to(t(:destroy), train, 
+	             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+	    	</tr>
+     	<% end %>
   <% end %>
  </tbody>
 </table>

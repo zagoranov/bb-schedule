@@ -58,5 +58,5 @@ gem 'bcrypt'
 gem 'i18n'
 
 gem 'rails_admin'
-
-
+#gem "highcharts-rails", "~> 3.0.0"
+gem "googlecharts", :require => "gchart"

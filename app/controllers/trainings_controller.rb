@@ -19,7 +19,7 @@ def create
 
    if @training.save
      @day.exercises.each do |exer|  
-        trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number)
+        trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number, dictitem_id: exer.dictitem_id)
         trexercise.save
      end
      redirect_to edit_training_path(@training)
@@ -59,7 +59,7 @@ def destroy
 end
 
 def history
-   @trainings = Training.all
+  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
 end
 
 private

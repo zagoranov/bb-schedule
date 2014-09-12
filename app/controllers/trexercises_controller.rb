@@ -11,6 +11,15 @@ end
 def create
     @training = Training.find(params[:training_id])
     @trexercise = @training.trexercises.create(trexercise_params)
+
+    if @trexercise.dictitem
+        if I18n.locale == 'en'
+          @trexercise.title = @trexercise.dictitem.name
+      else
+          @trexercise.title = @trexercise.dictitem.name_ru
+      end
+    end
+
       trexercises = @training.trexercises.all
       numb = trexercises.maximum("number")  
       if numb != nil
@@ -85,7 +94,7 @@ end
 
   private
     def trexercise_params
-      params.require(:trexercise).permit(:title, :reps, :maxweight)
+      params.require(:trexercise).permit(:title, :reps, :maxweight, :dictitem_id)
     end
 
 end

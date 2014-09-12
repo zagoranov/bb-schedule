@@ -39,6 +39,7 @@ def index
  if current_user
   @user = User.find(current_user.id)
   @days = @user.days.order('number')
+  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
  else 
     redirect_to '/log_in'
  end
@@ -74,6 +75,7 @@ def destroy
     @day.destroy
   redirect_to days_path
 end
+
 
 def up
   day = Day.find(params[:id])
