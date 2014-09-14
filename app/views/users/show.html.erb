@@ -1,9 +1,20 @@
-<h4><%= t(:you) %></h4>
+<h4><%= if @user == current_user
+           t(:you) 
+        end %></h4>
 
 <h3><%= t(:username) %>: <%= @user.username %></h3>
-<h3><%= t(:email) %>: <%= @user.email %></h3>
-<br>
-<%= button_to(t(:edit), edit_user_path(@user), :method => "get",  :class => 'btn btn-mini') %>
+<% if @user == current_user %><h3>
+     <%= t(:email)%>: <%= @user.email %></h3>
+       <br>
+       <%= button_to(t(:edit), edit_user_path(@user), :method => "get",  :class => 'btn btn-mini') %>
+<%else%>       
+<%= @fr = current_user.friendships.where('friend_id = ?', @user.id).first
+         if @fr
+      link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
+    else
+       link_to t(:fr_add), friendships_path(:friend_id => @user.id), :method => :post, :class => 'btn btn-primary' 
+        end %>
+<%end%> 
 <br><br>
 
 <h4><%= t(:friends) %></h4>
@@ -11,8 +22,15 @@
 <tbody>
   <% for friendship in @user.friendships %>
     <tr>
-      <td><strong><%= friendship.friend.username %></strong></td>
-      <td><%= link_to t(:destroy), friendship, :method => :delete, :class => 'btn btn-mini btn-danger' %></td>
+      <td><strong><%= link_to friendship.friend.username, friendship.friend %></strong></td>
+      <td><%if friendship.friend != current_user %>
+      <%= @fr = current_user.friendships.where('friend_id = ?', friendship.friend.id).first
+         if @fr
+      link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
+    else
+       link_to t(:fr_add), friendships_path(:friend_id => friendship.friend.id), :method => :post, :class => 'btn btn-primary' 
+        end %>
+       <%end%></td>  
    </tr>  
   <% end %>
 </tbody>
@@ -24,7 +42,9 @@
 
 <br>
 
-<p><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></p>
+<% if @user == current_user %>
+<h4><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></h4>
+<% end %>
 
 <br><br>
 
@@ -33,14 +53,15 @@
 <tbody>
   <% for user in @user.inverse_friends %>
     <tr>
-      <td><strong><%= user.username %></strong></td>
-      <td><%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
+      <td><strong><%= link_to user.username, user %></strong></td>
+      <td><%if user != current_user %>
+      <%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
          if @fr
       link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
     else
        link_to t(:fr_add), friendships_path(:friend_id => user), :method => :post, :class => 'btn btn-primary' 
-        end
-      %></td> 
+        end %>
+     <%end%> </td>        
     </tr>       
   <% end %>
 </tbody>

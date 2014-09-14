@@ -81,9 +81,9 @@ ru:
   custom: "Другое"
   w_chart: "Вес"
   uusers: "Все качки"
-  friends: "Вы наблюдаете за"
+  friends: "Подписки"
   find_friends: "Искать друзяк"
-  friended_by: "За вами наблюдают"
+  friended_by: "Подписчики"
   fr_add: "Подписаться"
   fr_added: "Подписка прошла успешно."
   fr_error: "Не получилось."
@@ -97,3 +97,4 @@ ru:
   navigation: "Заблудились?"
   news: "Новости"
   was_trained: "был в качалке"
+  

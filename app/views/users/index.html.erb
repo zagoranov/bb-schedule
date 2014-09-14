@@ -7,7 +7,7 @@
 <% for user in @users %>
 <%if user != current_user %>
     <tr>
-      <td><strong><%= user.username %></strong></td> 
+      <td><strong><%= link_to user.username, user %></strong></td> 
       <td><%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
          if @fr
 		  link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
@@ -16,7 +16,7 @@
         end
       %></td> 
     </tr>
-<%end %>
+   <%end %>
  <% end %>
 </tbody>
 </table>

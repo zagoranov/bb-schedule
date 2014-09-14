@@ -74,19 +74,20 @@
           <div class="well sidebar-nav">
             <h4><%= t(:sidebar) %></h4>
             <ul class="nav nav-list">
-              <li class="nav-header"><%= t(:social) %></li>
+              <li class="nav-header"><strong><%= t(:social) %></strong></li>
               <li><%= link_to t(:profile), user_path(current_user) %></li>
               <li><%= link_to t(:uusers), users_path  %></li>
             </ul>
             <ul class="nav nav-list">
-             <li class="nav-header"><%= t(:news) %></li> 
+             <li class="nav-header"><strong><%= t(:news) %></strong></li> 
                 <% if current_user.friendships
                    @fr = current_user.friendships.collect(&:friend_id)
-                   for trtr in Training.joins(:day).where('user_id in (?)', @fr).order('created_at').limit(10) 
+                   for trtr in Training.joins(:day).where('user_id in (?)', @fr).order('trainings.created_at DESC').limit(10) 
                       @usern = User.find_by_id(trtr.day.user_id) %>
-                      <li><strong><%= @usern.username %></strong> 
+                      <li><strong><%= link_to @usern.username, @usern %></strong> 
                          <%= t(:was_trained)%> 
-                         <%= trtr.created_at.strftime("%d.%m.%Y %H:%M") %></li>
+                         <%= trtr.created_at.strftime("%d.%m.%Y %H:%M") %> - "<%= trtr.day.title %>"
+                       </li>
                 <% end %>
               <% end %>
             </ul>
