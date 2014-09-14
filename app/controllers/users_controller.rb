@@ -18,6 +18,24 @@ def create
   end
 end
 
+
+def index
+ if current_user
+  @users = User.all
+ else 
+    redirect_to '/log_in'
+ end
+end
+
+def show
+ if current_user
+    @user = User.find(params[:id])
+ else 
+    redirect_to '/log_in'
+ end
+end
+
+
 private
 def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)

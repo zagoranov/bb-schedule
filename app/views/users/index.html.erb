@@ -1,0 +1,22 @@
+<h3><%= t(:uusers)%></h3>
+
+<br><br>
+
+<table class="table table-striped">
+<tbody>
+<% for user in @users %>
+<%if user != current_user %>
+    <tr>
+      <td><strong><%= user.username %></strong></td> 
+      <td><%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
+         if @fr
+		  link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
+		else
+	      link_to t(:fr_add), friendships_path(:friend_id => user), :method => :post, :class => 'btn btn-primary' 
+        end
+      %></td> 
+    </tr>
+<%end %>
+ <% end %>
+</tbody>
+</table>
