@@ -82,7 +82,7 @@
              <li class="nav-header"><strong><%= t(:news) %></strong></li> 
                 <% if current_user.friendships
                    @fr = current_user.friendships.collect(&:friend_id)
-                   for trtr in Training.joins(:day).where('user_id in (?)', @fr).order('trainings.created_at DESC').limit(10) 
+                   for trtr in Training.joins(:day).where('user_id in (?)', @fr).order('trainings.created_at DESC').limit(15) 
                       @usern = User.find_by_id(trtr.day.user_id) %>
                       <li><strong><%= link_to @usern.username, @usern %></strong> 
                          <%= t(:was_trained)%> 

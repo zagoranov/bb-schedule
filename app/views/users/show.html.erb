@@ -70,3 +70,27 @@
 <% if @user.inverse_friends.size == 0 %>
   <em><%= t :empty %></em>
 <% end %>
+
+<br><br>
+
+<% if @user != current_user %>
+  <h4><%= t(:activity) %></h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :date_time %></th>
+    <th><%= t :name %></th>
+    <th><%= t :body_weight %></th>    
+   </tr>
+   </thead>
+  <tbody>
+  <% for tr in Training.joins(:day).where('user_id in (?)', @user).order('created_at DESC').limit(10) %>
+    <tr>       
+      <td><%= tr.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td>"<%= tr.day.title %>"</td>
+      <td><%= tr.weight %></td>
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+<% end %>
