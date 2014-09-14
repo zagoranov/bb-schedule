@@ -50,6 +50,7 @@
           <ul class="nav navbar-nav">
 
   <% if current_user %>
+    <li><%= link_to t(:schedule), days_path %></li>
     <li><%= link_to t(:log_out), log_out_path %></li>
   <% else %>
     <li><%= link_to t(:sign_up), sign_up_path %></li> 
@@ -78,8 +79,16 @@
               <li><%= link_to t(:uusers), users_path  %></li>
             </ul>
             <ul class="nav nav-list">
-              <li class="nav-header"><%= t(:navigation) %></li>
-              <li><%= link_to t(:schedule), days_path %></li>
+             <li class="nav-header"><%= t(:news) %></li> 
+                <% if current_user.friendships
+                   @fr = current_user.friendships.collect(&:friend_id)
+                   for trtr in Training.joins(:day).where('user_id in (?)', @fr).order('created_at').limit(10) 
+                      @usern = User.find_by_id(trtr.day.user_id) %>
+                      <li><strong><%= @usern.username %></strong> 
+                         <%= t(:was_trained)%> 
+                         <%= trtr.created_at.strftime("%d.%m.%Y %H:%M") %></li>
+                <% end %>
+              <% end %>
             </ul>
 
           </div>

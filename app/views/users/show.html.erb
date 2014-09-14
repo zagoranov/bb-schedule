@@ -1,10 +1,12 @@
-<h3><%= t(:you) %></h3>
+<h4><%= t(:you) %></h4>
 
-<h2><%= @user.username %></h2>
-
+<h3><%= t(:username) %>: <%= @user.username %></h3>
+<h3><%= t(:email) %>: <%= @user.email %></h3>
+<br>
+<%= button_to(t(:edit), edit_user_path(@user), :method => "get",  :class => 'btn btn-mini') %>
 <br><br>
 
-<h3><%= t(:friends) %></h3>
+<h4><%= t(:friends) %></h4>
 <table class="table table-striped">
 <tbody>
   <% for friendship in @user.friendships %>
@@ -21,13 +23,12 @@
 <% end %>
 
 <br>
-<br>
 
 <p><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></p>
 
 <br><br>
 
-<h3><%= t(:friended_by) %></h3>
+<h4><%= t(:friended_by) %></h4>
 <table class="table table-striped">
 <tbody>
   <% for user in @user.inverse_friends %>
