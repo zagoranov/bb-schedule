@@ -37,4 +37,9 @@ has_many :inverse_friends, :through => :inverse_friendships, :source => :user
     end
   end
 
+
+def self.search(query)
+  where("username like ?", "%#{query}%") 
+end
+
 end

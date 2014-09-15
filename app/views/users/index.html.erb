@@ -2,6 +2,13 @@
 
 <br><br>
 
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: t(:search_u) %>
+  <%= submit_tag t(:search), :name => nil, :class => 'btn btn-mini' %>
+<% end %>
+
+<br><br>
+
 <table class="table table-striped">
 <tbody>
 <% for user in @users %>
