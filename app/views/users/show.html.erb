@@ -35,12 +35,9 @@
   <% end %>
 </tbody>
 </table>
-
 <% if @user.friendships.size == 0 %>
   <em><%= t :empty %></em>
 <% end %>
-
-<br>
 
 <% if @user == current_user %>
 <h4><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></h4>
@@ -100,6 +97,7 @@
 
 <h4><%= t(:wall) %></h4>
 
+<!--
   <%= form_for ([@user, @user.given_comments.build]) do |f| %>
     <p>
       <%= t :leave_comment %><br />
@@ -110,9 +108,18 @@
     <p class="button">
       <%= f.submit t(:save), :class => 'btn btn-mini' %> </p>
   <% end %>
-
+-->
   <table class="table table-striped">
   <tbody>
+    <tr>
+    <%= form_for ([@user, @user.given_comments.build]) do |f| %>
+    <td><%= t :leave_comment %></td>
+    <td><%= f.text_area :comment, :size => "40x2" %></td>
+    <td><%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
+      <%= f.submit t(:send), :class => 'btn btn-mini' %> </td>
+    <% end %>   
+    <tr>
+     
   <% for comment in @user.received_comments.order('created_at DESC') %>
     <tr>       
       <td><strong><%= link_to comment.commenter.username, comment.commenter %></strong> <%= comment.created_at.strftime("%d.%m.%Y %H:%M")%></td>
@@ -124,7 +131,3 @@
   <% end %>
   </tbody>
   </table>
-<% if @user.received_comments.size == 0 %>
-  <em><%= t :empty %></em>
-<% end %>
-
