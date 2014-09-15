@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root :to => "days#index"  #"users#new" 
 #  root :to => "sessions#new"  #"users#new" 
 
-  resources :users
+  resources :users do
+    resources :profilecomments
+     end
   resources :sessions
 
   resources :days do

@@ -94,3 +94,37 @@
   </tbody>
   </table>
 <% end %>
+
+
+<br><br>
+
+<h4><%= t(:wall) %></h4>
+
+  <%= form_for ([@user, @user.given_comments.build]) do |f| %>
+    <p>
+      <%= t :leave_comment %><br />
+      <%= f.text_area :comment, :size => "50x2" %>
+    </p>
+     <%= f.hidden_field :user_id, :value => @user.id %>
+     <%= f.hidden_field :commenter_id, :value => @current_user.id %>
+    <p class="button">
+      <%= f.submit t(:save), :class => 'btn btn-mini' %> </p>
+  <% end %>
+
+  <table class="table table-striped">
+  <tbody>
+  <% for comment in @user.received_comments.order('created_at DESC') %>
+    <tr>       
+      <td><strong><%= link_to comment.commenter.username, comment.commenter %></strong> <%= comment.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td>"<%= comment.comment %>"</td>
+<% if @user == current_user %>      
+      <td><%= link_to t(:destroy), user_profilecomment_path(@user, comment), :method => :delete, :class => 'btn btn-mini btn-danger' %></td>
+<% end %>
+    </tr> 
+  <% end %>
+  </tbody>
+  </table>
+<% if @user.received_comments.size == 0 %>
+  <em><%= t :empty %></em>
+<% end %>
+
