@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915194315) do
+ActiveRecord::Schema.define(version: 20140917233430) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140915194315) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name_ru"
-    t.string   "desc_ru"
+    t.text     "desc_ru"
     t.string   "url_ru"
   end
 
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140915194315) do
     t.string   "username"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.boolean  "admin"
   end
 
 end

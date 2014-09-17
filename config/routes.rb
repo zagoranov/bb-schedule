@@ -2,13 +2,17 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  root :to => "days#index"  #"users#new" 
-#  root :to => "sessions#new"  #"users#new" 
+  root :to => "days#index" 
 
   resources :users do
     resources :profilecomments
      end
-  resources :sessions
+  
+  resources :sessions do
+      member do
+        get 'load'
+      end
+  end
 
   resources :days do
       collection do
@@ -50,11 +54,13 @@ Rails.application.routes.draw do
 
   resources :dictitems
 
-    resources :friendships
+  resources :friendships
 
 
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
+
+get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 
 end
