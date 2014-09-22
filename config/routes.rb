@@ -17,10 +17,12 @@ Rails.application.routes.draw do
   resources :days do
       collection do
         get 'wholeweek'
+        get 'bform531'
+        get 'aform531'        
       end
       member do
         get 'up'
-        get 'down'            
+        get 'down'
       end
       resources :exercises
   end
@@ -64,3 +66,4 @@ get "sign_up" => "users#new", :as => "sign_up"
 get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 
 end
+

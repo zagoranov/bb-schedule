@@ -51,11 +51,15 @@
 
   <% if current_user %>
     <li><%= link_to t(:schedule), days_path %></li>
+    <li><%= link_to t(:history), history_trainings_path %></li>
+    <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li>
     <li><%= link_to t(:log_out), log_out_path %></li>
+
   <% else %>
     <li><%= link_to t(:sign_up), sign_up_path %></li> 
     <li><%= link_to t(:log_in), log_in_path %></li>
   <% end %>
+
 
           </ul>
         </div>
@@ -107,3 +111,6 @@
 
   </body>
 </html>
+
+
+

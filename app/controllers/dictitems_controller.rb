@@ -23,7 +23,7 @@ end
 
 private
   def dictitem_params
-    params.require(:dictitem).permit(:name, :description, :url, :name_ru, :desc_ru, :url_ru)
+    params.require(:dictitem).permit(:name, :description, :url, :img, :name_ru, :desc_ru, :url_ru, :img_ru)
   end
 
 end

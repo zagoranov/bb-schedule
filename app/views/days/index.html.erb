@@ -28,19 +28,15 @@
   <em><%= t :sch_empty %></em>
 <% end %>
 
-<br><br>
-
+<br>
 
 <%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
-<%= link_to t(:history), history_trainings_path, :method => "get", :class => 'btn btn-primary' %>
-<%= link_to t(:whole_schedule), wholeweek_days_path, :method => "get", :class => 'btn btn-primary' %>
+<%= link_to t(:c531), bform531_days_path, :method => "get", :class => 'btn btn-primary' %> 
+
 <br><br>
 <br><br>
 
 <% require 'gchart' %>
 
 <img src="<%= Gchart.line( :data => @trainings.order('created_at').collect(&:weight), :size => '300x200', :title => t(:w_chart), :axis_with_labels => ['y']          ) %>"/>
-
-
-
 
