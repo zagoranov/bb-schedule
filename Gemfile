@@ -63,3 +63,8 @@ gem 'rails_admin'
 gem "googlecharts", :require => "gchart"
 
 #gem 'ms-dropdown-rails'
+
+gem 'chartkick'
+gem 'groupdate', '~> 2.1.1'
+gem 'active_median', '~> 0.1.0'
+

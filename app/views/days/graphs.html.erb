@@ -1,0 +1,18 @@
+<h3><%= t :graphs %></h3>
+
+<br><br>
+
+<h4><%= t :ex_progress %></h4>
+
+<%= form_tag(graphs_days_path, method: "get", id: "graphs") do %> 
+  <%= select_tag 'exer',
+      options_for_select(@trexers.collect(&:title), :selected => params[:exer]), include_blank: true %>
+  <%= submit_tag t(:choose), :name => nil, :class => 'btn btn-primary' %>
+<% end %>
+
+<% if @trexes_w2 %>
+	<%= line_chart @trexes_w2.map { |e| [e.created_at, e.maxweight] } %>
+<% end %>
+
+<br><br>
+

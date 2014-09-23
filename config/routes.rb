@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       collection do
         get 'wholeweek'
         get 'bform531'
-        get 'aform531'        
+        get 'aform531'
+        get 'graphs'
       end
       member do
         get 'up'

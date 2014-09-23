@@ -159,6 +159,15 @@ def aform531  #after
   redirect_to days_path
 end
 
+def graphs
+  @trexers = Trexercise.joins(training: :day).where('days.user_id = ?', current_user.id).select("trexercises.title").uniq
+  if params[:exer]
+    @trexes_w2 = Trexercise.joins(training: :day).where('days.user_id = ? and trexercises.title = ?', current_user.id, params[:exer]).order('trexercises.created_at')    
+    @trexes_w = @trexes_w2.collect(&:maxweight)
+  end
+end
+
+
 
 private
   def day_params

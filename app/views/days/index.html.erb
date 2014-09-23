@@ -1,4 +1,3 @@
-
 <h3><%= t :schedule %></h3>
  
 <table class="table table-striped">
@@ -31,12 +30,10 @@
 <br>
 
 <%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
-<%= link_to t(:c531), bform531_days_path, :method => "get", :class => 'btn btn-primary' %> 
 
 <br><br>
 <br><br>
+<h4><%= t(:body_weight) %>:</h4>
+<%= line_chart @trainings.map { |e| [e.created_at, e.weight] } %>
 
-<% require 'gchart' %>
-
-<img src="<%= Gchart.line( :data => @trainings.order('created_at').collect(&:weight), :size => '300x200', :title => t(:w_chart), :axis_with_labels => ['y']          ) %>"/>
-
+<!-- whatchu lookin fo, lil fella? -->
