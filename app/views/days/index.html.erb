@@ -16,7 +16,7 @@
     <td><%= button_to(t(:up), up_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
     <td><%= button_to(t(:down), down_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
-    <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>
+<!--    <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>   -->
     <td><%= button_to(t(:destroy), day, 
              method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>

@@ -186,8 +186,12 @@ end
 private
 def round_w(weight)
   delta_90 = weight
-  while (!['0', '2', '5', '7'].include? delta_90.to_s.last )
-    delta_90 = delta_90 - 1
+  if (['4', '9'].include? delta_90.to_s.last)
+    delta_90 = delta_90 + 1
+  else
+    while (!['0', '2', '5', '7'].include? delta_90.to_s.last )
+      delta_90 = delta_90 - 1
+    end
   end
   return delta_90
 end
