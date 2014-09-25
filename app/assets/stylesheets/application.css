@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+
+.my-custom-class { font-size: 110%; height: 30} 

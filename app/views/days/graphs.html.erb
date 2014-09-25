@@ -6,7 +6,7 @@
 
 <%= form_tag(graphs_days_path, method: "get", id: "graphs") do %> 
   <%= select_tag 'exer',
-      options_for_select(@trexers.collect(&:title), :selected => params[:exer]), include_blank: true %>
+      options_for_select(@trexers.collect(&:title), selected: params[:exer]), include_blank: true %>
   <%= submit_tag t(:choose), :name => nil, :class => 'btn btn-primary' %>
 <% end %>
 

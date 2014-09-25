@@ -116,10 +116,13 @@ def aform531  #after
 
   d_type = [t(:ov_press), t(:deadlift), t(:bench_press), t(:squats)]
   bbb_type = [t(:chinups), t(:hang_leg), t(:dumb_row), t(:leg_curl)]
-#  ids = [1268, 1296, 1309, 1356]      #locale
-#  bbb_ids = [1282, 1349, 1288, 1361]  #locale
-  ids = [34, 110, 68, 117]      #server
-  bbb_ids = [48, 110, 54, 123]  #server
+  if Rails.env.production?  
+    ids = [34, 110, 68, 117]      #server
+    bbb_ids = [48, 110, 54, 123]  #server
+  else
+    ids = [1268, 1296, 1309, 1356]      #locale
+    bbb_ids = [1282, 1349, 1288, 1361]  #locale
+  end 
   warm_p = [40, 50, 60]
   weights = [[65, 75, 85], [70, 80, 90], [75, 85, 95], [40, 50, 60]]
   reps = [['5', '5', '5+'], ['3', '3', '3+'], ['5', '3', '1+'], ['5', '5', '5']]

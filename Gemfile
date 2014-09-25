@@ -53,9 +53,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #New stuff!!!!!
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 #gem "less-rails"
+
 gem 'bcrypt'
 
-#i18n-0.6.11
 gem 'i18n'
 
 gem 'rails_admin'

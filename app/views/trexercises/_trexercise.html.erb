@@ -2,7 +2,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th><%= t :choose%></th>
+    <th><%= link_to t(:choose), '/dictitems?from=train&id=' + @training.id.to_s %></th>
     <th><%= t :custom%></th>
     <th><%= t :reps%></th>
     <th><%= t :max_weight%></th>
@@ -11,9 +11,9 @@
   <tbody>
     <tr>
     <td><%= if I18n.locale == 'en'
-         f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, include_blank: true 
+         f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
            else
-         f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, include_blank: true 
+         f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
            end  %></td>
     <td><%= f.text_field :title %></td>
     <td><%= f.text_field :reps %></td>
