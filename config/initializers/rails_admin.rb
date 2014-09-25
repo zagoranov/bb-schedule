@@ -16,6 +16,28 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+
+# in config/initializers/reails_admin.rb
+  
+  
+  require "rails_admin/application_controller"
+  
+  module RailsAdmin
+    class ApplicationController < ::ApplicationController
+      before_filter :is_admin?
+  
+      private
+      def is_admin?
+        if current_user.nil? || !current_user.admin?
+           head(:forbidden)
+           false
+        end
+        true
+      end
+    end
+  end
+
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

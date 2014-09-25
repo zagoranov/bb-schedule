@@ -77,8 +77,9 @@
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
+
+        <!-- 
         </div>
-        
         <% if current_user %>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
@@ -105,9 +106,9 @@
           </div>
         </div>
         <% end %>
-
-
       </div>
+        -->      
+        
       <footer>
         <br><br><br>
         <p><small>&copy; Labile Mobile, 2014</small></p>
@@ -115,6 +116,9 @@
 
     </div> <!-- /container -->
 
+        <% if Rails.env == "production"  %>
+         <%= render 'layouts/footer' %>
+        <% end %>
   </body>
 </html>
 

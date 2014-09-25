@@ -55,6 +55,11 @@ def update
 end
 
 
+def current_admin
+  current_user && current_user.admin
+end
+
+
 private
 def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)

@@ -1,23 +1,50 @@
-<h3><%= t :schedule %></h3>
+<h3><%= t :whole_schedule %></h3>
  
-<br/><br/>
-<% @days.each do |day| %> 
+ <br><br>
 
-  <h4><%= day.title %></h4>  
-  <h5><%= day.text %></h5>
-
-  <table class="table table-striped">
+<% i = 0 %>
+<% while(i <= @days.count - 1) do %>
+  <% if i == @days.count - 1 
+    j = nil 
+    else 
+    j = i + 1 end %>
+  <table class="table table-striped" border="1" bordercolor="#C0C0C0">
   <tbody>
-  <% day.exercises.order('number').each do |exercise| %>   
-    <tr>
-      <td><%= exercise.title %></td>
-      <td><%= exercise.reps %></td>
-      <td><%= exercise.maxweight %></td>
-    </tr>
+  <tr> 
+    <td bgcolor="#C0C0C0" width = "36%"><strong><%= @days[i].title %></strong></td>
+    <td bgcolor="#C0C0C0" width = "7%"></td><td bgcolor="#C0C0C0" width = "7%"></td>  
+    <% if j %>
+      <td bgcolor="#C0C0C0" width = "36%"><strong><%= @days[j].title %></strong></td>
+      <td bgcolor="#C0C0C0" width = "7%"></td><td bgcolor="#C0C0C0" width = "7%"></td>
+    <% else %> 
+      <td bgcolor="#C0C0C0" width = "36%"></td bgcolor="#C0C0C0" width = "7%"><td bgcolor="#C0C0C0" width = "7%"></td><td></td>
+    <% end %> 
+  </tr> 
+  <% k = 0 %>
+  <% while (k <= @days[i].exercises.count - 1) || (j && k <= @days[j].exercises.count - 1 ) do %>
+    <tr>   
+    <% if k <= @days[i].exercises.count - 1 %>
+      <% exer = @days[i].exercises[k] %>
+      <td><%= exer.title %></td>
+      <td align="center"><%= exer.reps %></td>
+      <td align="center"><%= exer.maxweight %></td>  
+    <% else %> 
+      <td></td><td></td><td></td>  
+    <% end %> 
+    <% if j && k <= @days[j].exercises.count - 1 %>
+      <% exer = @days[j].exercises[k] %>
+      <td><%= exer.title %></td>
+      <td align="center"><%= exer.reps %></td>
+      <td align="center"><%= exer.maxweight %></td>
+    <% else %> 
+      <td></td><td></td><td></td>
+    <% end %> 
+    <% k = k + 1 %>
+    </tr> 
   <% end %>
- </tbody>
-</table>
-
-
-<% end %>
+  </tbody>
+  </table>
+  <br><br>
+  <% i = i + 2 %>
+<% end %> 
 

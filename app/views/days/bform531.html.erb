@@ -2,7 +2,6 @@
 
 <br>
 <br>
-
 <%= form_tag(aform531_days_path, method: "get", id: "form-531", class: "navbar-form pull-left") do %>
     
     <p><%= t(:ov_press) %> <%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
@@ -24,3 +23,8 @@
 
   <%= submit_tag t(:calculate), :name => nil, :class => 'btn btn-primary' %>
 <% end %>
+
+<br>
+<br>
+
+<%= link_to t(:back), :back, :method => "get", :class => 'btn btn-primary' %>
