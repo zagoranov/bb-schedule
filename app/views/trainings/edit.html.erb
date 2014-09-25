@@ -18,10 +18,10 @@
 
 <br>
 
-<p><h4><%= t :exercises%></h4></p>
-
+<h4><%= t :exercises%></h4>
+<br>
 <table class="table table-striped">
-  <thead>
+<!--  <thead>
   <tr>
     <th><%= t :title%></th>
     <th><%= t :reps%></th>
@@ -29,10 +29,20 @@
     <th><%= t :actions%></th>
   </tr>
   </thead>
+-->
   <tbody>
   <% @training.trexercises.order('number').each do |trex| %> 
   <tr>
-<td><%= if I18n.locale == 'en'
+  <% if trex.dictitem %>
+  <td>
+    <% if I18n.locale == 'en'%>
+      <td><img src="<%= trex.dictitem.img %>"></td>  
+    <% else %>
+      <td><img src="<%= trex.dictitem.img_ru %>"></td>  
+    <% end %>
+  </td>
+  <% end %>
+  <td><%= if I18n.locale == 'en'
           if trex.dictitem && trex.dictitem.url
              link_to trex.title, trex.dictitem.url, :target => "_blank"
            else
@@ -58,5 +68,5 @@
 </table>
 <br><br>
 
-<p><h4><%= t :add_exercise %></h4></p>
+<h4><%= t :add_exercise %></h4>
 <%= render "trexercises/trexercise" %>  <!-- "trexercises/form" -->

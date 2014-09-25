@@ -8,10 +8,10 @@
 <td><%= button_to(t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-mini')  %> </td>
 <br><br>
 
-<p><h4><%= t :exercises%></h4></p>
-
+<h4><%= t :exercises%></h4>
+<br>
 <table class="table table-striped">
-  <thead>
+<!--  <thead>
   <tr>
     <th><%= t :title%></th>
     <th><%= t :reps%></th>
@@ -19,6 +19,7 @@
     <th><%= t :actions%></th>
   </tr>
   </thead>
+-->
   <tbody>
       <%= render @day.exercises.order('number') %>
  </tbody>
@@ -30,7 +31,7 @@
 
 <br><br>
 
-<p><h4><%= t :add_exercise%></h4></p>
+<h4><%= t :add_exercise%></h4>
 <%= render "exercises/form" %>
 
 <br><br>

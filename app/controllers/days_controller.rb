@@ -117,8 +117,8 @@ def aform531  #after
   d_type = [t(:ov_press), t(:deadlift), t(:bench_press), t(:squats)]
   bbb_type = [t(:chinups), t(:hang_leg), t(:dumb_row), t(:leg_curl)]
   if Rails.env.production?  
-    ids = [34, 110, 68, 117]      #server
-    bbb_ids = [48, 110, 54, 123]  #server
+    ids = [164, 192, 203, 252]      #server
+    bbb_ids = [178, 245, 184, 257]  #server
   else
     ids = [1268, 1296, 1309, 1356]      #locale
     bbb_ids = [1282, 1349, 1288, 1361]  #locale
