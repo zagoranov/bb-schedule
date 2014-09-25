@@ -2,9 +2,9 @@
   <td>  
   <% if exercise.dictitem %>
     <% if I18n.locale == 'en' %>
-      <td><img src="<%= exercise.dictitem.img %>"></td>  
+      <img src="<%= exercise.dictitem.img %>">
     <% else %>
-      <td><img src="<%= exercise.dictitem.img_ru %>"></td>  
+      <img src="<%= exercise.dictitem.img_ru %>">
     <% end %>
 <% end %>
 </td>
