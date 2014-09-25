@@ -33,15 +33,15 @@
   <tbody>
   <% @training.trexercises.order('number').each do |trex| %> 
   <tr>
-  <% if trex.dictitem %>
   <td>
+  <% if trex.dictitem %>
     <% if I18n.locale == 'en'%>
       <td><img src="<%= trex.dictitem.img %>"></td>  
     <% else %>
       <td><img src="<%= trex.dictitem.img_ru %>"></td>  
     <% end %>
-  </td>
   <% end %>
+  </td>
   <td><%= if I18n.locale == 'en'
           if trex.dictitem && trex.dictitem.url
              link_to trex.title, trex.dictitem.url, :target => "_blank"

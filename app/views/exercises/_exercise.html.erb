@@ -1,13 +1,13 @@
 <tr>
+  <td>  
   <% if exercise.dictitem %>
-  <td>
     <% if I18n.locale == 'en' %>
       <td><img src="<%= exercise.dictitem.img %>"></td>  
     <% else %>
       <td><img src="<%= exercise.dictitem.img_ru %>"></td>  
     <% end %>
-</td>
 <% end %>
+</td>
 <td><%= if I18n.locale == 'en'
           if exercise.dictitem && exercise.dictitem.url
          	 link_to exercise.title, exercise.dictitem.url, :target => "_blank"
