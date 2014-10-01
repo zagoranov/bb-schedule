@@ -11,15 +11,16 @@
 <h4><%= t :exercises%></h4>
 <br>
 <table class="table table-striped">
-<!--  <thead>
+ <thead>
   <tr>
+    <th></th>
     <th><%= t :title%></th>
     <th><%= t :reps%></th>
     <th><%= t :max_weight%></th>
-    <th><%= t :actions%></th>
+    <th></th>
   </tr>
   </thead>
--->
+
   <tbody>
       <%= render @day.exercises.order('number') %>
  </tbody>

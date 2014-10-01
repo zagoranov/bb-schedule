@@ -22,7 +22,7 @@ def create
         trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number, dictitem_id: exer.dictitem_id)
         trexercise.save
      end
-     redirect_to edit_training_path(@training)
+     redirect_to edit_training_path(@training), :notice => t(:tr_created)
    else
      render 'new'
   end

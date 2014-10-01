@@ -5,7 +5,7 @@
   <tr>
     <th><%= t :title%></th>
     <th><%= t :description%></th>
-    <th><%= t :actions%></th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -36,9 +36,12 @@
 
 <br><br>
 <br><br>
-<h4><%= t(:body_weight) %>:</h4>
-<%= line_chart @trainings.map { |e| [e.created_at, e.weight] } %>
-
+<% if @trainings.size < 2 %>
+  <em><%= t :therebechart %></em>
+<% else %>
+  <h4><%= t(:body_weight) %>:</h4>
+  <%= line_chart @trainings.map { |e| [e.created_at, e.weight] } %>
+<% end %>
 <br><br>
 <br><br>
            
