@@ -67,7 +67,7 @@ def destroy
     renumber(@day.number)
   end
   @day.destroy
-  redirect_to archive_days_path
+  redirect_to archive_days_path, :notice => t(:destroyedone)
 end
 
 
@@ -108,12 +108,12 @@ def setarchive
   renumber(day.number)
   day.number = -1
   day.save
-  redirect_to days_path
+  redirect_to days_path, :notice => t(:onepurged)
 end
 
 def purge
   current_user.days.update_all(archived: true)
-  redirect_to days_path
+  redirect_to days_path, :notice => t(:allpurged)
 end
 
 def archive
@@ -130,13 +130,13 @@ def unarchive
     day.number = 0
   end
   day.save
-  redirect_to archive_days_path
+  redirect_to archive_days_path, :notice => t(:dayrestored)
 end
 
 def emptyarchive
   d_days = current_user.days.where(archived: true)  
   d_days.destroy_all
-  redirect_to archive_days_path
+  redirect_to archive_days_path, :notice => t(:archiveempty)
 end
 
 def bform531  # before
@@ -191,7 +191,7 @@ def aform531  #after
       end
     end
   end
-  redirect_to days_path
+  redirect_to days_path, :notice => t(:created531)
 end
 
 def graphs

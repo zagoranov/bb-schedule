@@ -167,7 +167,7 @@ CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_r
 CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_ru, desc_ru, img_ru) VALUES ('Кардио - Велотренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '', 'Кардио - Велотренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '')"
 CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_ru, desc_ru, img_ru) VALUES ('Кардио - Гребной тренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '', 'Кардио - Гребной тренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '')"
 
-redirect_to root_path
+redirect_to root_path, :notice => t(:data_added)
  end
 end
 

@@ -55,7 +55,7 @@ def destroy
   @training = Training.find(params[:id])
   @day = @training.day
   @training.destroy
-  redirect_to history_trainings_path
+  redirect_to history_trainings_path, :notice => t(:tr_removed)
 end
 
 def history

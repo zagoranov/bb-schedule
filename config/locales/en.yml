@@ -129,5 +129,13 @@ en:
   restore: "Restore"
   setarchive: "Archive"
   archive_all: "Delete all"
-
-  
+  archiveempty: "All archived days deleted!"
+  dayrestored: "Day restored."
+  allpurged: "All days sended to archive."
+  onepurged: "Day sended to archive."
+  created531: "5/3/1 program created!"
+  destroyedone: "Day deleted."
+  fr_removed: "Training removed."
+  data_added: "Data Added"
+  exer_added: "Exercise added."
+  exer_deleted: "Exercise removed."

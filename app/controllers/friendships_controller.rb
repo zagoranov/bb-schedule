@@ -7,7 +7,7 @@ def create
     redirect_to users_path
   else
     flash[:error] = t(:fr_error)
-    redirect_to current_user
+    redirect_to current_user, :notice => t(:fr_added)
   end
 end
 
@@ -15,6 +15,6 @@ def destroy
   @friendship = current_user.friendships.find(params[:id])
   @friendship.destroy
   flash[:notice] = t(:fr_removed)
-  redirect_to current_user
+  redirect_to current_user, :notice => t(:fr_removed)
 end
 end

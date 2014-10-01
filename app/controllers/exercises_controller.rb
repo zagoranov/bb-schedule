@@ -20,7 +20,7 @@ def create
       @exercise.number = 1
     end
     @exercise.save
-    redirect_to day_path(@day)
+    redirect_to day_path(@day), :notice => t(:exer_added)
   end
 
 def destroy
@@ -35,7 +35,7 @@ def destroy
       end
     end
     @exercise.destroy
-    redirect_to day_path(@day)
+    redirect_to day_path(@day), :notice => t(:exer_deleted)
   end
  
 def up

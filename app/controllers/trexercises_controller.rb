@@ -28,7 +28,7 @@ def create
         @trexercise.number = 1
       end
       @trexercise.save
-    redirect_to edit_training_path(@training)
+    redirect_to edit_training_path(@training), :notice => t(:exer_added)
   end
 
 
@@ -56,7 +56,7 @@ def destroy
       trexer.save
     end
   @trexercise.destroy
-  redirect_to edit_training_path(@training)
+  redirect_to edit_training_path(@training), :notice => t(:exer_deleted)
 end
 
 
