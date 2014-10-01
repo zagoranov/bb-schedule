@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920191343) do
+ActiveRecord::Schema.define(version: 20141001151714) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140920191343) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "number"
+    t.boolean  "archived",   default: false
   end
 
   create_table "dictitems", force: true do |t|
@@ -88,6 +89,10 @@ ActiveRecord::Schema.define(version: 20140920191343) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.boolean  "admin"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end

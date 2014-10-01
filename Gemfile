@@ -55,16 +55,15 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 #gem "less-rails"
 
 gem 'bcrypt'
-
 gem 'i18n'
-
 gem 'rails_admin'
-#gem "highcharts-rails", "~> 3.0.0"
+
 gem "googlecharts", :require => "gchart"
-
-#gem 'ms-dropdown-rails'
-
 gem 'chartkick'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median', '~> 0.1.0'
+
+#gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'faraday'
 

@@ -17,8 +17,8 @@
     <td><%= button_to(t(:down), down_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
 <!--    <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>   -->
-    <td><%= button_to(t(:destroy), day, 
-             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= button_to(t(:setarchive), setarchive_day_path(day), 
+             method: :post, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>
   <% end %>
  </tbody>
@@ -27,13 +27,43 @@
   <em><%= t :sch_empty %></em>
 <% end %>
 
-<br>
+<br><br><br>
 
 <%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
+<% if @days.size > 0 %>
+<%= link_to t(:archive_all), purge_days_path, :method => "post", data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger' %> 
+<% end %>
 
 <br><br>
 <br><br>
 <h4><%= t(:body_weight) %>:</h4>
 <%= line_chart @trainings.map { |e| [e.created_at, e.weight] } %>
+
+<br><br>
+<br><br>
+           <!-- FB 
+        <div
+           class="fb-like"
+           data-share="false"
+           data-width="450"
+           data-show-faces="true">
+         </div>
+<script> 
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '807546819296222',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+-->
 
 <!-- whatcha lookin fo, lil fella? -->

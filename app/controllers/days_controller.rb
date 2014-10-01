@@ -38,7 +38,7 @@ end
 def index
  if current_user
   @user = User.find(current_user.id)
-  @days = @user.days.order('number')
+  @days = @user.days.where.not(archived: true).order('number')
   @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
  else 
     redirect_to '/log_in'
@@ -53,7 +53,6 @@ end
 
 def update
   @day = Day.find(params[:id])
- 
   if @day.update(day_params)
     redirect_to @day
   else
@@ -64,16 +63,11 @@ end
 
 def destroy
   @day = Day.find(params[:id])
-    numb = @day.number
-    if numb
-      days = @day.user.days.where('number > ?', numb)
-      days.each do |dy|
-        dy.number = dy.number - 1
-        dy.save
-      end
-    end
-    @day.destroy
-  redirect_to days_path
+  if !@day.archived
+    renumber(@day.number)
+  end
+  @day.destroy
+  redirect_to archive_days_path
 end
 
 
@@ -105,6 +99,44 @@ def down
     day.save
   end
   redirect_to days_path
+end
+
+
+def setarchive
+  day = Day.find(params[:id])
+  day.archived = true
+  renumber(day.number)
+  day.number = -1
+  day.save
+  redirect_to days_path
+end
+
+def purge
+  current_user.days.update_all(archived: true)
+  redirect_to days_path
+end
+
+def archive
+  @archive_days = current_user.days.where(archived: true).order('created_at')
+end
+
+def unarchive
+  day = Day.find(params[:id])
+  day.archived = false
+  max = current_user.days.maximum("number")
+  if max 
+    day.number = max + 1
+  else
+    day.number = 0
+  end
+  day.save
+  redirect_to archive_days_path
+end
+
+def emptyarchive
+  d_days = current_user.days.where(archived: true)  
+  d_days.destroy_all
+  redirect_to archive_days_path
 end
 
 def bform531  # before
@@ -170,6 +202,17 @@ def graphs
   end
 end
 
+
+private
+ def renumber(numb)
+    if numb
+      days = current_user.days.where('number > ?', numb)
+      days.each do |dy|
+        dy.number = dy.number - 1
+        dy.save
+      end
+    end
+ end
 
 
 private

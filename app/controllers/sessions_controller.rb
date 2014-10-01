@@ -20,6 +20,14 @@ def create
   end
 end
 
+
+def omnicreate
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id     
+    redirect_to root_url
+  end
+
+
 def destroy
   session[:user_id] = nil
   redirect_to log_in_path, :notice => t(:logged_out)
@@ -158,7 +166,6 @@ CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_r
 CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_ru, desc_ru, img_ru) VALUES ('Кардио - Плавание', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '', 'Кардио - Плавание', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '')"
 CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_ru, desc_ru, img_ru) VALUES ('Кардио - Велотренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '', 'Кардио - Велотренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '')"
 CONN.execute "INSERT INTO dictitems (name, url, description, img, name_ru, url_ru, desc_ru, img_ru) VALUES ('Кардио - Гребной тренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '', 'Кардио - Гребной тренажер', 'http://fitseven.ru/fitness-i-sport/pravilnoe-cardio', '', '')"
-
 
 redirect_to root_path
  end

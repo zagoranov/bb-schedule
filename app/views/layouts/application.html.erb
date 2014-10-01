@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Bb" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "EvenLift.ru" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -49,7 +49,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Bb</a>
+        <a class="navbar-brand" href="http://www.evenlift.ru">EvenLift</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
 
@@ -59,6 +59,7 @@
     <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li>
     <li><%= link_to t(:graphs), graphs_days_path %></li>
     <li><%= link_to t(:c531), bform531_days_path %></li>
+    <li><%= link_to t(:archive), archive_days_path %></li>
     <% if current_user.admin %>
         <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
     <% end %>
@@ -113,7 +114,8 @@
         
       <footer>
         <br><br><br>
-        <p><small>&copy; Labile Mobile, 2014</small></p>
+        <p><small>&copy; Labile Mobile, 2014</small> 
+       </p>
       </footer>
 
     </div> <!-- /container -->
@@ -122,6 +124,8 @@
          <%= render 'layouts/footer' %>
         <% end %>
   </body>
+
+
 </html>
 
 

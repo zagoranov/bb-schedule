@@ -59,7 +59,7 @@ def destroy
 end
 
 def history
-  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
+  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at DESC').uniq
 end
 
 private

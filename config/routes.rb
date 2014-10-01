@@ -20,10 +20,15 @@ Rails.application.routes.draw do
         get 'bform531'
         get 'aform531'
         get 'graphs'
+        post 'purge'
+        get 'archive'
+        post 'emptyarchive'
       end
       member do
         get 'up'
         get 'down'
+        post 'setarchive'
+        post 'unarchive'
       end
       resources :exercises
   end
@@ -63,6 +68,11 @@ Rails.application.routes.draw do
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
+
+
+match 'auth/:provider/callback', to: 'sessions#omnicreate', via: [:get, :post]
+match 'auth/failure', to: redirect('/'), via: [:get, :post]
+
 
 get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 

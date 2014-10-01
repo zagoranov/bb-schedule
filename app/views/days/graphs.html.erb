@@ -10,6 +10,12 @@
   <%= submit_tag t(:choose), :name => nil, :class => 'btn btn-primary' %>
 <% end %>
 
+<br><br>
+
+<% if @trexers.size == 0 %>
+  <em><%= t :graph_empty %></em>
+<% end %>
+
 <% if @trexes_w2 %>
 	<%= line_chart @trexes_w2.map { |e| [e.created_at, e.maxweight] } %>
 <% end %>
