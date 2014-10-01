@@ -6,8 +6,7 @@ end
 
 
 def create
- @user = User.find(current_user.id)
- @day = @user.days.create(day_params)
+ @day = current_user.days.create(day_params)
   days = @user.days.all
     numb = days.maximum("number")  
     if numb != nil
@@ -15,7 +14,6 @@ def create
     else
       @day.number = 1
     end
-
  if @day.save
     redirect_to @day
   else
@@ -30,15 +28,13 @@ end
 
 
 def wholeweek
-  @user = User.find(current_user.id)
-  @days = @user.days.order('number')
+  @days = current_user.days.where.not(archived: true).order('number')
 end
 
 
 def index
  if current_user
-  @user = User.find(current_user.id)
-  @days = @user.days.where.not(archived: true).order('number')
+  @days = @current_user.days.where.not(archived: true).order('number')
   @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
  else 
     redirect_to '/log_in'
@@ -144,8 +140,6 @@ def bform531  # before
 end
 
 def aform531  #after
-  user = User.find(current_user.id)
-
   d_type = [t(:ov_press), t(:deadlift), t(:bench_press), t(:squats)]
   bbb_type = [t(:chinups), t(:hang_leg), t(:dumb_row), t(:leg_curl)]
   if Rails.env.production?  
@@ -172,7 +166,7 @@ def aform531  #after
 
   for i in 1..n
     for j in 1..4
-      @day = user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1]}) 
+      @day =   current_user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1]}) 
       for k in 0..2
         rps = '5'
         if k==2 

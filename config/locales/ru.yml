@@ -51,6 +51,7 @@ ru:
   add_exercise: "Добавить упражнение"
   username: "Имя"
   email: "Е-мейл"
+  email_login: "Е-мейл (логин)"
   password: "Пароль"
   log_in: "Войти"
   log_out: "Выйти"

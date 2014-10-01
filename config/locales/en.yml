@@ -51,6 +51,7 @@ en:
   add_exercise: "Add an exercise"
   username: "Username"
   email: "E-mail"
+  email_login: "E-mail (login)"
   password: "Password"
   log_in: "Log in"
   log_out: "Log out"

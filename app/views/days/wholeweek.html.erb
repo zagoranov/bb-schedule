@@ -52,3 +52,6 @@
   <% i = i + 2 %>
 <% end %> 
 
+<% if  @days.count == 0 %>
+  <em><%= t :empty %></em>
+<% end %> 
