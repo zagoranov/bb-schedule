@@ -7,8 +7,7 @@ end
 
 def create
  @day = current_user.days.create(day_params)
-  days = @user.days.all
-    numb = days.maximum("number")  
+    numb = current_user.days.maximum("number")
     if numb != nil
       @day.number = numb.to_i + 1
     else
@@ -123,7 +122,7 @@ def unarchive
   if max 
     day.number = max + 1
   else
-    day.number = 0
+    day.number = 1
   end
   day.save
   redirect_to archive_days_path, :notice => t(:dayrestored)
@@ -157,7 +156,12 @@ def aform531  #after
   w_ms[1] = get_workin_max(params[:dead_max], params[:dead_reps]) 
   w_ms[2] = get_workin_max(params[:bench_max], params[:bench_reps]) 
   w_ms[3] = get_workin_max(params[:sq_max], params[:sq_reps]) 
-  
+  max = current_user.days.maximum("number")
+  if max != nil
+    max = max + 1
+  else
+    max = 1
+  end
   if params['threewks'].to_s == "true"
     n = 3
   else
@@ -166,22 +170,27 @@ def aform531  #after
 
   for i in 1..n
     for j in 1..4
-      @day =   current_user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1]}) 
+      @day =   current_user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1], number: max})
+      max = max + 1
+      e_max = 0      
       for k in 0..2
         rps = '5'
         if k==2 
           rps = '3'
         end
-        @day.exercises.create({title: d_type[j-1] + " ("+t(:warm_up)+")", reps: rps, maxweight: round_w(((w_ms[j-1] / 100) * warm_p[k]).round), dictitem_id: ids[j-1] })
+        @day.exercises.create({title: d_type[j-1] + " ("+t(:warm_up)+")", reps: rps, maxweight: round_w(((w_ms[j-1] / 100) * warm_p[k]).round), dictitem_id: ids[j-1], number: e_max})
+        e_max = e_max + 1
       end
     
       for k in 0..2
-        @day.exercises.create({title: d_type[j-1], reps: reps[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * weights[i-1][k]).round), dictitem_id: ids[j-1] })
+        @day.exercises.create({title: d_type[j-1], reps: reps[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * weights[i-1][k]).round), dictitem_id: ids[j-1], number: e_max })
+        e_max = e_max + 1
       end
 
       if params['bbb'].to_s == "true"
-        @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5 x 10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round), dictitem_id: ids[j-1] })
-        @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5 x 10', maxweight: nil, dictitem_id: bbb_ids[j-1] })
+        @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5 x 10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round), dictitem_id: ids[j-1], number: e_max })
+        e_max = e_max + 1
+        @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5 x 10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
       end
     end
   end
