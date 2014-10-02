@@ -38,7 +38,8 @@ end
 def update
   @training = Training.find(params[:id])
   if @training.update(training_params)
-    redirect_to day_trainings_path(@training.day)
+    #redirect_to day_trainings_path(@training.day)
+    redirect_to :back
   else
     render 'edit'
   end
