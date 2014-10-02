@@ -73,6 +73,7 @@ get "sign_up" => "users#new", :as => "sign_up"
 match 'auth/:provider/callback', to: 'sessions#omnicreate', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
+get 'change_locale', to: 'days#change_locale', as: :change_locale
 
 get "loadthatshit" => "sessions#load", :as => "loadthatshit"
 

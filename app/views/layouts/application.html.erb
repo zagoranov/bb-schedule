@@ -69,6 +69,14 @@
     <li><%= link_to t(:log_in), log_in_path %></li>
   <% end %>
 
+    <li>
+       <% if I18n.locale == :ru %>
+         <li><%= link_to 'English', change_locale_path %></li>
+        <% else %>
+          <li><%= link_to 'Русский', change_locale_path %></li>
+        <% end %> 
+    </li>
+
 
           </ul>
         </div>

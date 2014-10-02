@@ -134,6 +134,18 @@ def emptyarchive
   redirect_to archive_days_path, :notice => t(:archiveempty)
 end
 
+def change_locale
+     if I18n.locale == :en
+        I18n.locale = :ru
+     else
+        I18n.locale = :en
+     end
+  redirect_to :back, :notice => t(:locale_changed)
+end
+
+
+
+
 def bform531  # before
   #redirect_to days_path
 end
