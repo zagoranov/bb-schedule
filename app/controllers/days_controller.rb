@@ -34,7 +34,7 @@ end
 def index
  if current_user
   @days = @current_user.days.where.not(archived: true).order('number')
-  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at').uniq
+  @trainings = Training.joins(:day).where('days.user_id = ? and trainings.weight IS NOT NULL', current_user.id).order('trainings.created_at').uniq
  else 
     redirect_to '/log_in'
  end
@@ -212,8 +212,7 @@ end
 def graphs
   @trexers = Trexercise.joins(training: :day).where('days.user_id = ?', current_user.id).select("trexercises.title").uniq
   if params[:exer]
-    @trexes_w2 = Trexercise.joins(training: :day).where('days.user_id = ? and trexercises.title = ?', current_user.id, params[:exer]).order('trexercises.created_at')    
-    @trexes_w = @trexes_w2.collect(&:maxweight)
+    @trexes_w2 = Trexercise.joins(training: :day).select('max(trexercises.maxweight) as maxweight, trexercises.created_at, trainings.created_at').where('days.user_id = ? and trexercises.title = ? and trexercises.maxweight IS NOT NULL', current_user.id, params[:exer]).group('trainings.created_at').order('trexercises.created_at')
   end
 end
 
