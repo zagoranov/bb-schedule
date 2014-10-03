@@ -16,10 +16,20 @@
     <p><%= t(:squats) %> <%= text_field_tag 'sq_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
     	x <%= text_field_tag 'sq_reps', nil, placeholder: t(:reps), size: 5, class: "span2" %> </p>
 
-    </br></br></br>
+ </br></br></br>
+<p><strong><%= t(:base_stuff) %></strong></p>
+    <p><%= check_box_tag 'warmup', 'true', true %> <%= t(:warm_up)%></p>
+    <p><%= check_box_tag 'pwrlift', 'true', false %> <%= t(:powerlift351)%></p>
     <p><%= check_box_tag 'threewks', 'true', false %> <%= t(:threeweeks)%></p>
+<br><strong><p><%= t(:down_sets) %></strong></p>
+    <p><%= check_box_tag 'pyramid', 'true', false %> <%= t(:pyramid)%></p>
+    <p><%= check_box_tag 'joker', 'true', false %> <%= t(:joker_sets)%></p>
+    <p><%= check_box_tag 'fsl', 'true', false %> <%= t(:firts_set_last)%></p>
+    <p><%= check_box_tag 'fslms', 'true', false %> <%= t(:firts_set_last_ms)%></p>
+<br><strong><p><%= t(:assis_template) %></strong></p>    
     <p><%= check_box_tag 'bbb', 'true', true %> <%= t(:bigbutboring)%></p>
-    </br></br>
+    <p><%= check_box_tag 'sst', 'true', false %> <%= t(:simple_st)%></p>
+ </br></br>
 
   <%= submit_tag t(:calculate), :name => nil, :class => 'btn btn-primary' %>
 <% end %>
