@@ -223,26 +223,26 @@ def aform531  #after
         e_max = e_max + 1
       end
       
-      if i < 3 && params['pyramid'].to_s == "true"   #PYRAMID
+      if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
        for k in 0..1
          @day.exercises.create({title: d_type[j-1] + " ("+t(:pyramid)+")", reps: pyr_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round), dictitem_id: ids[j-1], number: e_max})
          e_max = e_max + 1
        end
       end        
 
-      if i < 3 && params['joker'].to_s == "true"   #JOKER
+      if i < 4 && params['joker'].to_s == "true"   #JOKER
        for k in 0..2
          @day.exercises.create({title: d_type[j-1] + " ("+t(:joker_sets)+")", reps: joker_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round), dictitem_id: ids[j-1], number: e_max})
          e_max = e_max + 1
        end
       end        
 
-      if i < 3 && params['fsl'].to_s == "true"   #FIRTS SET LAST
+      if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
         @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last)+")", reps: t(:amrap), maxweight: round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round), dictitem_id: ids[j-1], number: e_max})
         e_max = e_max + 1
       end        
 
-      if i < 3 && params['fsl'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
+      if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
         @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last_ms)+")", reps: '3-5x5-8', maxweight: round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round), dictitem_id: ids[j-1], number: e_max})
         e_max = e_max + 1
       end        
