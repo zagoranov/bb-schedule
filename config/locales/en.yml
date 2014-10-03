@@ -49,6 +49,7 @@ en:
   reps: "Reps"
   max_weight: "Max Weight"
   add_exercise: "Add an exercise"
+  add: "Add"
   username: "Username"
   email: "E-mail"
   email_login: "E-mail (login)"
