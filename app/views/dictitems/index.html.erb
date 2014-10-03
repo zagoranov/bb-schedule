@@ -6,7 +6,7 @@
   <tbody>
   <% @dictitems.each do |di| %> 
 		<tr>
-    <% if I18n.locale == 'en' %>
+    <% if I18n.locale == :en %>
       <td><img src="<%=di.img%>"></td>  
       <td><%= if di.url
         link_to di.name, di.url, :target => "_blank"

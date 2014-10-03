@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr>
-    <td><%= if I18n.locale == 'en'
+    <td><%= if I18n.locale == :en
          f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
            else
          f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }

@@ -13,7 +13,7 @@ def create
     @trexercise = @training.trexercises.create(trexercise_params)
 
     if @trexercise.dictitem
-        if I18n.locale == 'en'
+        if I18n.locale == :en
           @trexercise.title = @trexercise.dictitem.name
       else
           @trexercise.title = @trexercise.dictitem.name_ru

@@ -5,7 +5,7 @@ def create
     @exercise = @day.exercises.create(exercise_params)
 
     if @exercise.dictitem
-        if I18n.locale == 'en'
+        if I18n.locale == :en
           @exercise.title = @exercise.dictitem.name
       else
           @exercise.title = @exercise.dictitem.name_ru
