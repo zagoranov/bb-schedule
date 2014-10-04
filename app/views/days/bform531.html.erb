@@ -27,8 +27,12 @@
     <p><%= check_box_tag 'fsl', 'true', false %> <%= t(:firts_set_last)%></p>
     <p><%= check_box_tag 'fslms', 'true', false %> <%= t(:firts_set_last_ms)%></p>
 <br><strong><p><%= t(:assis_template) %></strong></p>    
-    <p><%= check_box_tag 'bbb', 'true', true %> <%= t(:bigbutboring)%></p>
-    <p><%= check_box_tag 'sst', 'true', false %> <%= t(:simple_st)%></p>
+<!--    <p><%= check_box_tag 'bbb', 'true', true %> <%= t(:bigbutboring)%></p>
+    <p><%= check_box_tag 'sst', 'true', false %> <%= t(:simple_st)%></p>   -->
+    
+    <p><%= radio_button_tag 'assist', 'bbb', true %> <%= t(:bigbutboring)%> <br>
+    <%= radio_button_tag 'assist', 'sst' %> <%= t(:simple_st)%></p>  
+
  </br></br>
 
   <%= submit_tag t(:calculate), :name => nil, :class => 'btn btn-primary' %>

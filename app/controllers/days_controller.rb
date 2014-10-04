@@ -242,12 +242,12 @@ def aform531  #after
         e_max = e_max + 1
       end        
 
-      if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
+      if i < 4 && params['fslms'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
         @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last_ms)+")", reps: '3-5x5-8', maxweight: round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round), dictitem_id: ids[j-1], number: e_max})
         e_max = e_max + 1
       end        
 
-      if params['sst'].to_s == "true"   #SST
+      if params['assist'].to_s == "sst"   #SST
        for k in 0..2
          @day.exercises.create({title: sst1_type[j-1] + " ("+t(:simple_st)+")", reps: sst_r[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round), dictitem_id: sst1_ids[j-1], number: e_max})
          e_max = e_max + 1
@@ -265,7 +265,7 @@ def aform531  #after
        end
       end        
 
-      if params['bbb'].to_s == "true"   #BBB
+      if params['assist'].to_s == "bbb"   #BBB
         @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
         @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
