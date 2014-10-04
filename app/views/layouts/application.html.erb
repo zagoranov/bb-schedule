@@ -57,7 +57,7 @@
     <li><%= link_to t(:schedule), days_path %></li>
     <li><%= link_to t(:history), history_trainings_path %></li>
     <li><%= link_to t(:graphs), graphs_days_path %></li>
-    <li><%= link_to t(:c531), bform531_days_path %></li>
+    <li><%= link_to t(:c531), '/calculate531' %></li>
     <li><%= link_to t(:archive), archive_days_path %></li>
     <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li>    
     <% if current_user.admin %>
@@ -65,9 +65,9 @@
     <% end %>
     <li><%= link_to t(:log_out), log_out_path %></li>
   <% else %>
-    <li><%= link_to t(:sign_up), sign_up_path %></li> 
-    <li><%= link_to t(:log_in), log_in_path %></li>
-    <li><%= link_to t(:c531), bform531_days_path %></li>    
+    <li><%= link_to t(:sign_up), '/sign_up' %></li> 
+    <li><%= link_to t(:log_in), '/log_in' %></li>
+    <li><%= link_to t(:c531), '/calculate531' %></li>    
   <% end %>
 
     <li>

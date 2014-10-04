@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
-
+get "calculate531" => "days#bform531", :as => "calculate531"
 
 match 'auth/:provider/callback', to: 'sessions#omnicreate', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
