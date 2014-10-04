@@ -184,6 +184,11 @@ def aform531  #after
   w_ms[1] = get_workin_max(params[:dead_max], params[:dead_reps]) 
   w_ms[2] = get_workin_max(params[:bench_max], params[:bench_reps]) 
   w_ms[3] = get_workin_max(params[:sq_max], params[:sq_reps]) 
+  if params['shrink'].to_s == "true"
+    round_arr = ['0', '2', '5', '7']
+  else
+    round_arr = ['0', '5']
+  end
   max = current_user.days.maximum("number")
   if max != nil
     max = max + 1
@@ -208,7 +213,7 @@ def aform531  #after
           if k==2 
             rps = '3'
           end
-          @day.exercises.create({title: d_type[j-1] + " ("+t(:warm_up)+")", reps: rps, maxweight: round_w(((w_ms[j-1] / 100) * warm_p[k]).round), dictitem_id: ids[j-1], number: e_max})
+          @day.exercises.create({title: d_type[j-1] + " ("+t(:warm_up)+")", reps: rps, maxweight: round_w(((w_ms[j-1] / 100) * warm_p[k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
           e_max = e_max + 1
         end
       end
@@ -218,37 +223,37 @@ def aform531  #after
         z = 3 - i
       end  
       for k in 0..2   #BASE 5/3/1    +      POWERLIFTING 3/5/1
-        @day.exercises.create({title: d_type[j-1], reps: reps[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round), dictitem_id: ids[j-1], number: e_max })
+        @day.exercises.create({title: d_type[j-1], reps: reps[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
       end
       
       if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
        for k in 0..1
-         @day.exercises.create({title: d_type[j-1] + " ("+t(:pyramid)+")", reps: pyr_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round), dictitem_id: ids[j-1], number: e_max})
+         @day.exercises.create({title: d_type[j-1] + " ("+t(:pyramid)+")", reps: pyr_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
          e_max = e_max + 1
        end
       end        
 
       if i < 4 && params['joker'].to_s == "true"   #JOKER
        for k in 0..2
-         @day.exercises.create({title: d_type[j-1] + " ("+t(:joker_sets)+")", reps: joker_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round), dictitem_id: ids[j-1], number: e_max})
+         @day.exercises.create({title: d_type[j-1] + " ("+t(:joker_sets)+")", reps: joker_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
          e_max = e_max + 1
        end
       end        
 
       if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
-        @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last)+")", reps: t(:amrap), maxweight: round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round), dictitem_id: ids[j-1], number: e_max})
+        @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last)+")", reps: t(:amrap), maxweight: round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
         e_max = e_max + 1
       end        
 
       if i < 4 && params['fslms'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
-        @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last_ms)+")", reps: '3-5x5-8', maxweight: round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round), dictitem_id: ids[j-1], number: e_max})
+        @day.exercises.create({title: d_type[j-1] + " ("+t(:firts_set_last_ms)+")", reps: '3-5x5-8', maxweight: round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
         e_max = e_max + 1
       end        
 
       if params['assist'].to_s == "sst"   #SST
        for k in 0..2
-         @day.exercises.create({title: sst1_type[j-1] + " ("+t(:simple_st)+")", reps: sst_r[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round), dictitem_id: sst1_ids[j-1], number: e_max})
+         @day.exercises.create({title: sst1_type[j-1] + " ("+t(:simple_st)+")", reps: sst_r[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round, round_arr), dictitem_id: sst1_ids[j-1], number: e_max})
          e_max = e_max + 1
        end
        if j == 2 || j == 4
@@ -265,7 +270,7 @@ def aform531  #after
       end        
 
       if params['assist'].to_s == "bbb"   #BBB
-        @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round), dictitem_id: ids[j-1], number: e_max })
+        @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round, round_arr), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
         @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
       end

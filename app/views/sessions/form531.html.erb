@@ -30,21 +30,25 @@
   fslms_w = [65, 70, 75]  
   sst_w = [[50, 60, 70], [60, 70, 80], [65, 75, 85], [40, 50, 60]]
   sst_r = [['10', '10', '10'], ['8', '8', '6'], ['5', '5', '5'], ['5', '5', '5']]
-
   w_ms = Array.new(4)
   w_ms[0] = get_workin_max(params[:delt_max], params[:delt_reps]) 
   w_ms[1] = get_workin_max(params[:dead_max], params[:dead_reps]) 
   w_ms[2] = get_workin_max(params[:bench_max], params[:bench_reps]) 
   w_ms[3] = get_workin_max(params[:sq_max], params[:sq_reps]) 
-  
+  if params['shrink'].to_s == "true"
+    round_arr = ['0', '2', '5', '7']
+  else
+    round_arr = ['0', '5']
+  end
+
   if params['threewks'].to_s == "true"
     n = 3
   else
     n = 4
   end %>
 
-<table  width="100%" border="0" cellpadding="5" cellspacing="5">
-<body>
+   <table  width="100%" border="0" cellpadding="5" cellspacing="5">
+   <body>
 
 <% for i in 1..n %>
   <tr>
@@ -65,7 +69,7 @@
           end %>
           <tr><td><%= d_type[j-1] + " ("+t(:warm_up)+")" %> </td>
             <td><%= rps %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * warm_p[k]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * warm_p[k]).round, round_arr) %> </td></tr>
      <% end
       end
 
@@ -76,14 +80,14 @@
       for k in 0..2   #BASE 5/3/1    +      POWERLIFTING 3/5/1
          %> <tr><td><%= d_type[j-1] %> </td>
             <td><%= reps[z-1][k] %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round, round_arr) %> </td></tr>
     <%  end
       
       if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
        for k in 0..1 %>
           <tr><td><%= d_type[j-1] + " ("+t(:pyramid)+")" %> </td>
             <td><%= pyr_r[i-1][k] %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round, round_arr) %> </td></tr>
   <%   end
       end        
 
@@ -91,27 +95,27 @@
        for k in 0..2 %>
           <tr><td><%= d_type[j-1] + " ("+t(:joker_sets)+")" %> </td>
             <td><%= joker_r[i-1][k] %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr) %> </td></tr>
   <%    end
       end        
 
       if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
        %><tr><td><%= d_type[j-1] + " ("+t(:firts_set_last)+")" %> </td>
             <td><%= t(:amrap) %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round, round_arr) %> </td></tr>
     <% end        
 
       if i < 4 && params['fslms'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
   %>    <tr><td><%= d_type[j-1] + " ("+t(:firts_set_last_ms)+")" %> </td>
             <td>3-5x5-8</td>
-            <td><%= round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round) %> </td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round, round_arr) %> </td></tr>
     <% end        
 
       if params['is_assist'].to_s == "true" && params['assist'].to_s == "sst"   #SST
        for k in 0..2
 %>    <tr><td><%= sst1_type[j-1] + " ("+t(:simple_st)+")" %></td>
             <td><%= sst_r[z-1][k] %></td>
-            <td><%= round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round) %></td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round, round_arr) %></td></tr>
     <% end
        if j == 2 || j == 4
          jj = 1
@@ -130,7 +134,7 @@
       if params['is_assist'].to_s == "true" && params['assist'].to_s == "bbb"   #BBB
 %>    <tr><td><%= d_type[j-1] + " ("+t(:bigbutboring)+")" %></td>
             <td>5x10</td>
-            <td><%= round_w(((w_ms[j-1] / 100) * 50).round) %></td></tr>
+            <td><%= round_w(((w_ms[j-1] / 100) * 50).round, round_arr) %></td></tr>
       <tr><td><%= bbb_type[j-1] + " ("+t(:bigbutboring)+")" %> </td>
             <td>5x10</td>
             <td></td></tr>

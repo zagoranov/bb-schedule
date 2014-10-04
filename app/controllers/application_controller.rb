@@ -36,13 +36,16 @@ end
 
 helper_method :round_w
 private
-def round_w(weight)
+def round_w(weight, arr)
   delta_90 = weight
   if (['4', '9'].include? delta_90.to_s.last)
     delta_90 = delta_90 + 1
   else
-    while (!['0', '2', '5', '7'].include? delta_90.to_s.last )
+    while (!arr.include? delta_90.to_s.last )
       delta_90 = delta_90 - 1
+    end
+    if ['2', '7'].include? delta_90.to_s.last
+      delta_90 = delta_90 + 0.5 
     end
   end
   return delta_90
