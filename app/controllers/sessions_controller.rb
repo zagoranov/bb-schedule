@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
 
-  CONN = ActiveRecord::Base.connection
+   CONN = ActiveRecord::Base.connection
 
 def new
   if current_user
@@ -36,15 +36,19 @@ end
 
 def load
  if current_user && current_user.admin
-
    #CONN.execute "DELETE from dictitems"  
-
    #CONN.execute "INSERT INTO dictitems ..."
-
  redirect_to root_path, :notice => t(:data_added)
  end
 end
 
 
+
+def form531
+  if params[:delt_max] == "" || params[:delt_reps]  == "" || params[:dead_max]  == "" || params[:dead_reps] == "" || params[:bench_max]  == "" || params[:bench_reps]  == "" || params[:sq_max] == "" || params[:sq_reps]  == "" 
+    flash.now.alert = t(:need_more_info)
+    render "days/bform531"
+  end
+end  
 
 end

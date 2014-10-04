@@ -9,6 +9,9 @@ Rails.application.routes.draw do
      end
   
   resources :sessions do
+      collection do
+        get 'form531'
+      end
       member do
         get 'load'
       end

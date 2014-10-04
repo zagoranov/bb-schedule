@@ -4,7 +4,6 @@ def new
   @day = Day.new
 end
 
-
 def create
  @day = current_user.days.create(day_params)
     numb = current_user.days.maximum("number")
@@ -303,24 +302,6 @@ private
     params.require(:day).permit(:title, :text)
   end
 
-private
-def get_workin_max(max, reps)
-  delta_1 = max.to_f * reps.to_i * 0.03333 + max.to_f
-  return (delta_1 / 100) * 90  
-end
-
-private
-def round_w(weight)
-  delta_90 = weight
-  if (['4', '9'].include? delta_90.to_s.last)
-    delta_90 = delta_90 + 1
-  else
-    while (!['0', '2', '5', '7'].include? delta_90.to_s.last )
-      delta_90 = delta_90 - 1
-    end
-  end
-  return delta_90
-end
 
 
 end

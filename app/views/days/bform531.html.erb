@@ -2,8 +2,14 @@
 
 <br>
 <br>
-<%= form_tag(aform531_days_path, method: "get", id: "form-531") do %>
-    
+<% if current_user  
+    fpath = aform531_days_path
+else
+    fpath = form531_sessions_path
+end %>
+ <%=  form_tag(fpath, method: "get", id: "form-531") do %>
+
+
     <p><%= t(:ov_press) %> <%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
     	x <%= text_field_tag 'delt_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </p>
 </br></br>
@@ -21,12 +27,12 @@
     <p><%= check_box_tag 'warmup', 'true', true %> <%= t(:warm_up)%></p>
     <p><%= check_box_tag 'pwrlift', 'true', false %> <%= t(:powerlift351)%></p>
     <p><%= check_box_tag 'threewks', 'true', false %> <%= t(:threeweeks)%></p>
-<br><strong><p><%= t(:down_sets) %></strong></p>
+<br><p><strong><%= t(:down_sets) %></strong></p>
     <p><%= check_box_tag 'pyramid', 'true', false %> <%= t(:pyramid)%></p>
     <p><%= check_box_tag 'joker', 'true', false %> <%= t(:joker_sets)%></p>
     <p><%= check_box_tag 'fsl', 'true', false %> <%= t(:firts_set_last)%></p>
     <p><%= check_box_tag 'fslms', 'true', false %> <%= t(:firts_set_last_ms)%></p>
-<br><strong><p><%= t(:assis_template) %></strong></p>    
+<br><p><strong><%= check_box_tag 'is_assist', 'true', true %> <%= t(:assis_template) %></strong></p>    
     <p><%= radio_button_tag 'assist', 'bbb', true %> <%= t(:bigbutboring)%> <br>
     <%= radio_button_tag 'assist', 'sst' %> <%= t(:simple_st)%></p>  
 
