@@ -32,10 +32,10 @@ end
 
 def index
  if current_user
-  @days = @current_user.days.where.not(archived: true).order('number')
-  @trainings = Training.joins(:day).where('days.user_id = ? and trainings.weight IS NOT NULL', current_user.id).order('trainings.created_at').uniq
+   @days = @current_user.days.where.not(archived: true).order('number')
+   @trainings = Training.joins(:day).where('days.user_id = ? and trainings.weight IS NOT NULL', current_user.id).order('trainings.created_at').uniq
  else 
-    redirect_to '/log_in'
+   redirect_to bform531_days_path  #'/log_in'
  end
 end
 
