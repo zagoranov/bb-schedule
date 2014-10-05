@@ -178,6 +178,7 @@ def aform531  #after
   fslms_w = [65, 70, 75]  
   sst_w = [[50, 60, 70], [60, 70, 80], [65, 75, 85], [40, 50, 60]]
   sst_r = [['10', '10', '10'], ['8', '8', '6'], ['5', '5', '5'], ['5', '5', '5']]
+  sst_n = [3, 4, 1, 2]
 
   w_ms = Array.new(4)
   w_ms[0] = get_workin_max(params[:delt_max], params[:delt_reps]) 
@@ -251,9 +252,10 @@ def aform531  #after
         e_max = e_max + 1
       end        
 
-      if params['assist'].to_s == "sst"   #SST
+      if params['is_assist'].to_s == "true" && params['assist'].to_s == "sst"   #SST
+       l = sst_n[j-1]    # веса берутся по другому порядку: if j=1 then l=3   j=2, l=4    j=3, l=1    j=4, l=2   
        for k in 0..2
-         @day.exercises.create({title: sst1_type[j-1] + " ("+t(:simple_st)+")", reps: sst_r[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * sst_w[z-1][k]).round, round_arr), dictitem_id: sst1_ids[j-1], number: e_max})
+         @day.exercises.create({title: sst1_type[j-1] + " ("+t(:simple_st)+")", reps: sst_r[z-1][k], maxweight: round_w(((w_ms[l-1] / 100) * sst_w[z-1][k]).round, round_arr), dictitem_id: sst1_ids[j-1], number: e_max})
          e_max = e_max + 1
        end
        if j == 2 || j == 4
@@ -269,7 +271,7 @@ def aform531  #after
        end
       end        
 
-      if params['assist'].to_s == "bbb"   #BBB
+      if params['is_assist'].to_s == "true" && params['assist'].to_s == "bbb"   #BBB
         @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round, round_arr), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
         @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
