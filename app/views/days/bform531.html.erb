@@ -5,7 +5,7 @@
 <% if current_user  
     fpath = aform531_days_path
 else
-    fpath = form531_sessions_path
+    fpath = '/results531' #form531_sessions_path
 end %>
  <%=  form_tag(fpath, method: "get", id: "form-531") do %>
 
