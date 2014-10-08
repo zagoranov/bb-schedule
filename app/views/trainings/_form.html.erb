@@ -15,7 +15,7 @@
 		<td><%= link_to train.created_at.strftime("%d.%m.%Y %H:%M"), train %></td>  
 		<td><%= train.weight %></td>
 		<td><%= train.info %></td>
-    <td><%= train.day.title %></td>
+    <td><%= train.day.title + " (" + train.day.desctiption + ")" %></td>
 		<td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-mini')  %> </td>  
 		<td><%= button_to(t(:destroy), train, 
 	             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
