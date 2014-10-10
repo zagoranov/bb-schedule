@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
 
+
 def create
     @day = Day.find(params[:day_id])
     @exercise = @day.exercises.create(exercise_params)
@@ -11,7 +12,6 @@ def create
           @exercise.title = @exercise.dictitem.name_ru
       end
     end
-
     exercises = @day.exercises.all
     numb = exercises.maximum("number")  
     if numb != nil
@@ -22,6 +22,7 @@ def create
     @exercise.save
     redirect_to day_path(@day), :notice => t(:exer_added)
   end
+
 
 def destroy
     @day = Day.find(params[:day_id])
@@ -35,37 +36,46 @@ def destroy
       end
     end
     @exercise.destroy
-    redirect_to day_path(@day), :notice => t(:exer_deleted)
+      respond_to do |format|
+        format.js { render partial: 'ex_list_refresh'  }
+      end
+    #redirect_to day_path(@day), :notice => t(:exer_deleted)
   end
+
  
 def up
   exercise = Exercise.find(params[:id])
   numb = exercise.number
   if numb > 1
-    day = exercise.day
-    exer2 = day.exercises.find_by_number(numb - 1)
+    @day = exercise.day
+    exer2 = @day.exercises.find_by_number(numb - 1)
     if exer2
       exer2.number = numb
       exer2.save
       exercise.number = numb - 1
       exercise.save
+      respond_to do |format|
+        format.js { render partial: 'ex_list_refresh'  }
+      end
     end
   end
-  redirect_to exercise.day
 end
+
 
 def down
   exercise = Exercise.find(params[:id])
   numb = exercise.number
-  day = exercise.day
-  exer2 = day.exercises.find_by_number(numb + 1)
+  @day = exercise.day
+  exer2 = @day.exercises.find_by_number(numb + 1)
   if exer2
     exer2.number = numb
     exer2.save
     exercise.number = numb + 1
     exercise.save
+    respond_to do |format|
+      format.js { render partial: 'ex_list_refresh'  }
+    end
   end
-  redirect_to exercise.day
 end
 
 

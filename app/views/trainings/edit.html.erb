@@ -2,7 +2,7 @@
 
 <br>
 
-<%= form_for ([@day, @training]) do |f| %>
+<%= form_for([@day, @training], remote: true) do |f| %>
   <p>
     <strong><%= t :body_weight%></strong><br>
     <%= f.text_field :weight %>
@@ -20,58 +20,12 @@
 
 <h4><%= t :exercises%></h4>
 <br>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th></th>
-    <th><%= t :title%></th>
-    <th><%= t :reps%></th>
-    <th><%= t :max_weight%></th>
-    <th></th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% @training.trexercises.order('number').each do |trex| %> 
-  <tr>
-  <td>
-  <% if trex.dictitem %>
-    <% if I18n.locale == :en%>
-      <img src="<%= trex.dictitem.img %>">
-    <% else %>
-      <img src="<%= trex.dictitem.img_ru %>">
-    <% end %>
-  <% end %>
-  </td>
-  <td><%= if I18n.locale == :en
-          if trex.dictitem && trex.dictitem.url
-             link_to trex.title, trex.dictitem.url, :target => "_blank"
-           else
-             trex.title
-           end
-      else
-          if trex.dictitem && trex.dictitem.url_ru
-             link_to trex.title, trex.dictitem.url_ru, :target => "_blank" 
-           else
-             trex.title
-           end
-  end  %></td>
+<div id="trex_table">
+  <%= render "trexers_list" %>
+</div>
 
-  <%= form_for trex do |f| %>
-     <td><%= f.text_field :reps, size: "11x1" %></td>
-     <td><%= f.text_field :maxweight, size: "3x1" %></td>
-     <td><%= f.submit t(:edit), :class => 'btn btn-large btn-primary'  %></td>
-  <% end %>
-
-  <td><%= button_to(t(:up), up_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:down), down_trexercise_path(trex), :method => "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:destroy), trex, 
-            method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
-  </tr>
-  <% end %>
- </tbody>
-</table>
 <br><br>
 
 <h4><%= t :add_exercise %></h4>
-<%= render "trexercises/trexercise" %>  <!-- "trexercises/form" -->
+<%= render "trexercises/trexercise" %>  

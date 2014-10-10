@@ -1,5 +1,8 @@
 class DaysController < ApplicationController
 
+respond_to :html, :js
+
+
 def new
   @day = Day.new
 end
@@ -76,10 +79,14 @@ def up
       day2.save
       day.number = numb - 1
       day.save
-    end
+      respond_to do |format|
+         format.js { render partial: 'listrefresh'  }
+      end
+    end       
   end
-  redirect_to days_path
 end
+
+
 
 def down
   day = Day.find(params[:id])
@@ -91,8 +98,10 @@ def down
     day2.save
     day.number = numb + 1
     day.save
+      respond_to do |format|
+         format.js { render partial: 'listrefresh'  }
+      end
   end
-  redirect_to days_path
 end
 
 
@@ -102,7 +111,9 @@ def setarchive
   renumber(day.number)
   day.number = -1
   day.save
-  redirect_to days_path, :notice => t(:onepurged)
+  respond_to do |format|
+    format.js { render partial: 'listrefresh'  }
+  end
 end
 
 def purge
@@ -206,7 +217,7 @@ def aform531  #after
     for j in 1..4
       @day =   current_user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1], number: max})
       max = max + 1
-      e_max = 0      
+      e_max = 1
       
       if params['warmup'].to_s == "true" #WARM UP
         for k in 0..2

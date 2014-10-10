@@ -9,30 +9,15 @@
 <br><br>
 
 <h4><%= t :exercises%></h4>
-<br>
-<table class="table table-striped">
- <thead>
-  <tr>
-    <th></th>
-    <th><%= t :title%></th>
-    <th><%= t :reps%></th>
-    <th><%= t :max_weight%></th>
-    <th></th>
-  </tr>
-  </thead>
 
-  <tbody>
-      <%= render @day.exercises.order('number') %>
- </tbody>
-</table>
-<% if @day.exercises.size == 0 %>
-  <em><%= t :day_empty%><br><br> </em>
-<% end %>
-
+<div id="exers_table">
+  <%= render 'exercises/list' %>
+</div>
 
 <br><br>
 
 <h4><%= t :add_exercise%></h4>
+
 <%= render "exercises/form" %>
 
 <%= link_to t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %> 

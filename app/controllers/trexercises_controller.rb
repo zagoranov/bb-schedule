@@ -56,7 +56,9 @@ def destroy
       trexer.save
     end
   @trexercise.destroy
-  redirect_to edit_training_path(@training), :notice => t(:exer_deleted)
+  respond_to do |format|
+    format.js { render partial: 'trlistrefresh'  }
+  end
 end
 
 
@@ -64,30 +66,34 @@ def up
   trexercise = Trexercise.find(params[:id])
   numb = trexercise.number
   if numb > 1
-    train = trexercise.training
-    trexer2 = train.trexercises.find_by_number(numb - 1)
+    @training = trexercise.training
+    trexer2 = @training.trexercises.find_by_number(numb - 1)
     if trexer2
       trexer2.number = numb
       trexer2.save
       trexercise.number = numb - 1
       trexercise.save
+      respond_to do |format|
+         format.js { render partial: 'trlistrefresh'  }
+      end
     end
   end
-  redirect_to edit_training_path(trexercise.training)
 end
 
 def down
   trexercise = Trexercise.find(params[:id])
   numb = trexercise.number
-  train = trexercise.training
-  trexer2 = train.trexercises.find_by_number(numb + 1)
+  @training = trexercise.training
+  trexer2 = @training.trexercises.find_by_number(numb + 1)
     if trexer2
       trexer2.number = numb
       trexer2.save
       trexercise.number = numb + 1
       trexercise.save
+      respond_to do |format|
+         format.js { render partial: 'trlistrefresh'  }
+      end
     end
-  redirect_to edit_training_path(trexercise.training)
 end
 
 

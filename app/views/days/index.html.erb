@@ -1,40 +1,9 @@
 <h3><%= t :schedule %></h3>
  
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th><%= t :title%></th>
-    <th><%= t :description%></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @days.each do |day| %> 
-    <tr>
-    <td><%= link_to day.title, day %></td>
-    <td><%= day.text %></td>
-    <td><%= button_to(t(:up), up_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
-    <td><%= button_to(t(:down), down_day_path(day), :method => "get", :class => 'btn btn-mini')  %> </td>
-    <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
-<!--    <td><%= button_to(t(:past_train), day_trainings_path(day), :method => "get", :class => 'btn btn-mini') %></td>   -->
-    <td><%= button_to(t(:setarchive), setarchive_day_path(day), 
-             method: :post, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
-    </tr>
-  <% end %>
- </tbody>
-</table>
-<% if @days.size == 0 %>
-  <em><%= t :sch_empty %></em>
-<% end %>
+<div id="days_table">
+  <%= render "days_list" %>
+</div>
 
-<br><br><br>
-
-<%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
-<% if @days.size > 0 %>
-<%= link_to t(:archive_all), purge_days_path, :method => "post", data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger' %> 
-<% end %>
-
-<br><br>
 <br><br>
 <% if @trainings.size < 2 %>
   <em><%= t :therebechart %></em>

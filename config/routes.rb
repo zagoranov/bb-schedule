@@ -28,8 +28,8 @@ Rails.application.routes.draw do
         post 'emptyarchive'
       end
       member do
-        get 'up'
-        get 'down'
+        post 'up'
+        post 'down'
         post 'setarchive'
         post 'unarchive'
       end
@@ -44,16 +44,16 @@ Rails.application.routes.draw do
 
   resources :exercises do
     member do
-      get 'up'
-      get 'down'            
+      post 'up'
+      post 'down'            
     end
   end
 
 
   resources :trexercises  do
     member do
-      get 'up'
-      get 'down'            
+      post 'up'
+      post 'down'            
     end
   end
 

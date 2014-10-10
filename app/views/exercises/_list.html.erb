@@ -1,3 +1,17 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+<% @day.exercises.order("number").each do |exercise| %> 
+
 <tr>
   <td>  
   <% if exercise.dictitem %>
@@ -23,9 +37,16 @@
   end  %></td>
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
-  <td><%= button_to(t(:up), up_exercise_path(exercise), method: "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:down), down_exercise_path(exercise), method: "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:destroy), [exercise.day, exercise],  method: :delete, 
-             data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+  <td><%= button_to(t(:up), up_exercise_path(exercise), remote: true, class: 'btn btn-mini') %> </td>
+  <td><%= button_to(t(:down), down_exercise_path(exercise), remote: true, class: 'btn btn-mini') %></td>
+  <td><%= button_to(t(:destroy), [exercise.day, exercise],  remote: true, method: :delete, 
+             data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
 </tr>
 
+<% end %>
+
+ </tbody>
+</table>
+<% if @day.exercises.size == 0 %>
+  <em><%= t :empty %></em>
+<% end %>
