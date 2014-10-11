@@ -154,6 +154,22 @@ def change_locale
 end
 
 
+def graphs
+  @trexers = Trexercise.joins(training: :day).where('days.user_id = ?', current_user.id).select("trexercises.title").order("trexercises.title").uniq
+end
+
+
+def draw_graph
+  if params[:exer]
+    @trexes_w2 = Trexercise.joins(training: :day).select('max(trexercises.maxweight) as maxweight, trexercises.created_at, trainings.created_at').where('days.user_id = ? and trexercises.title = ? and trexercises.maxweight IS NOT NULL', current_user.id, params[:exer]).group('trainings.created_at').order('trexercises.created_at')
+    respond_to do |format|
+      format.js { render partial: 'graph_refresh'  }
+    end
+  end
+end
+
+
+
 def bform531  # before
   #redirect_to days_path
 end
@@ -293,13 +309,6 @@ def aform531  #after
  end
 end
 
-
-def graphs
-  @trexers = Trexercise.joins(training: :day).where('days.user_id = ?', current_user.id).select("trexercises.title").order("trexercises.title").uniq
-  if params[:exer]
-    @trexes_w2 = Trexercise.joins(training: :day).select('max(trexercises.maxweight) as maxweight, trexercises.created_at, trainings.created_at').where('days.user_id = ? and trexercises.title = ? and trexercises.maxweight IS NOT NULL', current_user.id, params[:exer]).group('trainings.created_at').order('trexercises.created_at')
-  end
-end
 
 
 
