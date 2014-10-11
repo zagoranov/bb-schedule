@@ -2,13 +2,8 @@
 
 <br>
 <br>
-<% if current_user  
-    fpath = aform531_days_path
-else
-    fpath = '/results531' #form531_sessions_path
-end %>
- <%=  form_tag(fpath, method: "get", id: "form-531") do %>
 
+ <%=  form_tag('/draw531', remote: true, id: "form-531") do %>
 
     <p><%= t(:ov_press) %> <%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
     	x <%= text_field_tag 'delt_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </p>
@@ -43,5 +38,8 @@ end %>
 <% end %>
 
 <br>
-<br>
 
+<div id="table531">
+</div>
+
+ 

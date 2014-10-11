@@ -168,10 +168,14 @@ def draw_graph
   end
 end
 
-
-
 def bform531  # before
   #redirect_to days_path
+end
+
+def draw531  #post
+  respond_to do |format|
+    format.js { render partial: 'draw_531'  }
+  end
 end
 
 def aform531  #after

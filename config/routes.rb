@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         get 'wholeweek'
         get 'bform531'
         get 'aform531'
+        post 'draw531'
         get 'graphs'
         post 'draw_graph'
         post 'purge'
@@ -73,6 +74,7 @@ get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
 
+post "draw531" => "days#draw531", :as => "draw531" , via: [:post]
 get "calculate531" => "days#bform531", :as => "calculate531"
 get "results531" => "sessions#form531", :as => "results531"
 
