@@ -258,17 +258,17 @@ def aform531  #after
         @day.exercises.create({title: d_type[j-1], reps: reps[z-1][k], maxweight: round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
       end
-      
-      if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
-       for k in 0..1
-         @day.exercises.create({title: d_type[j-1] + " ("+t(:pyramid)+")", reps: pyr_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
-         e_max = e_max + 1
-       end
-      end        
 
       if i < 4 && params['joker'].to_s == "true"   #JOKER
        for k in 0..2
          @day.exercises.create({title: d_type[j-1] + " ("+t(:joker_sets)+")", reps: joker_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
+         e_max = e_max + 1
+       end
+      end        
+      
+      if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
+       for k in 0..1
+         @day.exercises.create({title: d_type[j-1] + " ("+t(:pyramid)+")", reps: pyr_r[i-1][k], maxweight: round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round, round_arr), dictitem_id: ids[j-1], number: e_max})
          e_max = e_max + 1
        end
       end        
@@ -332,8 +332,6 @@ private
   def day_params
     params.require(:day).permit(:title, :text)
   end
-
-
 
 end
 

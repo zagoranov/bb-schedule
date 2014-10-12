@@ -64,7 +64,7 @@
       <table class="table table-striped" border="1" bordercolor="#C0C0C0">
       <tbody>
 
-      <tr><td bgcolor="#D8D8D8" width ="300"><strong><%= t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)' %></strong>, <%= d_type[j-1] %></td><td bgcolor="#D8D8D8"  width ="50"></td><td bgcolor="#D8D8D8" width ="50"></td></tr>
+      <tr><td bgcolor="#D8D8D8" width ="300"><strong><%= t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)' %></strong>, <%= d_type[j-1] %></td><td bgcolor="#D8D8D8"  width ="65"></td><td bgcolor="#D8D8D8" width ="35"></td></tr>
       
       <% if params['warmup'].to_s == "true" #WARM UP
         for k in 0..2
@@ -87,6 +87,14 @@
             <td><%= reps[z-1][k] %> </td>
             <td><%= round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round, round_arr) %> </td></tr>
     <%  end
+
+      if i < 4 && params['joker'].to_s == "true"   #JOKER
+       for k in 0..2 %>
+          <tr><td><%= d_type[j-1] + " ("+t(:joker_sets)+")" %> </td>
+            <td><%= joker_r[i-1][k] %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr) %> </td></tr>
+  <%    end
+      end        
       
       if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
        for k in 0..1 %>
@@ -96,13 +104,6 @@
   <%   end
       end        
 
-      if i < 4 && params['joker'].to_s == "true"   #JOKER
-       for k in 0..2 %>
-          <tr><td><%= d_type[j-1] + " ("+t(:joker_sets)+")" %> </td>
-            <td><%= joker_r[i-1][k] %> </td>
-            <td><%= round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr) %> </td></tr>
-  <%    end
-      end        
 
       if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
        %><tr><td><%= d_type[j-1] + " ("+t(:firts_set_last)+")" %> </td>
