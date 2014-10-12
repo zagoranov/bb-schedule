@@ -4,7 +4,7 @@
 
 <h4><%= t :ex_progress %></h4>
 
-<%= form_tag("/days/draw_graph", remote: true) do %> 
+<%= form_tag("/drawgraph", remote: true) do %> 
   <%= select_tag 'exer',
       options_for_select(@trexers.collect(&:title), selected: params[:exer]), include_blank: true %>
   <%= submit_tag t(:choose), :class => 'btn btn-primary' %>
