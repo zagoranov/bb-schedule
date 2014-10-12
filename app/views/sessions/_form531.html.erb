@@ -1,8 +1,6 @@
 <h3><%= t :created531 %></h3>
 
-<% if current_user  %>
-    <%= link_to t(:move_to_sch), aform531_days_path, :method => "get", :class => 'btn btn-large btn-primary' %> 
-<% else %>
+<% if !current_user  %>
    <p><%= t :login_wantu %></p>
 <% end %>
 
@@ -104,7 +102,6 @@
   <%   end
       end        
 
-
       if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
        %><tr><td><%= d_type[j-1] + " ("+t(:firts_set_last)+")" %> </td>
             <td><%= t(:amrap) %> </td>
@@ -145,7 +142,18 @@
       <tr><td><%= bbb_type[j-1] + " ("+t(:bigbutboring)+")" %> </td>
             <td>5x10</td>
             <td></td></tr>
-    <% end %>
+       <% end %>
+
+  <%  if params['is_assist'].to_s == "true" && params['assist'].to_s == "ch_f_sch"   #Fill from day in schedule!!!
+        s = 'day'+j.to_s
+        if params[s] != "" && Day.find(params[s])
+          day = Day.find(params[s])
+          day.exercises.order("number").each do |exer| %>
+             <tr><td><%= exer.title %></td><td><%= exer.reps %></td><td><%= exer.maxweight %></td></tr>
+      <%  end
+        end 
+      end %>
+
    </tbody></table> </td>
    <% if j == 2 %> 
       </tr><tr><td><br></td></tr>

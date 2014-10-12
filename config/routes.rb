@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       collection do
         get 'wholeweek'
         get 'bform531'
-        get 'aform531'
+#        get 'aform531'
         post 'draw531'
         get 'graphs'
         post 'draw_graph'

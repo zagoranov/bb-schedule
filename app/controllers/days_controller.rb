@@ -168,17 +168,24 @@ def draw_graph
 end
 
 
-def bform531  # before
-  #redirect_to days_path
+def bform531  # form "before calculate 531"
+  if current_user
+      @days = current_user.days.where.not(archived: true).order('number')
+  end
 end
 
 def draw531  #post
   respond_to do |format|
     format.js { render partial: 'draw_531'  }
   end
+  if params[:movitmo].to_s == "true"
+    aform531()
+  end
 end
 
-def aform531  #after
+
+private 
+def aform531  # form "after calculate 531"
  if params[:delt_max] == "" || params[:delt_reps]  == "" || params[:dead_max]  == "" || params[:dead_reps] == "" || params[:bench_max]  == "" || params[:bench_reps]  == "" || params[:sq_max] == "" || params[:sq_reps]  == "" 
     flash.now.alert = t(:need_more_info)
     render "bform531"
@@ -307,12 +314,23 @@ def aform531  #after
         e_max = e_max + 1
         @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
       end
+
+      if params['is_assist'].to_s == "true" && params['assist'].to_s == "ch_f_sch"   #Fill from day in schedule!!!
+        s = 'day'+j.to_s
+        if params[s] != "" && Day.find(params[s])
+          day = Day.find(params[s])
+          day.exercises.order("number").each do |exer| 
+           @day.exercises.create({title: exer.title, reps: exer.reps, maxweight: exer.maxweight, dictitem_id: exer.dictitem_id, number: e_max })
+           e_max = e_max + 1
+          end
+        end 
+      end 
+
     end
   end
-  redirect_to days_path, :notice => t(:created531)
+#  redirect_to days_path, :notice => t(:created531)
  end
 end
-
 
 
 
