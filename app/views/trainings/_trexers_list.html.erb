@@ -40,9 +40,10 @@
      <td><%= f.text_field :maxweight, size: "3x1" %></td>
      <td><%= f.submit t(:edit), :class => 'btn btn-large btn-primary'  %></td>
   <% end %>
-
-    <td><%= link_to image_tag("up3.png"), up_trexercise_path(trex), :method => "post", remote: true %></td>
-    <td><%= link_to image_tag("down3.png"), down_trexercise_path(trex), :method => "post", remote: true %></td>
+  <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="/assets/up4_2.png"', onmouseout: 'this.src="/assets/up4.png"'),
+          up_trexercise_path(trex), :method => "post", remote: true %></td>
+  <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="/assets/down4_2.png"', onmouseout: 'this.src="/assets/down4.png"'),
+          down_trexercise_path(trex), :method => "post", remote: true %></td>
   <td><%= button_to(t(:destroy), trex, remote: true,
             method: :delete, data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
   </tr>
