@@ -9,9 +9,7 @@
       options_for_select(@trexers.collect(&:title), selected: params[:exer]), include_blank: true %>
   <%= submit_tag t(:choose), :class => 'btn btn-primary' %>
 <% end %>
-
 <br><br>
-
 <% if @trexers.size == 0 %>
   <em><%= t :graph_empty %></em>
 <% end %>

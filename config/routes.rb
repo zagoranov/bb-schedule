@@ -76,7 +76,7 @@ get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
 get "sign_up" => "users#new", :as => "sign_up"
 
-post "drawgraph" => "days#draw_graph", :as => "drawgraph" , via: [:post]
+post "drawgraph" => "days#drawgraph", :as => "drawgraph" , via: [:post]
 post "draw531" => "days#draw531", :as => "draw531" , via: [:post]
 get "calculate531" => "days#bform531", :as => "calculate531"
 get "results531" => "sessions#form531", :as => "results531"
