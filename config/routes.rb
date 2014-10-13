@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         get 'bform531'
         post 'draw531'
         get 'graphs'
-        post 'draw_graph'
+        post 'drawgraph'
         post 'purge'
         get 'archive'
         post 'emptyarchive'
