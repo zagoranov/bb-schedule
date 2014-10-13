@@ -64,7 +64,10 @@ def destroy
     renumber(@day.number)
   end
   @day.destroy
-  redirect_to archive_days_path, :notice => t(:destroyedone)
+  @archive_days = current_user.days.where(archived: true).order('created_at')
+  respond_to do |format|
+    format.js { render partial: 'archive_fresh'  }
+  end
 end
 
 
@@ -135,7 +138,10 @@ def unarchive
     day.number = 1
   end
   day.save
-  redirect_to archive_days_path, :notice => t(:dayrestored)
+  @archive_days = current_user.days.where(archived: true).order('created_at')
+  respond_to do |format|
+    format.js { render partial: 'archive_fresh'  }
+  end
 end
 
 def emptyarchive

@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       collection do
         get 'wholeweek'
         get 'bform531'
-#        get 'aform531'
         post 'draw531'
         get 'graphs'
         post 'draw_graph'
@@ -60,9 +59,12 @@ Rails.application.routes.draw do
   end
 
   resources :trainings do
-        collection do
-            get 'history'
-         end
+    collection do
+      get 'history'
+    end
+    member do         
+      post 'setarchive'
+    end
   end
 
   resources :dictitems

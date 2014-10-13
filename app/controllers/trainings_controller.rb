@@ -1,5 +1,7 @@
 class TrainingsController < ApplicationController
 
+respond_to :html, :js
+
 
 def new
   @day = Day.find(params[:day_id])
@@ -46,7 +48,7 @@ def update
 end
 
 
-def index
+def index  # not using it
    @day = Day.find(params[:day_id])
    @trainings = @day.trainings.all
 end
@@ -59,8 +61,18 @@ def destroy
   redirect_to history_trainings_path, :notice => t(:tr_removed)
 end
 
-def history
-  @trainings = Training.joins(:day).where('days.user_id = ?', current_user.id).order('trainings.created_at DESC').uniq
+def history  # new index
+  @trainings = Training.joins(:day).where('days.user_id = ? and trainings.archived = ?', current_user.id, false).order('trainings.created_at DESC').uniq
+end
+
+def setarchive
+  tr = Training.find(params[:id])
+  tr.archived = true
+  tr.save
+  @trainings = Training.joins(:day).where('days.user_id = ? and trainings.archived = ?', current_user.id, false).order('trainings.created_at DESC').uniq
+  respond_to do |format|
+    format.js { render partial: 'tr_list_refresh'  }
+  end
 end
 
 private
