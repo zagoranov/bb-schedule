@@ -11,7 +11,8 @@
     <tr>
     <td><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
-    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='/assets/up4_2.png'".html_safe, onmouseout: "this.src='/assets/up4.png'".html_safe),
+    
+    <td><%= link_to image_tag(asset_path("up4.png"), onmouseover: 'this.src="'+asset_path("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+asset_path("up4.png")+'"'.html_safe),
           up_day_path(day), :method => "post", remote: true %></td>
     <td><%= link_to image_tag("down4.png", onmouseover: "this.src='/assets/down4_2.png'".html_safe, onmouseout: "this.src='/assets/down4.png'".html_safe),
           down_day_path(day), :method => "post", remote: true %></td>
