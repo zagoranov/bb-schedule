@@ -23,9 +23,9 @@
   end  %></td>
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
-  <td><%= button_to(t(:up), up_exercise_path(exercise), method: "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:down), down_exercise_path(exercise), method: "get", :class => 'btn btn-mini')  %> </td>
-  <td><%= button_to(t(:destroy), [exercise.day, exercise],  method: :delete, 
+    <td><%= link_to image_tag("up3.png"), up_exercise_path(exercise), :method => "get" %></td>
+    <td><%= link_to image_tag("down3.png"), down_exercise_path(exercise), :method => "get"  %></td>
+    <td><%= button_to(t(:destroy), [exercise.day, exercise],  method: :delete, 
              data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
 </tr>
 

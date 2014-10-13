@@ -37,8 +37,8 @@
   end  %></td>
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
-  <td><%= button_to(t(:up), up_exercise_path(exercise), remote: true, class: 'btn btn-mini') %> </td>
-  <td><%= button_to(t(:down), down_exercise_path(exercise), remote: true, class: 'btn btn-mini') %></td>
+  <td><%= link_to image_tag("up3.png"), up_exercise_path(exercise), :method => "post", remote: true %></td>
+  <td><%= link_to image_tag("down3.png"), down_exercise_path(exercise), :method => "post", remote: true %></td>  
   <td><%= button_to(t(:destroy), [exercise.day, exercise],  remote: true, method: :delete, 
              data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
 </tr>

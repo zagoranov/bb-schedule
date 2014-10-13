@@ -11,8 +11,8 @@
     <tr>
     <td><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
-    <td><%= button_to(t(:up), up_day_path(day), remote: true, :class => 'btn btn-mini') %> </td>
-    <td><%= button_to(t(:down), down_day_path(day), remote: true, :class => 'btn btn-mini') %> </td>
+    <td><%= link_to image_tag("up3.png"), up_day_path(day), :method => "post", remote: true %></td>
+    <td><%= link_to image_tag("down3.png"), down_day_path(day), :method => "post", remote: true %></td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary') %> </td>
     <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 
                     data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
