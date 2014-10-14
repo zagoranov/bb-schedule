@@ -10,7 +10,6 @@ end
 def create
     @comment = current_user.given_comments.create(comment_params)
     @comment.save
-    #redirect_to @comment.user
     @user = User.find(params['user_id'])
     respond_to do |format|
       format.js { render partial: '/users/wall_refresh'  }
@@ -23,7 +22,6 @@ def destroy
   @comment = Profilecomment.find(params[:id])
   @user = current_user
   @comment.destroy
-  #redirect_to @comment.user
   respond_to do |format|
     format.js { render partial: '/users/wall_refresh'  }
   end

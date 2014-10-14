@@ -22,6 +22,7 @@
 en:
   hello: "Hello world"
   title: "Title"
+  text: "Text"
   description: "Description"
   actions: "Actions"
   schedule: "Schedule"
@@ -175,3 +176,4 @@ en:
   move_to_sch: "Move to Schedule"
   no_data_for_this: "Not enough data."
   fiilfromday: "Fill from day in your schedule:"
+  notes: "Notes"

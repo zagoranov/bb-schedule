@@ -1,0 +1,27 @@
+<h3><%= t :notes %></h3>
+ 
+<br><br>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :title%></th>
+    <th><%= t :text%></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+<tr>
+    <%= form_for([current_user, current_user.notes.build], remote: true) do |f| %>  
+    <td><%= f.text_field :title %></td>
+    <td><%= f.text_area :text, :size => "70x2" %></td>
+    <td><%= f.submit t(:send), :class => 'btn btn-large btn-primary' %> </td>
+    <% end %>   
+</tr>
+ </tbody>
+</table>
+
+<div id="notes_table">
+  <%= render 'notes_list' %>
+</div>
+

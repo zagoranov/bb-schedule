@@ -63,6 +63,7 @@
     <li><%= link_to t(:history), history_trainings_path %></li>
     <li><%= link_to t(:graphs), graphs_days_path %></li>
     <li><%= link_to t(:c531), '/calculate531' %></li>
+    <li><%= link_to t(:notes), notes_path %></li>
     <li><%= link_to t(:archive), archive_days_path %></li>
     <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li>    
     <% if current_user.admin %>
@@ -100,7 +101,7 @@
 
         </div>
 
-        <% if current_user && request.original_url.last(5) == '/days' %>
+        <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(5) == 'ft.ru')%>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h4><%= t(:sidebar) %></h4><br>

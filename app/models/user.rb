@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :given_comments, :class_name => "Profilecomment", :foreign_key => "commenter_id"
 
   has_many :days, dependent: :destroy
+
+  has_many :notes, dependent: :destroy
   
   attr_accessor :password
   before_save :encrypt_password

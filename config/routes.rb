@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :profilecomments
-     end
+    resources :notes
+  end
   
   resources :sessions do
       collection do
@@ -69,6 +70,9 @@ Rails.application.routes.draw do
 
   resources :dictitems
 
+  resources :notes do 
+  end
+  
   resources :friendships do
     member do         
       post 'wellhello'
