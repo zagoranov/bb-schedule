@@ -101,7 +101,7 @@
 
         </div>
 
-        <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(5) == 'ft.ru')%>
+        <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(6) == 'ft.ru/')%>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h4><%= t(:sidebar) %></h4><br>
