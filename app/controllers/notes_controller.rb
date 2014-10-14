@@ -2,7 +2,6 @@ class NotesController < ApplicationController
 
 respond_to :html, :js
 
-
 def create
   note = current_user.notes.create(note_params)
   note.save

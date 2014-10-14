@@ -35,18 +35,12 @@
 
 <h4><%= t(:wall) %></h4>
 <br>
-  <table class="table table-striped">
-  <tbody>
-    <tr>
     <%= form_for([@user, @user.given_comments.build], remote: true) do |f| %>  
-    <td><%= t :leave_comment %></td>
-    <td><%= f.text_area :comment, :size => "50x2" %></td>
-    <td><%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
-      <%= f.submit t(:send), :class => 'btn btn-mini' %> </td>
-    <% end %>   
-    <tr>
-</tbody>
-</table>
+    <%= f.text_area :comment, placeholder: t(:leave_comment), :size => "50x2" %><br>
+    <%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
+      <%= f.submit t(:send), :class => 'btn btn-mini' %>
+<% end %>
+<br><br>
 
 <div id ="wallochka">
   <%= render 'comments_part' %>
