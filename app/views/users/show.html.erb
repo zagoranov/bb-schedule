@@ -2,71 +2,9 @@
            t(:you) 
         end %></h4>
 
-<h3><%= t(:username) %>: <%= @user.username %></h3>
-<% if @user == current_user %><h3>
-     <%= t(:email)%>: <%= @user.email %></h3>
-       <br>
-       <%= button_to(t(:edit), edit_user_path(@user), :method => "get",  :class => 'btn btn-mini') %>
-<%else%>       
-<%= @fr = current_user.friendships.where('friend_id = ?', @user.id).first
-         if @fr
-      link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
-    else
-       link_to t(:fr_add), friendships_path(:friend_id => @user.id), :method => :post, :class => 'btn btn-primary' 
-        end %>
-<%end%> 
-<br><br>
-
-<h4><%= t(:friends) %></h4>
-<table class="table table-striped">
-<tbody>
-  <% for friendship in @user.friendships %>
-    <tr>
-      <td><strong><%= link_to friendship.friend.username, friendship.friend %></strong></td>
-      <td><%if friendship.friend != current_user %>
-      <%= @fr = current_user.friendships.where('friend_id = ?', friendship.friend.id).first
-         if @fr
-      link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
-    else
-       link_to t(:fr_add), friendships_path(:friend_id => friendship.friend.id), :method => :post, :class => 'btn btn-primary' 
-        end %>
-       <%end%></td>  
-   </tr>  
-  <% end %>
-</tbody>
-</table>
-<% if @user.friendships.size == 0 %>
-  <em><%= t :empty %></em>
-<% end %>
-
-<% if @user == current_user %>
-<h4><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></h4>
-<% end %>
-
-<br><br>
-
-<h4><%= t(:friended_by) %></h4>
-<table class="table table-striped">
-<tbody>
-  <% for user in @user.inverse_friends %>
-    <tr>
-      <td><strong><%= link_to user.username, user %></strong></td>
-      <td><%if user != current_user %>
-      <%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
-         if @fr
-      link_to t(:fr_remov), @fr, :method => :delete, :class => 'btn btn-mini btn-danger'
-    else
-       link_to t(:fr_add), friendships_path(:friend_id => user), :method => :post, :class => 'btn btn-primary' 
-        end %>
-     <%end%> </td>        
-    </tr>       
-  <% end %>
-</tbody>
-</table>
-
-<% if @user.inverse_friends.size == 0 %>
-  <em><%= t :empty %></em>
-<% end %>
+<div id ="prof_details">
+  <%= render 'profile_part' %>
+</div>
 
 <br><br>
 
@@ -95,39 +33,6 @@
 
 <br><br>
 
-<h4><%= t(:wall) %></h4>
-
-<!--
-  <%= form_for ([@user, @user.given_comments.build]) do |f| %>
-    <p>
-      <%= t :leave_comment %><br />
-      <%= f.text_area :comment, :size => "50x2" %>
-    </p>
-     <%= f.hidden_field :user_id, :value => @user.id %>
-     <%= f.hidden_field :commenter_id, :value => @current_user.id %>
-    <p class="button">
-      <%= f.submit t(:save), :class => 'btn btn-mini' %> </p>
-  <% end %>
--->
-  <table class="table table-striped">
-  <tbody>
-    <tr>
-    <%= form_for ([@user, @user.given_comments.build]) do |f| %>
-    <td><%= t :leave_comment %></td>
-    <td><%= f.text_area :comment, :size => "40x2" %></td>
-    <td><%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
-      <%= f.submit t(:send), :class => 'btn btn-mini' %> </td>
-    <% end %>   
-    <tr>
-     
-  <% for comment in @user.received_comments.order('created_at DESC') %>
-    <tr>       
-      <td><strong><%= link_to comment.commenter.username, comment.commenter %></strong> <%= comment.created_at.strftime("%d.%m.%Y %H:%M")%></td>
-      <td>"<%= comment.comment %>"</td>
-<% if @user == current_user %>      
-      <td><%= link_to t(:destroy), user_profilecomment_path(@user, comment), :method => :delete, :class => 'btn btn-mini btn-danger' %></td>
-<% end %>
-    </tr> 
-  <% end %>
-  </tbody>
-  </table>
+<div id ="wallochka">
+  <%= render 'comments_part' %>
+</div>

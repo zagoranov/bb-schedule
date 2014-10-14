@@ -1,0 +1,23 @@
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: t(:search_u) %>
+  <%= submit_tag t(:search), :name => nil, :class => 'btn btn-mini' %>
+<% end %>
+<br><br>
+<table class="table table-striped">
+<tbody>
+<% for user in @users %>
+<%if user != current_user %>
+    <tr>
+      <td><strong><%= link_to user.username, user %></strong></td> 
+      <td><%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
+         if @fr
+            link_to t(:fr_remov), byebye_friendship_path(id: @fr.id, from: "list"), remote: true, method: "post", :class => 'btn btn-mini btn-danger'
+		      else
+	          link_to t(:fr_add), wellhello_friendship_path(id: user.id, from: "list"), remote: true, method: "post",:class => 'btn btn-primary' 
+          end %>
+      </td> 
+    </tr>
+   <%end %>
+ <% end %>
+</tbody>
+</table>

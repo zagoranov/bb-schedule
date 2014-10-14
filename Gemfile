@@ -65,5 +65,7 @@ gem 'active_median', '~> 0.1.0'
 
 #gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'faraday'
+#gem 'faraday'
+
+#gem "koala", "~> 1.10.0rc"
 

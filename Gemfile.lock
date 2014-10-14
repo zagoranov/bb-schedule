@@ -201,7 +201,6 @@ DEPENDENCIES
   bcrypt
   chartkick
   coffee-rails (~> 4.0.0)
-  faraday
   googlecharts
   groupdate (~> 2.1.1)
   i18n

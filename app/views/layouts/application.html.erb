@@ -41,8 +41,6 @@
 
     <%= javascript_include_tag "application" %>
 
-    <%= javascript_include_tag :defaults %>
-   
     <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
     
@@ -97,22 +95,85 @@
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
+          
           <%= yield %>
+
+        </div>
+
+        <% if current_user && request.original_url.last(5) == '/days' %>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <h4><%= t(:sidebar) %></h4><br>
+            <ul class="nav nav-list">
+              <li class="nav-header"><strong><%= t(:social) %></strong></li>
+              <li><%= link_to t(:you) + " (" + current_user.username + ")", user_path(current_user) %></li>
+              <li><%= link_to t(:uusers), users_path  %></li>
+            </ul><br>
+            <ul class="nav nav-list">
+             <li class="nav-header"><strong><%= t(:news) %></strong></li> 
+                <% if current_user.friendships
+                   @fr = current_user.friendships.collect(&:friend_id)
+                   trains = Training.joins(:day).where('user_id in (?)', @fr).order('trainings.created_at DESC').limit(15) 
+                   if trains.size > 0
+                     for trtr in trains
+                      @usern = User.find_by_id(trtr.day.user_id) %>
+                      <li><strong><%= link_to @usern.username, @usern %></strong> 
+                        <%= t(:was_trained)%> 
+                        <%= trtr.created_at.strftime("%d.%m.%Y %H:%M") %> - "<%= trtr.day.title %>"
+                      </li>
+                     <% end 
+                     else %>
+                       <em><%= t :empty %></em>
+                   <% end %>
+                <% end %>
+            </ul><br>
+            <% if current_user.inverse_friendships %>            
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong><%= t(:fr_new) %></strong></li> 
+              <% for fr in Friendship.joins(:user).where('friend_id in (?)', current_user.id).order('friendships.created_at DESC').limit(5)
+                usern = User.find_by_id(fr.user_id) %>
+                <li><strong><%= link_to usern.username, usern %></strong> 
+                  <%= t(:friended)%> 
+                  <%= fr.created_at.strftime("%d.%m.%Y %H:%M") %>
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+            <% if Profilecomment.find_by_user_id(current_user.id) %>
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong><%= t(:last_comments) %></strong></li> 
+              <% for comm in Profilecomment.where(user_id: current_user.id).order('profilecomments.created_at DESC').limit(5)
+                usern = User.find_by_id(comm.commenter_id) %>
+                <li><strong><%= link_to usern.username, usern %></strong> 
+                  <%= t(:commented_in_yp)%> 
+                  <%= comm.created_at.strftime("%d.%m.%Y %H:%M") %>
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+           
+
+      </div>
+
 
          
       <footer>
         <br><br><br>
-        <p><small>&copy; Labile Mobile, 2014</small> 
-       </p>
-      </footer>
+        <p><small>&copy; Labile Mobile, 2014</small> </p>
+
+         <!-- FB -->
+        <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.evenlift.ru&amp;width=100&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=807546819296222" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:35px;" allowTransparency="true"></iframe>
+
+  </footer>
 
     </div> <!-- /container -->
-
         <% if Rails.env == "production"  %>
-         <%= render 'layouts/footer' %>
-        <% end %>
+          <%= render 'layouts/footer' %>
+        <% end %>   
   </body>
-
 
 </html>
 

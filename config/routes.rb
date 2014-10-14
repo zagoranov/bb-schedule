@@ -69,7 +69,12 @@ Rails.application.routes.draw do
 
   resources :dictitems
 
-  resources :friendships
+  resources :friendships do
+    member do         
+      post 'wellhello'
+      post 'byebye'
+    end
+  end
 
 
 get "log_out" => "sessions#destroy", :as => "log_out"
