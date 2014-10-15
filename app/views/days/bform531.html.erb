@@ -4,19 +4,25 @@
 
  <%=  form_tag('/draw531', remote: true, id: "form-531") do %>
 
-    <p><%= t(:ov_press) %> <%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
-    	x <%= text_field_tag 'delt_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </p>
-</br>
-    <p><%= t(:deadlift) %> <%= text_field_tag 'dead_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %> 
-    	x <%= text_field_tag 'dead_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </p>
-</br>
-    <p><%= t(:bench_press) %> <%= text_field_tag 'bench_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %> 
-    	x <%= text_field_tag 'bench_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </p>
-</br>
-    <p><%= t(:squats) %> <%= text_field_tag 'sq_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> 
-    	x <%= text_field_tag 'sq_reps', nil, placeholder: t(:reps), size: 5, class: "span2" %> </p>
+<table class="table table-striped">
+<tbody>
+<tr>
+    <td><%= t(:ov_press) %></td><td><%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %> </td><td>
+    	<%= text_field_tag 'delt_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %> </td>
+</tr>
+<tr><td><%= t(:deadlift) %></td><td><%= text_field_tag 'dead_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %></td><td>
+    	<%= text_field_tag 'dead_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %></td>
+</tr>
+<tr><td><%= t(:bench_press) %></td><td><%= text_field_tag 'bench_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %></td><td> 
+    	<%= text_field_tag 'bench_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %></td>
+</tr>
+<tr><td><%= t(:squats) %></td><td> <%= text_field_tag 'sq_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %></td><td> 
+    	<%= text_field_tag 'sq_reps', nil, placeholder: t(:reps), size: 5, class: "span2" %> </td>
+ </tr>
+ </tbody>
+</table>
 
- </br>
+
 <p><strong><%= t(:base_stuff) %></strong></p>
     <p><%= check_box_tag 'warmup', 'true', true %> <%= t(:warm_up)%></p>
     <p><%= check_box_tag 'pwrlift', 'true', false %> <%= t(:powerlift351)%></p>
