@@ -43,6 +43,18 @@ def load
 end
 
 
+def about
+  if I18n.locale == :ru
+    redirect_to '/aboutru'
+  end
+end  
+
+def aboutru
+  if I18n.locale == :en
+    redirect_to '/about'
+  end
+end  
+
 
 def form531
   if params[:delt_max] == "" || params[:delt_reps]  == "" || params[:dead_max]  == "" || params[:dead_reps] == "" || params[:bench_max]  == "" || params[:bench_reps]  == "" || params[:sq_max] == "" || params[:sq_reps]  == "" 
