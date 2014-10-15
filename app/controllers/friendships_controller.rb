@@ -27,7 +27,7 @@ def wellhello
   @friendship = current_user.friendships.build(:friend_id => params[:id])
   if @friendship.save
     if params[:from] == 'list'
-      @users = User.limit(50).order("RANDOM()")
+      @users = User.limit(30).order("RANDOM()")
       respond_to do |format|
         format.js { render partial: '/users/list_refresh'  }
       end
@@ -46,7 +46,7 @@ def byebye
   @friendship = current_user.friendships.find(params[:id])
   @friendship.destroy
   if params[:from] == 'list'
-    @users = User.limit(50).order("RANDOM()")
+    @users = User.limit(30).order("RANDOM()")
     respond_to do |format|
       format.js { render partial: '/users/list_refresh'  }
     end
