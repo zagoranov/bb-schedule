@@ -1,0 +1,11 @@
+<h3><%= t(:body_measurs) %></h3>
+
+<br><br>
+
+<div id="meas_table">
+  <%= render 'meas_list' %>
+</div>
+
+<br><br>
+
+<%= link_to t(:add_new), new_measurement_path, :method => "get", :class => 'btn btn-primary' %> 

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :days, dependent: :destroy
 
   has_many :notes, dependent: :destroy
+  has_many :measurements, dependent: :destroy
   
   attr_accessor :password
   before_save :encrypt_password

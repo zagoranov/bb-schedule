@@ -70,8 +70,9 @@ Rails.application.routes.draw do
 
   resources :dictitems
 
-  resources :notes do 
-  end
+  resources :notes 
+
+  resources :measurements 
   
   resources :friendships do
     member do         

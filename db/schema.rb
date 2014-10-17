@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014161110) do
+ActiveRecord::Schema.define(version: 20141017155308) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -52,6 +52,23 @@ ActiveRecord::Schema.define(version: 20141014161110) do
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "measurements", force: true do |t|
+    t.float    "height"
+    t.float    "weight"
+    t.float    "neck"
+    t.float    "shoulders"
+    t.float    "chest"
+    t.float    "biceps"
+    t.float    "forearm"
+    t.float    "wrist"
+    t.float    "waist"
+    t.float    "thighs"
+    t.float    "calves"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "notes", force: true do |t|

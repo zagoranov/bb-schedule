@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-
   <meta name="robots" content="index, follow">
   <meta name="keywords" content="рассчет 5/3/1, 5/3/1 калькулятор, 5/3/1 для бодибилдинга, 5/3/1 джима вендлера">
   <meta name="description" content="Калькулятор системы Вендлера 5/3/1. Дневник тренировок.">
-
 
   <meta name='yandex-verification' content='4f75e0448f2345a1' /> 
   <meta name="google-site-verification" content="tyWS7sT9iOuYGROulL00vspLqkxSmAl9fGnhcxHCffk" />
@@ -77,21 +75,27 @@
   <% if current_user %>
     <li><%= link_to t(:schedule), days_path %></li>
     <li><%= link_to t(:history), history_trainings_path %></li>
-    <li><%= link_to t(:graphs), graphs_days_path %></li>
-    <li><%= link_to t(:c531), '/calculate531' %></li>
-    <li><%= link_to t(:notes), notes_path %></li>
-    <li><%= link_to t(:archive), archive_days_path %></li>
-    <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li>    
-    <% if current_user.admin %>
-        <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
-    <% end %>
-    <li><%= link_to t(:log_out), log_out_path %></li>
+<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t(:useful) %>
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to t(:graphs), graphs_days_path %></li>
+            <li><%= link_to t(:archive), archive_days_path %></li> 
+            <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li> 
+            <li><%= link_to t(:notes), notes_path %></li>
+            <li><%= link_to t(:body_measurs), measurements_path %></li>
+            <% if current_user.admin %>
+                <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
+            <% end %>            
+          </ul>
+        </li>
+  <li><%= link_to t(:log_out), log_out_path %></li>
   <% else %>
     <li><%= link_to t(:sign_up), '/sign_up' %></li> 
     <li><%= link_to t(:log_in), '/log_in' %></li>
-    <li><%= link_to t(:c531), '/calculate531' %></li>    
   <% end %>
 
+    <li><%= link_to t(:c531), '/calculate531' %></li>    
     <li>
        <% if I18n.locale == :ru %>
          <li><%= link_to 'Где я?', '/aboutru' %></li>
@@ -178,10 +182,12 @@
       <footer>
         <br><br><br>
         <p><small>&copy; Labile Mobile, 2014</small> </p>
+
 <noindex>
          <!-- FB -->
         <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.evenlift.ru&amp;width=100&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=807546819296222" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:35px;" allowTransparency="true"></iframe>
 </noindex>
+
   </footer>
 
     </div> <!-- /container -->
