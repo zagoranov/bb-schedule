@@ -34,11 +34,11 @@ def destroy
 end
 
 
-def load
+def load  #sql loading stuff
  if current_user && current_user.admin
    #CONN.execute "DELETE from dictitems"  
    #CONN.execute "INSERT INTO dictitems ..."
- redirect_to root_path, :notice => t(:data_added)
+   redirect_to root_path, :notice => t(:data_added)
  end
 end
 
