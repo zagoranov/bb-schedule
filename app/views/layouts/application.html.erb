@@ -5,14 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
   <meta name="robots" content="index, follow">
   <meta name="keywords" content="рассчет 5/3/1, 5/3/1 калькулятор, 5/3/1 для бодибилдинга, 5/3/1 джима вендлера">
   <meta name="description" content="Калькулятор системы Вендлера 5/3/1. Дневник тренировок.">
 
+
   <meta name='yandex-verification' content='4f75e0448f2345a1' /> 
   <meta name="google-site-verification" content="tyWS7sT9iOuYGROulL00vspLqkxSmAl9fGnhcxHCffk" />
 
-  <title>EvenLift - дневник тренировок, калькулятор 5/3/1</title>
+<% if I18n.locale == :ru %>
+   <title>EvenLift.ru - дневник тренировок, калькулятор 5/3/1</title>
+<% else %>
+    <title>EvenLift.ru - training diary, 5/3/1 calculator</title>
+<% end %>
 
     <%= csrf_meta_tags %>
 
@@ -171,10 +178,10 @@
       <footer>
         <br><br><br>
         <p><small>&copy; Labile Mobile, 2014</small> </p>
-
+<noindex>
          <!-- FB -->
         <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.evenlift.ru&amp;width=100&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=807546819296222" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:35px;" allowTransparency="true"></iframe>
-
+</noindex>
   </footer>
 
     </div> <!-- /container -->
