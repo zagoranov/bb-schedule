@@ -140,7 +140,7 @@
                       @usern = User.find_by_id(trtr.day.user_id) %>
                       <li><strong><%= link_to @usern.username, @usern %></strong> 
                         <%= t(:was_trained)%> 
-                        <%= trtr.created_at.strftime("%d.%m.%Y %H:%M") %> - "<%= trtr.day.title %>"
+                        <%= day_distance(trtr.created_at) %> - "<%= trtr.day.title %>"
                       </li>
                      <% end 
                      else %>
@@ -155,7 +155,7 @@
                 usern = User.find_by_id(fr.user_id) %>
                 <li><strong><%= link_to usern.username, usern %></strong> 
                   <%= t(:friended)%> 
-                  <%= fr.created_at.strftime("%d.%m.%Y %H:%M") %>
+                  <%= day_distance(fr.created_at) %>
                 </li>
               <% end %>
               </ul><br>
@@ -167,7 +167,7 @@
                 usern = User.find_by_id(comm.commenter_id) %>
                 <li><strong><%= link_to usern.username, usern %></strong> 
                   <%= t(:commented_in_yp)%> 
-                  <%= comm.created_at.strftime("%d.%m.%Y %H:%M") %>
+                  <%= day_distance(comm.created_at) %>                  
                 </li>
               <% end %>
               </ul><br>
