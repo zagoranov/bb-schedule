@@ -105,8 +105,6 @@
           <li><%= link_to 'Русский', change_locale_path %></li>
         <% end %> 
     </li>
-
-
           </ul>
         </div>
       </div>
@@ -163,11 +161,22 @@
             <% if Profilecomment.find_by_user_id(current_user.id) %>
               <ul class="nav nav-list">
               <li class="nav-header"><strong><%= t(:last_comments) %></strong></li> 
-              <% for comm in Profilecomment.where(user_id: current_user.id).order('profilecomments.created_at DESC').limit(5)
+              <% for comm in Profilecomment.where(user_id: current_user.id).order('created_at DESC').limit(5)
                 usern = User.find_by_id(comm.commenter_id) %>
                 <li><strong><%= link_to usern.username, usern %></strong> 
                   <%= t(:commented_in_yp)%> 
                   <%= day_distance(comm.created_at) %>                  
+                </li>
+              <% end %>
+              </ul><br>
+            <% end %>
+            <% if Note.find_by_user_id(current_user.id) %>
+              <ul class="nav nav-list">
+              <li class="nav-header"><strong><%= t(:last_notes) %></strong></li> 
+              <% for note in Note.where(user_id: current_user.id).order('created_at DESC').limit(5) %>
+                <li><strong><%= link_to note.title, notes_path %></strong>, 
+                  <%= note.text %>, 
+                  <%= day_distance(note.created_at) %>
                 </li>
               <% end %>
               </ul><br>
