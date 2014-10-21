@@ -175,8 +175,8 @@
               <li class="nav-header"><strong><%= t(:last_notes) %></strong></li> 
               <% for note in Note.where(user_id: current_user.id).order('created_at DESC').limit(5) %>
                 <li><strong><%= link_to note.title, notes_path %></strong>, 
-                  <%= note.text %>, 
-                  <%= day_distance(note.created_at) %>
+                  <%= note.text %> 
+                  <small>(<%= day_distance(note.created_at) %>)</small>
                 </li>
               <% end %>
               </ul><br>

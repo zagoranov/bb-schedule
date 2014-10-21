@@ -11,12 +11,14 @@
     <tr>
     <td><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
-    <td><%= link_to image_tag(asset_path("up4.png"), onmouseover: 'this.src="'+asset_path("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+
-       asset_path("up4.png")+'"'.html_safe), up_day_path(day), :method => "post", remote: true %></td>
-    <td><%= link_to image_tag(asset_path("down4.png"), onmouseover: 'this.src="'+asset_path("down4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+asset_path("down4.png")+'"'.html_safe), down_day_path(day), :method => "post", remote: true %></td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary') %> </td>
     <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 
                     data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+
+    <td><%= link_to image_tag(asset_path("up4.png"), onmouseover: 'this.src="'+asset_path("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+
+       asset_path("up4.png")+'"'.html_safe), up_day_path(day), :method => "post", remote: true %></td>
+    <td><%= link_to image_tag(asset_path("down4.png"), onmouseover: 'this.src="'+asset_path("down4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+asset_path("down4.png")+'"'.html_safe), down_day_path(day), :method => "post", remote: true %></td>
+
     </tr>
   <% end %>
  </tbody>

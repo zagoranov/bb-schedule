@@ -82,10 +82,10 @@ def up
       day2.save
       day.number = numb - 1
       day.save
-      respond_to do |format|
-         format.js { render partial: 'listrefresh'  }
-      end
     end       
+  end
+  respond_to do |format|
+    format.js { render partial: 'listrefresh'  }
   end
 end
 
@@ -101,9 +101,9 @@ def down
     day2.save
     day.number = numb + 1
     day.save
-      respond_to do |format|
-         format.js { render partial: 'listrefresh'  }
-      end
+  end
+  respond_to do |format|
+    format.js { render partial: 'listrefresh'  }
   end
 end
 
