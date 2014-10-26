@@ -24,7 +24,7 @@ $(document).ready(function() {
         status:true, xfbml:true 
      });
     FB.ui({ method: 'feed', 
-        message: 'Пока ты спал, я посетил спортзал',
+        message: 'While you were thin, i am visiting my gym.',
         name: 'EvenLift.ru',
         link: 'http://www.evenlift.ru/',
         picture: 'http://www.evenlift.ru/icon200.png',
