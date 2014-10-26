@@ -65,6 +65,7 @@ def history  # new index
   @trainings = Training.joins(:day).where('days.user_id = ? and trainings.archived = ?', current_user.id, false).order('trainings.created_at DESC').uniq
 end
 
+
 def setarchive
   tr = Training.find(params[:id])
   tr.archived = true
