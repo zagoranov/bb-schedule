@@ -36,7 +36,7 @@ end
 
 def load  #sql loading stuff
  if current_user && current_user.admin
-   #CONN.execute "DELETE from dictitems"  
+   CONN.execute "Update trainings set day_id = (select max(id) from days) where day_id is null and info is not null and length(info) > 13"
    #CONN.execute "INSERT INTO dictitems ..."
    redirect_to root_path, :notice => t(:data_added)
  end
