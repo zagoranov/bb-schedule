@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017155308) do
+ActiveRecord::Schema.define(version: 20141114144719) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141017155308) do
     t.integer  "user_id"
     t.integer  "number"
     t.boolean  "archived",   default: false
+    t.boolean  "erased",     default: false
   end
 
   create_table "dictitems", force: true do |t|

@@ -12,8 +12,8 @@
     <td><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
     <td><%= button_to(t(:restore), unarchive_day_path(day), remote: true, :class => 'btn btn-primary')  %> </td>
-    <td><%= button_to(t(:destroy), day, remote: true,
-             method: :delete, data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= button_to(t(:destroy), erase_day_path(day), remote: true, data: { confirm: t(:confirm) }, 
+              :class => 'btn btn-mini btn-danger')  %> </td>
     </tr>
   <% end %>
  </tbody>

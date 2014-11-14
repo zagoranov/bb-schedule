@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         post 'down'
         post 'setarchive'
         post 'unarchive'
+        post 'erase'
       end
       resources :exercises
   end

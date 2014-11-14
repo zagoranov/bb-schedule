@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
 
-   CONN = ActiveRecord::Base.connection
+   CONN = ActiveRecord::Base.connection  #for sql_load
 
 def new
   if current_user
@@ -21,11 +21,11 @@ def create
 end
 
 
-def omnicreate
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id     
-    redirect_to root_url
-  end
+#def omnicreate
+#    user = User.from_omniauth(env["omniauth.auth"])
+#    session[:user_id] = user.id     
+#    redirect_to root_url
+#  end
 
 
 def destroy

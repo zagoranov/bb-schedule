@@ -125,7 +125,7 @@ def purge
 end
 
 def archive
-  @archive_days = current_user.days.where(archived: true).order('created_at')
+  @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
 end
 
 def unarchive
@@ -138,7 +138,7 @@ def unarchive
     day.number = 1
   end
   day.save
-  @archive_days = current_user.days.where(archived: true).order('created_at')
+  @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
   respond_to do |format|
     format.js { render partial: 'archive_fresh'  }
   end
@@ -146,8 +146,18 @@ end
 
 def emptyarchive
   d_days = current_user.days.where(archived: true)  
-  d_days.destroy_all
+  d_days.update_all(erased: true)
   redirect_to archive_days_path, :notice => t(:archiveempty)
+end
+
+def erase
+  day = Day.find(params[:id])
+  day.erased = true
+  day.save
+  @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
+  respond_to do |format|
+    format.js { render partial: 'archive_fresh'  }
+  end
 end
 
 def change_locale
