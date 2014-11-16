@@ -2,7 +2,7 @@
 <% if @user == current_user %><h3>
      <%= t(:email)%>: <%= @user.email %></h3>
        <br>
-       <%= button_to(t(:edit), edit_user_path(@user), :method => "get",  :class => 'btn btn-mini') %>
+       <%= button_to(t(:change_data), edit_user_path(@user), :method => "get",  :class => 'btn btn-primary') %>
 <%else%>       
 <%= @fr = current_user.friendships.where('friend_id = ?', @user.id).first
          if @fr

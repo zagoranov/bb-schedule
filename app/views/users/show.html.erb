@@ -1,6 +1,6 @@
-<h4><%= if @user == current_user
-           t(:you) 
-        end %></h4>
+<% if @user == current_user %>
+         <h4> <%= t(:you) %></h4>
+<% end %>
 
 <div id ="prof_details">
   <%= render 'profile_part' %>

@@ -36,7 +36,7 @@ end
 
 def load  #sql loading stuff
   if current_user && current_user.admin
-    CONN.execute "Update trainings set day_id = 544 where day_id is null"
+    #CONN.execute "Update trainings set day_id = 544 where day_id is null"
     #CONN.execute "INSERT INTO dictitems ..."
     redirect_to root_path, :notice => t(:data_added)
   end
