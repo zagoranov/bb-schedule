@@ -16,7 +16,7 @@
 		 <td><%= train.weight %></td>
 		 <td><%= train.info %></td>
      <td><%= train.day.title + " (" + train.day.text + ")" %></td>
-		 <td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>  
+		 <td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
     <td><%= button_to(t(:destroy), setarchive_training_path(train), remote: true, 
                     data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
 	  </tr>

@@ -19,6 +19,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
+    <th></th>
     <th><%= t :title%></th>
     <th><%= t :reps%></th>
     <th><%= t :max_weight%></th>
@@ -27,6 +28,15 @@
   <tbody>
   <% @training.trexercises.order(:number).each do |trex| %> 
   <tr>
+  <td>
+  <% if trex.dictitem %>
+    <% if I18n.locale == :en%>
+      <img src="<%= trex.dictitem.img %>">
+    <% else %>
+      <img src="<%= trex.dictitem.img_ru %>">
+    <% end %>
+  <% end %>
+  </td>
   <td><%= trex.title %></td>
   <td><%= trex.reps %></td>
   <td><%= trex.maxweight %></td>

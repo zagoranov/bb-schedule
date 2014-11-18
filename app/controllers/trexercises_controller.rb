@@ -40,6 +40,13 @@ end
 def update
   @trexercise = Trexercise.find(params[:id])
   if @trexercise.update(trexercise_params)
+    day = @trexercise.training.day
+    exer = day.exercises.find_by_title(@trexercise.title)  
+    if exer
+      exer.reps = @trexercise.reps
+      exer.maxweight = @trexercise.maxweight
+      exer.save
+    end
     redirect_to edit_training_path(@trexercise.training)
   else
     render 'edit'
@@ -104,3 +111,4 @@ end
     end
 
 end
+

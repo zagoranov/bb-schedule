@@ -38,7 +38,8 @@
   <%= form_for(trex, remote: true) do |f| %>
      <td><%= f.text_field :reps, size: "11x1" %></td>
      <td><%= f.text_field :maxweight, size: "3x1" %></td>
-     <td><%= f.submit t(:edit), :class => 'btn btn-large btn-primary'  %></td>
+     <td><%= f.submit t(:save), :name => 'save', :class => 'btn btn-large btn-primary'  %></td>
+     <td><%= f.submit t(:savetemplate), :name => 'template', :class => 'btn btn-large btn-primary'  %></td>
   <% end %>
     <td><%= link_to image_tag(asset_path("up4.png"), onmouseover: 'this.src="'+asset_path("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+
        asset_path("up4.png")+'"'.html_safe), up_trexercise_path(trex), :method => "post", remote: true %></td>
