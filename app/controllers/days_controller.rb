@@ -325,13 +325,13 @@ def aform531  # form "after calculate 531"
        end
       end        
 
-      if params['is_assist'].to_s == "true" && params['assist'].to_s == "bbb"   #BBB
+      if params['is_assist'].to_s == "true" && (params['assist'].to_s == "bbb" || params['assist'].to_s == "bbbandch")  #BBB
         @day.exercises.create({title: d_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: round_w(((w_ms[j-1] / 100) * 50).round, round_arr), dictitem_id: ids[j-1], number: e_max })
         e_max = e_max + 1
         @day.exercises.create({title: bbb_type[j-1] + " ("+t(:bigbutboring)+")", reps: '5x10', maxweight: nil, dictitem_id: bbb_ids[j-1], number: e_max })
       end
 
-      if params['is_assist'].to_s == "true" && params['assist'].to_s == "ch_f_sch"   #Fill from day in schedule!!!
+      if params['is_assist'].to_s == "true" && (params['assist'].to_s == "ch_f_sch" || params['assist'].to_s == "bbbandch")  #Fill from day in schedule!!!
         s = 'day'+j.to_s
         if params[s] != "" && Day.find(params[s])
           day = Day.find(params[s])

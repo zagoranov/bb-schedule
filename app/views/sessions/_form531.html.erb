@@ -135,7 +135,7 @@
     <%  end
       end        
 
-      if params['is_assist'].to_s == "true" && params['assist'].to_s == "bbb"   #BBB
+      if params['is_assist'].to_s == "true" && (params['assist'].to_s == "bbb" || params['assist'].to_s == "bbbandch")   #BBB
 %>    <tr><td><%= d_type[j-1] + " ("+t(:bigbutboring)+")" %></td>
             <td>5x10</td>
             <td><%= round_w(((w_ms[j-1] / 100) * 50).round, round_arr) %></td></tr>
@@ -144,7 +144,7 @@
             <td></td></tr>
        <% end %>
 
-  <%  if params['is_assist'].to_s == "true" && params['assist'].to_s == "ch_f_sch"   #Fill from day in schedule!!!
+  <%  if params['is_assist'].to_s == "true" && (params['assist'].to_s == "ch_f_sch" || params['assist'].to_s == "bbbandch") #Fill from day in schedule!!!
         s = 'day'+j.to_s
         if params[s] != "" && Day.find(params[s])
           day = Day.find(params[s])

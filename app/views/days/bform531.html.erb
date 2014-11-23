@@ -37,16 +37,17 @@
     <p><%= radio_button_tag 'assist', 'bbb', true %> <%= t(:bigbutboring)%> <br>
     <%= radio_button_tag 'assist', 'sst' %> <%= t(:simple_st)%><br>
     <% if current_user %>
-      <%= radio_button_tag 'assist', 'ch_f_sch'%> <%= t(:fiilfromday)%><br></p> 
+      <%= radio_button_tag 'assist', 'ch_f_sch'%> <%= t(:fiilfromday)%>  <br>
+          <%= radio_button_tag 'assist', 'bbbandch' %> <%= t(:bbb_and_ch)%></p><br>
       <p> 
       <%= t(:day)%> 1: <%= select_tag "day1", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %>
       <%= t(:day)%> 2: <%= select_tag "day2", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %></p>
       <p><%= t(:day)%> 3: <%= select_tag "day3", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %>
       <%= t(:day)%> 4: <%= select_tag "day4", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %></p>
      </p> 
-    <br><p><strong><%= check_box_tag 'movitmo', 'true', false %> <%= t(:move_to_sch) %></strong></p>             
+      <br><p><strong><%= check_box_tag 'movitmo', 'true', false %> <%= t(:move_to_sch) %></strong></p>
    <% else %>      
-    </p> 
+     </p> 
     <% end %>
  </br></br>
 
