@@ -258,7 +258,7 @@ def aform531  # form "after calculate 531"
 
   for i in 1..n
     for j in 1..4
-      @day =   current_user.days.create({title: t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)', text: d_type[j-1], number: max})
+      @day =   current_user.days.create({title: t(:week)+' ' + i.to_s +', '+ t(:day) + ' ' + j.to_s + ' (5/3/1)', text: d_type[j-1], number: max})
       max = max + 1
       e_max = 1
       
