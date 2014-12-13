@@ -62,7 +62,7 @@
       <table class="table table-striped" border="1" bordercolor="#C0C0C0">
       <tbody>
 
-      <tr><td bgcolor="#D8D8D8" width ="300"><strong><%= t(:day)+ ' ' +j.to_s+', '+t(:week)+' '+i.to_s+' (5/3/1)' %></strong>, <%= d_type[j-1] %></td><td bgcolor="#D8D8D8"  width ="65"></td><td bgcolor="#D8D8D8" width ="35"></td></tr>
+      <tr><td bgcolor="#D8D8D8" width ="300"><strong><%= t(:week)+ " " + i.to_s + ", " + t(:day) + " " + j.to_s + " (5/3/1)"  %></strong>, <%= d_type[j-1] %></td><td bgcolor="#D8D8D8"  width ="65"></td><td bgcolor="#D8D8D8" width ="35"></td></tr>
       
       <% if params['warmup'].to_s == "true" #WARM UP
         for k in 0..2
