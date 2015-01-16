@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
 
+respond_to :html, :js
 
 def create
     @day = Day.find(params[:day_id])
