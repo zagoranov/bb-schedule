@@ -185,15 +185,15 @@
         </div>
         <% end %>
            
-
       </div>
         
       <footer>
         <br><br><br>
-        <p><small><%= t(:footer_name)%>, &copy; <a href="http://www.labilemobile.ru">Labile Mobile</a>, 2014 - 2015</small> </p>
-        <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(6) == 'ft.ru/')%>
-          <p><small><%= t(:comm_sugg)%> <a href="mailto:pijammer@gmail.com">pijammer@gmail.com</a></small> </p>
+        <p><small><%= t(:footer_name)%>, &copy; <a href="http://www.labilemobile.ru">Labile Mobile</a>, 2014 - 2015
+        <% if current_user %>
+          (<%= t(:comm_sugg)%> <a href="mailto:pijammer@gmail.com">pijammer@gmail.com</a>).
         <% end %>
+        </small></p>
 
 <noindex>
          <!-- FB -->
