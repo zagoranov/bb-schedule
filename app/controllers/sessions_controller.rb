@@ -40,6 +40,7 @@ def load  #sql loading stuff
     #CONN.execute "INSERT INTO dictitems ..."
     CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
     CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
+    CONN.execute("delete from exercises where archived = true")
     redirect_to root_path, :notice => t(:data_added)
   end
 end
