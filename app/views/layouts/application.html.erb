@@ -14,9 +14,9 @@
   <meta name="google-site-verification" content="tyWS7sT9iOuYGROulL00vspLqkxSmAl9fGnhcxHCffk" />
 
 <% if I18n.locale == :ru %>
-   <title>EvenLift.ru - дневник тренировок, калькулятор 5/3/1</title>
+   <title>www.EvenLift.ru - дневник тренировок, калькулятор 5/3/1</title>
 <% else %>
-    <title>EvenLift.ru - training diary, 5/3/1 calculator</title>
+    <title>www.EvenLift.ru - training diary, 5/3/1 calculator</title>
 <% end %>
 
     <%= csrf_meta_tags %>
@@ -110,14 +110,14 @@
       </div>
     </div>
 
+
       <div class="container">
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
-          
           <%= yield %>
-
         </div>
+
 
         <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(6) == 'ft.ru/')%>
         <div class="col-lg-3">
@@ -181,6 +181,7 @@
               <% end %>
               </ul><br>
             <% end %>
+            <p><small><%= t(:comm_sugg)%> <a href="mailto:pijammer@gmail.com">pijammer@gmail.com</a>.</small></p>
           </div>
         </div>
         <% end %>
@@ -189,18 +190,14 @@
         
       <footer>
         <br><br><br>
-        <p><small><%= t(:footer_name)%>, &copy; <a href="http://www.labilemobile.ru">Labile Mobile</a>, 2014 - 2015
-        <% if current_user && (request.original_url.last(5) == '/days' || request.original_url.last(6) == 'ft.ru/') %>
-          (<%= t(:comm_sugg)%> <a href="mailto:pijammer@gmail.com">pijammer@gmail.com</a>).
-        <% end %>
-        </small></p>
+        <p><small><%= t(:footer_name)%>, &copy; <a href="http://www.labilemobile.ru">Labile Mobile</a>, 2014 - 2015</small></p>
 
-<noindex>
+        <noindex>
          <!-- FB -->
         <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.evenlift.ru&amp;width=100&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId=807546819296222" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:35px;" allowTransparency="true"></iframe>
-</noindex>
+        </noindex>
 
-  </footer>
+      </footer>
 
     </div> <!-- /container -->
         <% if Rails.env == "production"  %>
