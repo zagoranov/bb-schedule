@@ -38,8 +38,8 @@ def load  #sql loading stuff
   if current_user && current_user.admin
     #CONN.execute "Update trainings set day_id = 544 where day_id is null"
     #CONN.execute "INSERT INTO dictitems ..."
-    CONN.execute "delete from exercises where day_id in (select id from days where erased = 1)"
-    CONN.execute "delete from trexercises where training_id in (select id from trainings where archived = 1)"
+    CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
+    CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
     redirect_to root_path, :notice => t(:data_added)
   end
 end
