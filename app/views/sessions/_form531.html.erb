@@ -13,13 +13,13 @@
   sst2_type = [[t(:lats), t(:upper_back), t(:triceps), t(:biceps)], [t(:hamstrings), t(:lower_back), t(:abs)]]
 
   if Rails.env.production?  
-    ids = [164, 192, 203, 252]      #server
-    bbb_ids = [178, 245, 184, 257]  #server
-    sst1_ids = [210, 251, 200, 199]
+    ids = [164, 192, 203, 252]       #server
+    bbb_ids = [178, 245, 184, 257]   #server
+    sst1_ids = [210, 251, 200, 199]  #server
   else
-    ids = [1268, 1296, 1309, 1356]      #local
-    bbb_ids = [1282, 1349, 1288, 1361]  #local
-    sst1_ids = [1314, 1355, 1304, 1303]
+    ids = [1268, 1296, 1309, 1356]       #local
+    bbb_ids = [1282, 1349, 1288, 1361]   #local
+    sst1_ids = [1314, 1355, 1304, 1303]  #local
   end 
   warm_p = [40, 50, 60]
   weights = [[65, 75, 85], [70, 80, 90], [75, 85, 95], [40, 50, 60]]

@@ -94,6 +94,7 @@ get "results531" => "sessions#form531", :as => "results531"
 
 get "about" => "sessions#about", :as => "about"
 get "aboutru" => "sessions#aboutru", :as => "aboutru"
+get "faq" => "sessions#faq", :as => "faq"
 
 match 'auth/:provider/callback', to: 'sessions#omnicreate', via: [:get, :post]
 match 'auth/failure', to: redirect('/'), via: [:get, :post]
