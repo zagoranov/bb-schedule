@@ -78,7 +78,7 @@ end
 
 private
   def training_params
-    params.require(:training).permit(:weight, :info)
+    params.require(:training).permit(:weight, :info, :created_at)
   end
 
 end

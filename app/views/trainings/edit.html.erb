@@ -4,6 +4,10 @@
 
 <%= form_for([@day, @training], remote: true) do |f| %>
   <p>
+    <strong><%= t :date_time %></strong><br>
+    <%= f.datetime_select :created_at, {:use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)], :order => [:day, :month, :year, :hour, :minute] } %>
+  </p>
+  <p>
     <strong><%= t :body_weight%></strong><br>
     <%= f.text_field :weight %>
   </p>
