@@ -4,36 +4,52 @@ respond_to :html, :js
 
 
 def new
-  @day = Day.find(params[:day_id])
-  @training = @day.trainings.new
+  if current_user  
+    @day = Day.find(params[:day_id])
+    @training = @day.trainings.new
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 
 def show
-  @training = Training.find(params[:id])
-  @day = Day.find(@training.day)
+  if current_user  
+    @training = Training.find(params[:id])
+    @day = Day.find(@training.day)
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 
 def create
-   @day = Day.find(params[:day_id])
-   @training = @day.trainings.create(training_params)
+ if current_user
+    @day = Day.find(params[:day_id])
+    @training = @day.trainings.create(training_params)
 
-   if @training.save
+    if @training.save
      @day.exercises.each do |exer|  
         trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number, dictitem_id: exer.dictitem_id)
         trexercise.save
-     end
-     redirect_to edit_training_path(@training), :notice => t(:tr_created)
-   else
-     render 'new'
+    end
+      redirect_to edit_training_path(@training), :notice => t(:tr_created)
+    else
+      render 'new'
+    end
+  else 
+    redirect_to '/log_in'
   end
 end
 
 
 def edit
-  @training = Training.find(params[:id])
-  @day = @training.day
+  if current_user
+    @training = Training.find(params[:id])
+    @day = @training.day
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 
