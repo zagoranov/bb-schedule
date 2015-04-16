@@ -125,7 +125,11 @@ def purge
 end
 
 def archive
-  @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
+  if current_user  
+    @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 def unarchive

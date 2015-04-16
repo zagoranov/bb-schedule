@@ -21,13 +21,6 @@ def create
 end
 
 
-#def omnicreate
-#    user = User.from_omniauth(env["omniauth.auth"])
-#    session[:user_id] = user.id     
-#    redirect_to root_url
-#  end
-
-
 def destroy
   session[:user_id] = nil
   redirect_to log_in_path, :notice => t(:logged_out)
@@ -36,8 +29,6 @@ end
 
 def load  #sql loading stuff
   if current_user && current_user.admin
-    #CONN.execute "Update trainings set day_id = 544 where day_id is null"
-    #CONN.execute "INSERT INTO dictitems ..."
     CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
     CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
     CONN.execute("delete from trainings where archived = true")

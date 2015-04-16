@@ -65,8 +65,12 @@ end
 
 
 def index  # not using it
-   @day = Day.find(params[:day_id])
-   @trainings = @day.trainings.all
+  if current_user
+     @day = Day.find(params[:day_id])
+     @trainings = @day.trainings.all
+  else 
+    redirect_to '/log_in'
+  end
 end
 
 

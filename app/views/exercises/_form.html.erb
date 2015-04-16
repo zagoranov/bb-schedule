@@ -1,27 +1,25 @@
 <%= form_for([@day, @day.exercises.build]) do |f| %>
 <table class="table table-striped">
-  <thead>
-  <tr>
-    <th><%= link_to t(:choose), '/dictitems?from=dday&id=' + @day.id.to_s %></th>
-    <th><%= t :custom%></th>
-    <th><%= t :reps%></th>
-    <th><%= t :max_weight%></th>
-  </tr>
-  </thead>
   <tbody>
-    <tr>
+  <tr>
+    <td><strong><%= link_to t(:choose), '/dictitems?from=dday&id=' + @day.id.to_s %></strong></td>
+    <td><strong><%= t :custom%></strong></td>
+  </tr>
+  <tr>
     <td><%= if I18n.locale == :en
          f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
            else
          f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
            end  %></td>
-    <td><%= f.text_field :title %></td>
-    <td><%= f.text_field :reps %></td>
-    <td><%= f.text_field :maxweight %></td>
-    </tr>
- </tbody>
+    <td><%= f.text_field :title, style: "width:400px" %></td>
+  </tr>
+  <tr>
+    <td><strong><%= t :reps%>:</strong> <%= f.text_field :reps %></td>
+    <td><strong><%= t :max_weight%>:</strong> <%= f.text_field :maxweight %></td>
+  </tr>
+  </tbody>
 </table>
     <%= f.submit t(:add), :class => 'btn btn-large btn-primary' %>
 <% end %>
 <br/><br/>
-<br/>
+<br/><br/>
