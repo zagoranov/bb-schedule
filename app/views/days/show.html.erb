@@ -5,7 +5,7 @@
   <h4><%= @day.text %></h4>
 </p>
 
-<td><%= button_to(t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-mini')  %> </td>
+<td><%= link_to t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary'  %> </td>
 <br><br>
 
 <h4><%= t :exercises %></h4>

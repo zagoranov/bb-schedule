@@ -2,20 +2,17 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td><strong><%= link_to t(:choose), '/dictitems?from=train&id=' + @training.id.to_s %></strong></td>
-    <td><strong><%= t :custom%></strong></td>
-  </tr>
-  <tr>
+     <td><strong><%= link_to t(:choose), '/dictitems?from=train&id=' + @training.id.to_s %></strong></td>
      <td><%= if I18n.locale == :en
-         f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
+         f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
            else
-         f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px" }
+         f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
            end  %></td>
-    <td><%= f.text_field :title, style: "width:400px" %></td>
+    <td><strong><%= t :custom%> </strong></td><td><%= f.text_field :title, style: "width:270px" %></td>
   </tr>
   <tr>
-    <td><strong><%= t :reps%>:</strong> <%= f.text_field :reps %></td>
-    <td><strong><%= t :max_weight%>:</strong> <%= f.text_field :maxweight %></td>
+    <td><strong><%= t :reps%></strong></td><td><%= f.text_field :reps, style: "width:160px" %></td>
+    <td><strong><%= t :max_weight%></strong></td><td><%= f.text_field :maxweight, style: "width:160px" %></td>
   </tr>
  </tbody>
 </table>
