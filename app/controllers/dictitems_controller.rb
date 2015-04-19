@@ -22,7 +22,7 @@ def show
 end
 
 def index
-  @dictitems = Dictitem.order("name")
+  @dictitems = Dictitem.order(:kind, :name)
 end
 
 
