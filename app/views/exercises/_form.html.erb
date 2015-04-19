@@ -1,13 +1,32 @@
+<% case @day.kind
+      when 0,1 
+        if I18n.locale == :en
+          dictitems = Dictitem.where.not(kind: 2).order(:name)
+        else
+          dictitems = Dictitem.where.not(kind: 2).order(:name_ru)
+        end
+      when 2 
+        if I18n.locale == :en
+          dictitems = Dictitem.where(kind: 2).order(:name)
+        else
+          dictitems = Dictitem.where(kind: 2).order(:name_ru)
+        end
+       else 
+        if I18n.locale == :en
+          dictitems = Dictitem.order(:name)
+        else
+          dictitems = Dictitem.order(:name_ru)
+        end
+    end 
+ %>
+
 <%= form_for([@day, @day.exercises.build]) do |f| %>
 <table class="table table-striped">
   <tbody>
   <tr>
     <td><strong><%= link_to t(:choose), '/dictitems?from=dday&id=' + @day.id.to_s %></strong></td>
-    <td><%= if I18n.locale == :en
-         f.collection_select :dictitem_id, Dictitem.order(:name), :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
-           else
-         f.collection_select :dictitem_id, Dictitem.order(:name_ru), :id, :name_ru, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
-           end  %></td>
+    <td><%= f.collection_select :dictitem_id, dictitems, :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
+         %></td>
     <td><strong><%= t :custom%></strong></td><td><%= f.text_field :title, style: "width:270px" %></td>
   </tr>
   <tr>

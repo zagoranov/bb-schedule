@@ -8,8 +8,19 @@
   </thead>
   <tbody>
   <% @days.each do |day| %> 
-    <tr>
-    <td><%= link_to day.title, day %></td>
+    <tr >
+    <td
+        <% case day.kind
+             when 0 %>
+            bgcolor="#DDF9FB" 
+          <% when 1 %>
+            bgcolor="#DDFBEE"
+          <% when 2 %>
+            bgcolor="#FBDFDD"
+          <% else %> 
+            bgcolor="#FBDDF9"
+          <% end %> 
+    ><%= link_to day.title, day %></td>
     <td><%= day.text %></td>
     <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary') %> </td>
     <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 

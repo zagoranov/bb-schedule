@@ -27,6 +27,7 @@ def create
  if current_user
     @day = Day.find(params[:day_id])
     @training = @day.trainings.create(training_params)
+    @training.kind = @day.kind
 
     if @training.save
      @day.exercises.each do |exer|  
@@ -98,7 +99,7 @@ end
 
 private
   def training_params
-    params.require(:training).permit(:weight, :info, :created_at)
+    params.require(:training).permit(:weight, :info, :created_at, :kind)
   end
 
 end

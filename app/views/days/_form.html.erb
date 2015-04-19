@@ -20,6 +20,21 @@
     <%= f.text_area :text, :size => "50x3" %>
   </p>
  
+  <p> 
+    <table>
+    <tr>
+    <td width = "250"><%= f.radio_button :kind, 0, :checked => true %> <%= t :weight_tr %> </td>
+    <td width = "250"><%= f.radio_button :kind, 1 %> <%= t :cardio %></td>
+  </tr>
+  <tr>
+    <td><%= f.radio_button :kind, 2 %> <%= t :boxing %></td>
+    <td><%= f.radio_button :kind, 3 %> <%= t :mix_trainig %></td>
+  </tr>    
+  </table>
+  </p>
+
+<br>
+
   <p>
     <%= f.submit t(:save), :class => 'btn btn-large btn-primary' %>
   </p>

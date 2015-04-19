@@ -12,7 +12,18 @@
   <% @trainings.each do |train| %> 
 	<% if train.day.user_id == current_user.id %>
 		<tr>
-		 <td><%= link_to train.created_at.strftime("%d.%m.%Y %H:%M"), train %></td>  
+		 <td
+        <% case train.kind  
+             when 0 %>
+            bgcolor="#DDF9FB" 
+          <% when 1 %>
+            bgcolor="#DDFBEE"
+          <% when 2 %>
+            bgcolor="#FBDFDD"
+          <% else %> 
+            bgcolor="#FBDDF9"
+          <% end %> 
+     ><%= link_to train.created_at.strftime("%d.%m.%Y %H:%M"), train %></td>  
 		 <td><%= train.weight %></td>
 		 <td><%= train.info %></td>
      <td><%= train.day.title + " (" + train.day.text + ")" %></td>

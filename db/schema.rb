@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321153610) do
+ActiveRecord::Schema.define(version: 20150419144518) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150321153610) do
     t.integer  "number"
     t.boolean  "archived",   default: false
     t.boolean  "erased",     default: false
+    t.integer  "kind",       default: 0
   end
 
   create_table "dictitems", force: true do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150321153610) do
     t.string   "url_ru"
     t.string   "img"
     t.string   "img_ru"
+    t.integer  "kind",        default: 0
   end
 
   create_table "exercises", force: true do |t|
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150321153610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "archived",   default: false
+    t.integer  "kind",       default: 0
   end
 
   create_table "trexercises", force: true do |t|

@@ -369,7 +369,7 @@ private
 
 private
   def day_params
-    params.require(:day).permit(:title, :text)
+    params.require(:day).permit(:title, :text, :kind)
   end
 
 end
