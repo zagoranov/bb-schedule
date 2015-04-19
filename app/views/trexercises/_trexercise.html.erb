@@ -1,9 +1,15 @@
 <% case @day.kind
-      when 0,1 
+      when 0
         if I18n.locale == :en
           dictitems = Dictitem.where.not(kind: 2).order(:name)
         else
           dictitems = Dictitem.where.not(kind: 2).order(:name_ru)
+        end
+      when 1 
+        if I18n.locale == :en
+          dictitems = Dictitem.where(kind: 1).order(:name)
+        else
+          dictitems = Dictitem.where(kind: 1).order(:name_ru)
         end
       when 2 
         if I18n.locale == :en
