@@ -7,7 +7,7 @@
 </div>
 
 <% if @shared.size > 0 %>
-  <br><br>
+  <br />
   <h4><%= t(:shared_days) %></h4>
   <table class="table table-striped">
   <thead>
@@ -27,7 +27,7 @@
   </table>
 <% end %>
 
-<br><br>
+<br />
 
   <h4><%= t(:activity) %></h4>
   <table class="table table-striped">
@@ -54,11 +54,11 @@
 <h4><%= t(:wall) %></h4>
 <br>
     <%= form_for([@user, @user.given_comments.build], remote: true) do |f| %>  
-    <%= f.text_area :comment, placeholder: t(:leave_comment), :size => "50x2" %><br>
+    <%= f.text_area :comment, placeholder: t(:leave_comment), :size => "50x2" %><br />
     <%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
-      <%= f.submit t(:send), :class => 'btn btn-mini' %>
+      <%= f.submit t(:send), :class => 'btn btn-primary' %>
 <% end %>
-<br><br>
+<br />
 
 <div id ="wallochka">
   <%= render 'comments_part' %>

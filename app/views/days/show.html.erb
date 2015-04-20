@@ -1,5 +1,5 @@
 <% if @day.user != current_user %>
-  <h3><%= t(:username) %>: <%= @day.user.username %></h3>
+  <h3><%= t(:user) %>: <%= link_to @day.user.username, @day.user %></h3>
 <% end %>
 
 <p>
@@ -17,9 +17,10 @@
   <% else %>
     <%= link_to t(:unshare), unshare_day_path(@day), :method => "get", :class => 'btn btn-mini btn-danger' %>   
   <% end %>   
+<br /><br />
 <% end %>
 
-<br /><br /><br />
+<br />
 
 <h4><%= t :exercises %></h4>
 
