@@ -9,7 +9,7 @@
   <em><%= t :therebechart %></em>
 <% else %>
   <h4><%= t(:body_weight) %>:</h4>
-  <%= line_chart @trainings.map { |e| [e.created_at, e.weight] }, min: @trainings.minimum(:weight) - 5, max: @trainings.maximum(:weight) + 5 %>
+  <%= line_chart @trainings.map { |e| [e.created_at, e.weight] }, min: @trainings.minimum(:weight) - 3, max: @trainings.maximum(:weight) + 3 %>
 <% end %>
 <br><br>
 <br><br>
