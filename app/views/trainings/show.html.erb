@@ -9,7 +9,7 @@
   <h5><%= t :body_weight%>:</h5> <h4><%= @training.weight %></h4>  
 </p>
 <p>
-  <h5><%= t :description%>:</h5> <h4><%= @training.info %></h4>
+  <h5><%= t :description%>:</h5> <h4><%= simple_format @training.info %></h4>
 </p>
 
 <br>

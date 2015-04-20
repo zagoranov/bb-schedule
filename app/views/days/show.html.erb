@@ -6,7 +6,7 @@
   <h3><%= @day.title %></h3>  
 </p>
 <p>
-  <h4><%= @day.text %></h4>
+  <h4><%= simple_format @day.text %></h4>
 </p>
 
 <% if @day.user == current_user %>
@@ -27,7 +27,7 @@
   <%= render 'exercises/list' %>
 </div>
 
-<br><br>
+<br/><br/>
 
 <% if @day.user == current_user %>
   <h4><%= t :add_exercise%></h4>
