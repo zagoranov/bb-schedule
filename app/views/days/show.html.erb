@@ -15,7 +15,7 @@
   <% if !@day.shared2all %> 
     <%= link_to t(:share4all), share_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %>   
   <% else %>
-    <%= link_to t(:unshare), unshare_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %>   
+    <%= link_to t(:unshare), unshare_day_path(@day), :method => "get", :class => 'btn btn-mini btn-danger' %>   
   <% end %>   
 <% end %>
 
