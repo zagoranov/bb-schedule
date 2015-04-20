@@ -35,6 +35,9 @@ Rails.application.routes.draw do
         post 'setarchive'
         post 'unarchive'
         post 'erase'
+        get 'copy'
+        get 'share'
+        get 'unshare'                
       end
       resources :exercises
   end

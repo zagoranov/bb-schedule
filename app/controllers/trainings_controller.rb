@@ -16,7 +16,10 @@ end
 def show
   if current_user  
     @training = Training.find(params[:id])
-    @day = Day.find(@training.day)
+    @day = @training.day
+    if @day.user != current_user
+      redirect_to days_path
+    end  
   else 
     redirect_to '/log_in'
   end
@@ -28,7 +31,6 @@ def create
     @day = Day.find(params[:day_id])
     @training = @day.trainings.create(training_params)
     @training.kind = @day.kind
-
     if @training.save
      @day.exercises.each do |exer|  
         trexercise = @training.trexercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number, dictitem_id: exer.dictitem_id)
@@ -48,6 +50,9 @@ def edit
   if current_user
     @training = Training.find(params[:id])
     @day = @training.day
+    if @day.user != current_user
+      redirect_to days_path
+    end  
   else 
     redirect_to '/log_in'
   end
@@ -78,8 +83,10 @@ end
 def destroy
   @training = Training.find(params[:id])
   @day = @training.day
-  @training.destroy
-  redirect_to history_trainings_path, :notice => t(:tr_removed)
+  if @day.user == current_user
+    @training.destroy
+    redirect_to history_trainings_path, :notice => t(:tr_removed)
+  end  
 end
 
 def history  # new index
@@ -89,6 +96,10 @@ end
 
 def setarchive
   tr = Training.find(params[:id])
+  day = tr.day
+  if day.user != current_user
+    redirect_to days_path
+  end    
   tr.archived = true
   tr.save
   @trainings = Training.joins(:day).where('days.user_id = ? and trainings.archived = ?', current_user.id, false).order('trainings.created_at DESC').uniq

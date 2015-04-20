@@ -32,6 +32,8 @@ end
 def show
  if current_user
     @user = User.find(params[:id])
+    @activity = Training.joins(:day).where('user_id in (?)', @user).order('created_at DESC').limit(5)
+    @shared = @user.days.where(shared2all: true).order(:number)
  else 
     redirect_to '/log_in'
  end

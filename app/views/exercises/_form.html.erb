@@ -27,7 +27,6 @@
 
 <%= form_for([@day, @day.exercises.build]) do |f| %>
 <table class="table table-striped">
-  <tbody>
   <tr>
     <td><strong><%= link_to t(:choose), '/dictitems?from=dday&id=' + @day.id.to_s %></strong></td>
     <td><%= f.collection_select :dictitem_id, dictitems, :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" }
@@ -38,7 +37,6 @@
     <td><strong><%= t :reps%></strong></td><td><%= f.text_field :reps, style: "width:160px" %></td>
     <td><strong><%= t :max_weight%></strong></td><td><%= f.text_field :maxweight, style: "width:160px" %></td>
   </tr>
-  </tbody>
 </table>
     <%= f.submit t(:add), :class => 'btn btn-large btn-primary' %>
 <% end %>

@@ -226,5 +226,10 @@ en:
   cardio: "Cardio"
   boxing: "Boxing"
   mix_trainig: "Mix trainig"
-
-
+  share4all: "Share Day for all"
+  unshare: "Stop sharing Day"
+  copy2me: "Copy Day to my schedule"
+  shared_days: "Shared Days"
+  day_shared: "Day shared for reading"
+  day_unshared: "Day sharing canceled"
+  day_copied: "Day successfully copied"

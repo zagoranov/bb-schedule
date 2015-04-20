@@ -6,9 +6,29 @@
   <%= render 'profile_part' %>
 </div>
 
+<% if @shared.size > 0 %>
+  <br><br>
+  <h4><%= t(:shared_days) %></h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :title %></th>
+    <th><%= t :description %></th>    
+   </tr>
+   </thead>
+  <tbody>
+  <% for sh_d in @shared %>
+    <tr>       
+      <td><%= link_to sh_d.title, sh_d %></td>
+      <td><%= sh_d.text %></td>
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+<% end %>
+
 <br><br>
 
-<% if @user != current_user %>
   <h4><%= t(:activity) %></h4>
   <table class="table table-striped">
   <thead>
@@ -19,7 +39,7 @@
    </tr>
    </thead>
   <tbody>
-  <% for tr in Training.joins(:day).where('user_id in (?)', @user).order('created_at DESC').limit(10) %>
+  <% for tr in @activity %>
     <tr>       
       <td><%= tr.created_at.strftime("%d.%m.%Y %H:%M")%></td>
       <td>"<%= tr.day.title %>"</td>
@@ -28,8 +48,6 @@
   <% end %>
   </tbody>
   </table>
-<% end %>
-
 
 <br><br>
 

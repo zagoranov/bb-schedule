@@ -25,6 +25,9 @@ end
 
 def show
   @day = Day.find(params[:id])
+  if @day.user != current_user && !@day.shared2all
+    redirect_to days_path
+  end  
 end
 
 
@@ -45,6 +48,9 @@ end
 
 def edit
   @day = Day.find(params[:id])
+  if @day.user != current_user
+    redirect_to days_path
+  end  
 end
 
 
@@ -60,14 +66,16 @@ end
 
 def destroy
   @day = Day.find(params[:id])
-  if !@day.archived
-    renumber(@day.number)
-  end
-  @day.destroy
-  @archive_days = current_user.days.where(archived: true).order('created_at')
-  respond_to do |format|
-    format.js { render partial: 'archive_fresh'  }
-  end
+  if @day.user == current_user
+    if !@day.archived
+      renumber(@day.number)
+    end
+    @day.destroy
+    @archive_days = current_user.days.where(archived: true).order('created_at')
+    respond_to do |format|
+      format.js { render partial: 'archive_fresh'  }
+    end
+  end  
 end
 
 
@@ -110,16 +118,18 @@ end
 
 def setarchive
   day = Day.find(params[:id])
-  day.archived = true
-  renumber(day.number)
-  day.number = -1
-  day.save
-  respond_to do |format|
-    format.js { render partial: 'listrefresh'  }
-  end
+  if day.user == current_user  
+    day.archived = true
+    renumber(day.number)
+    day.number = -1
+    day.save
+    respond_to do |format|
+      format.js { render partial: 'listrefresh'  }
+    end
+  end  
 end
 
-def purge
+def purge  
   current_user.days.update_all(archived: true)
   redirect_to days_path, :notice => t(:allpurged)
 end
@@ -156,13 +166,46 @@ end
 
 def erase
   day = Day.find(params[:id])
-  day.erased = true
-  day.save
-  @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
-  respond_to do |format|
-    format.js { render partial: 'archive_fresh'  }
-  end
+  if day.user == current_user
+    day.erased = true
+    day.save
+    @archive_days = current_user.days.where(archived: true).where(erased: false).order('created_at')
+    respond_to do |format|
+      format.js { render partial: 'archive_fresh'  }
+    end
+  end  
 end
+
+
+
+def share
+  day = Day.find(params[:id])
+  day.shared2all = true
+  day.save
+  redirect_to day, :notice => t(:day_shared)  
+end
+
+def unshare
+  day = Day.find(params[:id])
+  day.shared2all = false
+  day.save
+  redirect_to day, :notice => t(:day_unshared)  
+end
+
+def copy
+  day = Day.find(params[:id])
+    newday = current_user.days.create(title: day.title, text: day.text, kind: day.kind)
+    if newday.save
+       day.exercises.each do |exer|  
+        exercise = newday.exercises.new(title: exer.title, reps: exer.reps, maxweight: exer.maxweight, number: exer.number, dictitem_id: exer.dictitem_id)
+        exercise.save
+       end 
+    end
+  redirect_to day, :notice => t(:day_copied)  
+end
+
+
+
 
 def change_locale
      if I18n.locale == :en
@@ -172,6 +215,7 @@ def change_locale
      end
   redirect_to :back, :notice => t(:locale_changed)
 end
+
 
 
 def graphs
@@ -186,6 +230,8 @@ def drawgraph
     end
   end
 end
+
+
 
 
 def bform531  # form "before calculate 531"

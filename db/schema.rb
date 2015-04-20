@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419144518) do
+ActiveRecord::Schema.define(version: 20150420125028) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150419144518) do
     t.boolean  "archived",   default: false
     t.boolean  "erased",     default: false
     t.integer  "kind",       default: 0
+    t.boolean  "shared2all", default: false
   end
 
   create_table "dictitems", force: true do |t|
