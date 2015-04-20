@@ -14,13 +14,11 @@
 		<tr>
 		 <td
         <% case train.kind  
-             when 0 %>
-            bgcolor="#DDF9FB" 
-          <% when 1 %>
+             when 1 %>
             bgcolor="#DDFBEE"
           <% when 2 %>
             bgcolor="#FBDFDD"
-          <% else %> 
+          <% when 3 %> 
             bgcolor="#FBDDF9"
           <% end %> 
      ><%= link_to train.created_at.strftime("%d.%m.%Y %H:%M"), train %></td>  

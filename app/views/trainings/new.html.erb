@@ -1,8 +1,8 @@
 <h3><%= t :new_training%></h3>
 
 <br>
-<h4><%= t :day %>: <%= @day.title %><h4>
-<br><br>
+<h4><%= t :day %>: <%= @day.title %></h4>
+<br />
 
 <%= form_for ([@day, @training]) do |f| %>
   <p>
@@ -19,6 +19,6 @@
 <% end %>
 
 
-<br><br>
+<br /><br /><br />
 
 <%= link_to t(:cancel), days_path, :method => "get", :class => 'btn btn-primary' %>

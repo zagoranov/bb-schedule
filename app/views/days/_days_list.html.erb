@@ -11,13 +11,11 @@
     <tr >
     <td
         <% case day.kind
-             when 0 %>
-            bgcolor="#DDF9FB" 
-          <% when 1 %>
+             when 1 %>
             bgcolor="#DDFBEE"
           <% when 2 %>
             bgcolor="#FBDFDD"
-          <% else %> 
+          <% when 3 %> 
             bgcolor="#FBDDF9"
           <% end %> 
     ><%= link_to day.title, day %></td>
