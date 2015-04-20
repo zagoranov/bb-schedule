@@ -8,7 +8,7 @@
 <p>
   <h4><%= simple_format @day.text %></h4>
 </p>
-
+<br />
 <% if @day.user == current_user %>
   <%= link_to t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary'  %> 
   <%= link_to t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %> 
@@ -19,7 +19,7 @@
   <% end %>   
 <% end %>
 
-<br><br>
+<br /><br /><br />
 
 <h4><%= t :exercises %></h4>
 
@@ -27,7 +27,7 @@
   <%= render 'exercises/list' %>
 </div>
 
-<br/><br/>
+<br />
 
 <% if @day.user == current_user %>
   <h4><%= t :add_exercise%></h4>
