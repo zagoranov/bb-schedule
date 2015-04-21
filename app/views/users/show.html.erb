@@ -29,6 +29,7 @@
 
 <br />
 
+<% if @activity.size > 0 %>
   <h4><%= t(:activity) %></h4>
   <table class="table table-striped">
   <thead>
@@ -48,8 +49,9 @@
   <% end %>
   </tbody>
   </table>
+  <br /><br /> 
+<% end %> 
 
-<br><br>
 
 <h4><%= t(:wall) %></h4>
 <br>
