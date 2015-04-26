@@ -8,6 +8,20 @@
 <p>
   <h4><%= simple_format @day.text %></h4>
 </p>
+<p>
+  <%= t :train_type%>:
+        <% case @day.kind %>
+          <% when 0 %>
+            <%= t :weight_tr %>
+          <% when 1 %>
+            <%= t :cardio %>
+          <% when 2 %>
+            <%= t :boxing %>
+          <% when 3 %> 
+            <%= t :mix_trainig %>
+        <% end %> 
+</p>
+
 <br />
 <% if @day.user == current_user %>
   <%= link_to t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary'  %> 

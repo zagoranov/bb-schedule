@@ -12,6 +12,19 @@
   <h5><%= t :description%>:</h5> <h4><%= simple_format @training.info %></h4>
 </p>
 
+<p><h5><%= t :train_type%>:</h5>
+   <h4> <% case @training.kind 
+             when 0 %>
+            <%= t :weight_tr %>
+          <% when 1 %>
+            <%= t :cardio %>
+          <% when 2 %>
+            <%= t :boxing %>
+          <% when 3 %> 
+            <%= t :mix_trainig %>
+        <% end %> </h4>
+</p>
+
 <br>
 
 <p><h4><%= t :exercises%></h4></p>

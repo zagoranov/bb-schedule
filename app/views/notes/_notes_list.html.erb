@@ -1,11 +1,16 @@
+<h4><%= t(:last_notes) %></h4>
 <table class="table table-striped">
   <tbody>
   <% @notes.each do |note| %> 
     <tr>
-    <td><strong><%= note.title %></strong><br><%= note.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+    <td><%= link_to note.title, note %><br/>
+    <%= note.created_at.strftime("%d.%m.%Y %H:%M") %><br/>
+    <%= note.shared2all ?  t(:open_post) : t(:pers_post) %></td>
     <td><%= simple_format note.text %></td>
-    <td><%= button_to(t(:destroy), note, :method => :delete, remote: true, 
-                    data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+    <td><%= link_to t(:show), note, :method => "get", :class => 'btn btn-large btn-primary' %><br/><br/>
+        <%= link_to t(:edit), edit_note_path(note), :method => "get", :class => 'btn btn-large btn-primary' %><br/><br/>
+       <%= button_to(t(:destroy), note, :method => :delete, remote: true, 
+                 data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %></td>
     </tr>
   <% end %>
  </tbody>

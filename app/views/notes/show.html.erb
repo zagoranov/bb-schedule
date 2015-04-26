@@ -1,0 +1,21 @@
+<h3><%= @note.title %></h3>
+<h4><%= @note.created_at.strftime("%d.%m.%Y %H:%M") %></h4>
+<h4><%= t(:author) %>: <%= link_to @note.user.username, @note.user %></h4>
+
+<br />
+
+<%= simple_format @note.text %>
+
+<br />
+
+<h4><%= t(:last_notes) %></h4>
+<table class="table table-striped">
+  <tbody>
+  <% @notes.each do |note| %> 
+    <tr>
+      <td><%= note.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+      <td><%= link_to note.title, note %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>

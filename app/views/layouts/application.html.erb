@@ -79,10 +79,10 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t(:useful) %>
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><%= link_to t(:notes), notes_path %></li>            
             <li><%= link_to t(:graphs), graphs_days_path %></li>
             <li><%= link_to t(:archive), archive_days_path %></li> 
             <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li> 
-            <li><%= link_to t(:notes), notes_path %></li>
             <li><%= link_to t(:body_measurs), measurements_path %></li>
             <% if current_user.admin %>
                 <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
@@ -171,13 +171,15 @@
               <% end %>
               </ul><br>
             <% end %>
-            <% if Note.find_by_user_id(current_user.id) %>
+            <% notes = Note.joins('join friendships on friendships.friend_id = notes.user_id').where('friendships.user_id = (?)', current_user.id).where(shared2all: true).order('notes.created_at DESC').limit(5) %>
+            <% if notes.size > 0 %>
               <ul class="nav nav-list">
-              <li class="nav-header"><strong><%= t(:last_notes) %></strong></li> 
-              <% for note in Note.where(user_id: current_user.id).order('created_at DESC').limit(5) %>
-                <li><strong><%= link_to note.title, notes_path %></strong>, 
-                  <%= note.text %> 
-                  <small>(<%= day_distance(note.created_at) %>)</small>
+              <li class="nav-header"><strong><%= t(:fresh_fr_posts) %></strong></li> 
+              <% for note in notes %>
+                <li>
+                  <strong><%= link_to note.user.username, note.user %></strong>
+                  <%= t(:wrote) %> 
+                  "<strong><%= link_to note.title, note %></strong>" <small>(<%= day_distance(note.created_at) %>)</small>
                 </li>
               <% end %>
               </ul><br>
