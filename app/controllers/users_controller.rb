@@ -29,6 +29,8 @@ def index
 end
 
 
+
+
 def show
  if current_user
     @user = User.find(params[:id])
@@ -58,6 +60,16 @@ end
 
 def current_admin
   current_user && current_user.admin
+end
+
+
+def blog
+  @user = User.find(params[:id])
+  if @user == current_user
+    @notes = @user.notes.order('created_at DESC')
+  else
+    @notes = @user.notes.where(shared2all: true).order('created_at DESC')
+  end
 end
 
 

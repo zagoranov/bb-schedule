@@ -17,9 +17,9 @@ def show
     redirect_to days_path
   end  
   if @note.user != current_user
-    @notes = @note.user.notes.where(shared2all: true).order('created_at DESC')
+    @notes = @note.user.notes.where(shared2all: true).order('created_at DESC').limit(3)
    else 
-    @notes = current_user.notes.order('created_at DESC')
+    @notes = current_user.notes.order('created_at DESC').limit(3)
   end  
 end
 
@@ -41,6 +41,7 @@ end
 
 
 def index
+  @user = current_user
   @notes = current_user.notes.order('created_at DESC')
 end
 

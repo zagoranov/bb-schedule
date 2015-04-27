@@ -9,7 +9,7 @@
 
 <% if @notes.size > 0 %>
   <br />
-  <h4><%= t(:notes) %>: <%= t(:last_notes) %></h4>
+  <h4><%= link_to t(:notes), blog_user_path(@user) %>: <%= t(:last_notes) %></h4>
   <table class="table table-striped">
   <tbody>
   <% for note in @notes %>

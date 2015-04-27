@@ -79,7 +79,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t(:useful) %>
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><%= link_to t(:notes), notes_path %></li>            
+            <li><%= link_to t(:notes), blog_user_path(current_user) %></li>            
             <li><%= link_to t(:graphs), graphs_days_path %></li>
             <li><%= link_to t(:archive), archive_days_path %></li> 
             <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li> 

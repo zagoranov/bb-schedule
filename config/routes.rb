@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root :to => "days#index" 
 
   resources :users do
+    member do
+      get 'blog'
+    end  
     resources :profilecomments
     resources :notes
   end
@@ -74,7 +77,9 @@ Rails.application.routes.draw do
 
   resources :dictitems
 
-  resources :notes 
+  resources :notes  do
+    resources :notecomments
+  end
 
   resources :measurements 
   

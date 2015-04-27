@@ -1,0 +1,1 @@
+$("#notewall").html("<%= escape_javascript(render partial: '/notes/comments_part', locals: { :@note => @note } ) %>"); 

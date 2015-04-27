@@ -1,6 +1,6 @@
 <h3><%= @note.title %></h3>
 <h4><%= @note.created_at.strftime("%d.%m.%Y %H:%M") %></h4>
-<h4><%= t(:author) %>: <%= link_to @note.user.username, @note.user %></h4>
+<h4><%= link_to t(:notes), blog_user_path(@note.user) %> <%= t(:of_author) %> <%= link_to @note.user.username, @note.user %></h4>
 
 <br />
 
@@ -19,3 +19,18 @@
   <% end %>
  </tbody>
 </table>
+
+<br /><br />
+
+<h4><%= t(:wall) %></h4>
+<br>
+    <%= form_for([@note, @note.notecomments.build], remote: true) do |f| %>  
+    <%= f.text_area :comment, placeholder: t(:leave_comment), :size => "50x2" %><br />
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+      <%= f.submit t(:send), :class => 'btn btn-primary' %>
+<% end %>
+<br />
+
+<div id ="notewall">
+  <%= render 'comments_part' %>
+</div>
