@@ -5,6 +5,7 @@ def new
     redirect_to days_path, :notice => t(:welcome_back)
   end 
   @user = User.new
+  @backimage = "shtanga.jpg"
 end
 
 
