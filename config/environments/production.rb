@@ -88,12 +88,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address:              "smtp.gmail.com",
-    port:                 587,
-    domain:               "gmail.com",
-    user_name:            "nataniel2222",
-    password:             "emmanuel2345",
-    authentication:       'plain',
+    address:              "smtp.timeweb.ru",
+    port:                 25,
+    domain:               "inter-activity.ru",               #inter-activity.ru
+    user_name:            "announcer@inter-activity.ru",
+    password:             "IntAnnoShtuka960",
+    authentication:       'login',
     enable_starttls_auto: true  
 }
 
