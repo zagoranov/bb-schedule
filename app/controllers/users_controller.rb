@@ -14,6 +14,7 @@ def create
   @user.admin = false
   if @user.save
      session[:user_id] = @user.id
+     UserMailer.newreg_email(@user).deliver
      redirect_to root_path, :notice => t(:signed_up)
   else
     render "new"

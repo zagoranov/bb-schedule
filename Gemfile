@@ -13,7 +13,7 @@ group :production do
 end
 
 group :development, :test do
-	gem 'sqlite3'
+	gem 'sqlite3', '>= 1.3.10' 
 end
 
 
@@ -51,7 +51,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 #gem "less-rails"
 
-gem 'bcrypt'
+gem 'bcrypt', '~> 3.1.9'
 gem 'i18n'
 gem 'rails_admin'
 
@@ -63,7 +63,7 @@ gem 'active_median', '~> 0.1.0'
 #gem 'omniauth'
 gem 'omniauth-facebook'
 #gem 'faraday'
-
 #gem "koala", "~> 1.10.0rc"
-
 #gem 'kaminari'   #paginator
+
+gem 'coffee-script-source', '1.8.0'
