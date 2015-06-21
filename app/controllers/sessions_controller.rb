@@ -32,6 +32,7 @@ def load  #sql loading stuff
 
 #    CONN.execute("update dictitems set kind = 1 where name_ru like 'Кардио%'")
 
+    CONN.execute("delete from exercises where day_id in (select id from days where archived = true)")   #!!!
     CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
     CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
     CONN.execute("delete from trainings where archived = true")
