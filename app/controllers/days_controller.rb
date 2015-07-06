@@ -40,6 +40,7 @@ def index
  if current_user
    @days = @current_user.days.where.not(archived: true).order('number')
    @trainings = Training.joins(:day).where('days.user_id = ? and trainings.weight IS NOT NULL', current_user.id).order('trainings.created_at').uniq
+   @activity = Training.joins(:day).where('user_id in (?)', current_user).order('created_at DESC').limit(5)
  else 
    redirect_to '/calculate531'  #'/log_in'
  end
