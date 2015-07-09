@@ -1,7 +1,5 @@
 class TrexercisesController < ApplicationController
 
-
-
 def new
   @training = Training.find(params[:format])
   @trexercise = @training.trexercises.new

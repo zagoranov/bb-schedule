@@ -60,10 +60,6 @@ gem 'chartkick'
 gem 'groupdate', '~> 2.1.1'
 gem 'active_median', '~> 0.1.0'
 
-#gem 'omniauth'
 gem 'omniauth-facebook'
-#gem 'faraday'
-#gem "koala", "~> 1.10.0rc"
-#gem 'kaminari'   #paginator
 
 gem 'coffee-script-source', '1.8.0'

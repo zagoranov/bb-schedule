@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
 
   has_many :notes, dependent: :destroy
   has_many :measurements, dependent: :destroy
+
+  has_many :mealdishes
+  has_many :dictnutrs
   
   attr_accessor :password
   before_save :encrypt_password

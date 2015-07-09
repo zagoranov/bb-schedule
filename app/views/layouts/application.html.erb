@@ -93,6 +93,7 @@
             <li><%= link_to t(:archive), archive_days_path %></li> 
             <li><%= link_to t(:whole_schedule), wholeweek_days_path %></li> 
             <li><%= link_to t(:body_measurs), measurements_path %></li>
+            <li><%= link_to t(:mealdishes), mealdishes_path %></li>
             <% if current_user.admin %>
                 <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
             <% end %>            

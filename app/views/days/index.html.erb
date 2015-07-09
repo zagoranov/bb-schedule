@@ -21,7 +21,7 @@
       <td><%= tr.created_at.strftime("%d.%m.%Y %H:%M")%></td>
       <td>"<%= tr.day.title %>"</td>
       <td><%= tr.weight %></td>
-      <td><%= button_to(t(:show), tr, :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+      <td><%= button_to(t(:show), edit_training_path(tr), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
     </tr>       
   <% end %>
   </tbody>

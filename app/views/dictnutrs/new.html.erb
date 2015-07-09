@@ -1,0 +1,38 @@
+<h3><%= t :new %></h3>
+
+<br>
+<br>
+
+<%= form_for @dictnutr do |f| %>
+
+  <p>
+    <%= t :title %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= t :description %><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= t :protein %><br />
+    <%= f.text_field :protein %>
+  </p>
+
+  <p>
+    <%= t :fat %><br />
+    <%= f.text_field :fat %>
+  </p>
+  <p>
+    <%= t :carbs %><br />
+    <%= f.text_field :carbs %>
+  </p>
+  <p>
+    <%= t :calories %><br />
+    <%= f.text_field :calories %>
+  </p>
+  
+  <br>  
+  <p class="button"><%= f.submit t(:save), :class => 'btn btn-large btn-primary' %></p>
+<% end %>

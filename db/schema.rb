@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427112613) do
+ActiveRecord::Schema.define(version: 20150708194238) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20150427112613) do
     t.integer  "kind",        default: 0
   end
 
+  create_table "dictnutrs", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.float    "protein"
+    t.float    "fat"
+    t.float    "carbs"
+    t.float    "calories"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "exercises", force: true do |t|
     t.string   "title"
     t.string   "reps"
@@ -54,6 +66,17 @@ ActiveRecord::Schema.define(version: 20150427112613) do
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mealdishes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "dictnutr_id"
+    t.integer  "meal_n"
+    t.date     "dt"
+    t.integer  "number"
+    t.float    "doze"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

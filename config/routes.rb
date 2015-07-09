@@ -90,6 +90,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :mealdishes do
+    collection do
+      get 'particdate'  
+    end 
+  end
+
+  resources :dictnutrs
+
 
 get "log_out" => "sessions#destroy", :as => "log_out"
 get "log_in" => "sessions#new", :as => "log_in"
