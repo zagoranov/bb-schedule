@@ -26,6 +26,7 @@ def create
 end
 
 def particdate
+    session[:return_to] = "/mealdishes/particdate?date=" + params['date']
     @ddate = params['date'].to_date
     if (@ddate != nil)
       @meals = current_user.mealdishes.where('dt = ?', @ddate).order('meal_n, number')
@@ -41,6 +42,7 @@ end
 
 
 def index
+  session[:return_to] = mealdishes_path
   @calsanddates = Mealdish.joins(:dictnutr).select('dt, sum(mealdishes.doze * dictnutrs.calories) as cals, sum(mealdishes.doze * dictnutrs.fat) as fats, sum(mealdishes.doze * dictnutrs.protein) as prot, sum(mealdishes.doze * dictnutrs.carbs) as carb').where('mealdishes.user_id = ?', current_user.id).group('dt').order('dt DESC')
   @dictnutrs = Dictnutr.all.order(:title)
 end

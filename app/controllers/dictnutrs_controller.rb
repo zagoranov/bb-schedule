@@ -11,7 +11,7 @@ def create
 
  if @dictnutr.save
     flash.now[:notice] = "Saved!"
-    redirect_to new_mealdish_path
+    redirect_to session.delete(:return_to)
   else
     flash.now[:error] = "Error!"
     render 'new'
