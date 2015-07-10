@@ -21,7 +21,7 @@ def create
   @ddate = mealdish.dt
   respond_to do |format|
     format.js { render partial: 'listrefresh'  }
-    format.html { redirect_to mealdishes_path }
+    format.html { redirect_to "/mealdishes/particdate?date=" + @ddate.to_s }
   end
 end
 
