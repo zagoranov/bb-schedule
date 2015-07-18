@@ -14,7 +14,7 @@
    <p>
    <%= t :dish %><br />
    <%= f.collection_select :dictnutr_id, @dictnutrs, :id, :title, { style: "height:26px; width:400px" }  %>
-   <%= link_to t(:add_new), new_dictnutr_path, :method => "get", :class => 'btn btn-primary' %> 
+   <%= link_to t(:add_new), new_dictnutr_path, :method => "get", :class => 'btn btn-default' %> 
   </p>
   
   <p>

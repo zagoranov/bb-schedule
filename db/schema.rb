@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708194238) do
+ActiveRecord::Schema.define(version: 20150718090049) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20150708194238) do
   create_table "mealdishes", force: true do |t|
     t.integer  "user_id"
     t.integer  "dictnutr_id"
-    t.integer  "meal_n"
+    t.string   "meal_n"
     t.date     "dt"
     t.integer  "number"
     t.float    "doze"
