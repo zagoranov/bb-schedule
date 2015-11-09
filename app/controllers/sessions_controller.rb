@@ -29,15 +29,20 @@ end
 
 def load  #sql loading stuff
   if current_user && current_user.admin
-
+    #Чистка базы:
     CONN.execute("delete from exercises where day_id in (select id from days where archived = true)")   #!!!
     CONN.execute("delete from exercises where day_id in (select id from days where erased = true)")
     CONN.execute("delete from trexercises where training_id in (select id from trainings where archived = true)")
     CONN.execute("delete from trainings where archived = true")
-    
     redirect_to root_path, :notice => t(:data_added)
   end
 end
+
+def statistics
+  #Статистика
+    @ppl = User.all
+end  
+
 
 
 def about

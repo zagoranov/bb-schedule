@@ -122,6 +122,7 @@ en:
   bench_press: "Bench Press"
   squats: "Squats"
   day: "Day"
+  days: "Days"
   week: "Week"
   warm_up: "Warm up"
   chinups: "Chin-ups"
@@ -258,3 +259,5 @@ en:
   fat: "Fat"
   carbs: "Carbs"
   calories: "Calories"
+  statistics: "Statistics"
+  purge_base: "Purge Base"

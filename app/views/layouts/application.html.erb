@@ -96,6 +96,8 @@
             <li><%= link_to t(:body_measurs), measurements_path %></li>
             <% if current_user.admin %>
                 <li><%= link_to t(:admin), "/admin", :target => "_blank"  %></li>
+                <li><%= link_to t(:statistics), statistics_sessions_path %></li>
+                <li><%= link_to t(:purge_base), load_sessions_path  %></li>
             <% end %>            
           </ul>
         </li>

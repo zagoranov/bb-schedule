@@ -122,6 +122,7 @@ ru:
   bench_press: "Жим лежа"
   squats: "Приседы"
   day: "День"
+  days: "Дни"
   week: "Неделя"
   warm_up: "Разогрев"
   chinups: "Подтягивания обр.хватом"
@@ -258,3 +259,5 @@ ru:
   fat: "Жиры"
   carbs: "Углеводы"
   calories: "Калории"
+  statistics: "Статистика"
+  purge_base: "Чистка базы"

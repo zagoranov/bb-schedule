@@ -15,9 +15,8 @@ Rails.application.routes.draw do
   resources :sessions do
       collection do
         get 'form531'
-      end
-      member do
-        get 'load'
+        get 'load'        
+        get 'statistics'
       end
   end
 
