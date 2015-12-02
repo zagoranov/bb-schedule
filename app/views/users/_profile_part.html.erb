@@ -1,6 +1,8 @@
 <h3><%= t(:username) %>: <%= @user.username %></h3>
 <h4><%= t(:here_since) %>: <%= @user.created_at.strftime("%d.%m.%Y") %></h4>
-
+<% if @user.lastlogin %>
+  <h4><%= t(:last_login) %>: <%= @user.lastlogin.strftime("%d.%m.%Y") %></h4>
+<%end%> 
 <% if @user == current_user %>
      <h4><%= t(:email)%>: <%= @user.email %></h4>
        <br />

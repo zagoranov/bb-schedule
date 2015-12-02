@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718090049) do
+ActiveRecord::Schema.define(version: 20151202195617) do
 
   create_table "days", force: true do |t|
     t.string   "title"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20150718090049) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.boolean  "notific",          default: true
+    t.datetime "lastlogin"
   end
 
 end

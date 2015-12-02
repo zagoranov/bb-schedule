@@ -12,6 +12,7 @@ end
 def create
   @user = User.new(user_params)
   @user.admin = false
+  @user.lastlogin = DateTime.now
   if @user.save
      session[:user_id] = @user.id
      UserMailer.newreg_email(@user).deliver
@@ -29,8 +30,6 @@ def index
     @users = User.limit(30).order("RANDOM()")
   end
 end
-
-
 
 
 def show
