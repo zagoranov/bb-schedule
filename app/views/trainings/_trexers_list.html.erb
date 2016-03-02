@@ -51,9 +51,9 @@
              end               
           %></td>
   <% end %>
-    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="'+"up4_2.png"+'"'.html_safe, onmouseout: 'this.src="'+
-       "up4.png"+'"'.html_safe), up_trexercise_path(trex), :method => "post", remote: true %></td>
-    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+"down4_2.png"+'"'.html_safe, onmouseout: 'this.src="'+"down4.png"+'"'.html_safe), down_trexercise_path(trex), :method => "post", remote: true %></td>
+    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="'+image_tag("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+
+       image_tag("up4.png")+'"'.html_safe), up_trexercise_path(trex), :method => "post", remote: true %></td>
+    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+image_tag("down4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+image_tag("down4.png")+'"'.html_safe), down_trexercise_path(trex), :method => "post", remote: true %></td>
   <td><%= button_to(t(:destroy), trex, remote: true,
             method: :delete, data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
   </tr>

@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table ">
   <thead>
   <tr>
     <th><%= t :title%></th>
@@ -24,9 +24,13 @@
     <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 
                     data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
 
-    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="'+"up4_2.png"+'"'.html_safe, onmouseout: 'this.src="'+
-       "up4.png"+'"'.html_safe), up_day_path(day), :method => "post", remote: true %></td>
-    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+"down4_2.png"+'"'.html_safe, onmouseout: 'this.src="'+"down4.png"+'"'.html_safe), down_day_path(day), :method => "post", remote: true %></td>
+    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="' + image_tag("up4_2.png") + '"'.html_safe, 
+                                          onmouseout:  'this.src="' + image_tag("up4.png") + '"'.html_safe), 
+                                          up_day_path(day), :method => "post", remote: true %></td>
+    
+    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+image_tag("down4_2.png")+'"'.html_safe, 
+                                           onmouseout: 'this.src="'+ image_tag("down4.png")+'"'.html_safe), 
+                                           down_day_path(day), :method => "post", remote: true %></td>
 
     </tr>
   <% end %>
