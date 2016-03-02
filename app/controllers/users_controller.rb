@@ -15,7 +15,8 @@ def create
   @user.lastlogin = DateTime.now
   if @user.save
      session[:user_id] = @user.id
-     UserMailer.newreg_email(@user).deliver
+     #UserMailer.newreg_email(@user).deliver    #mail notifacation
+     pontificate(@user)                         #telegram notification
      redirect_to root_path, :notice => t(:signed_up)
   else
     render "new"

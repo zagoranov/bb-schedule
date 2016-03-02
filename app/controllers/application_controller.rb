@@ -51,6 +51,12 @@ def round_w(weight, arr)
   return delta_90
 end
 
+def pontificate(user)
+  require 'nokogiri'
+  require 'open-uri'
+  require 'net/https'
+  @doc = Nokogiri::HTML(open("https://api.telegram.org/bot143699336:AAHXIupEeWyDZNLJ66OXke5UilC18T3NsUg/sendMessage?chat_id=120332894&text=New+User+on+UserLift+" + user.username,  :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
+end
 
 
 end

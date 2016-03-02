@@ -48,7 +48,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 #New stuff!!!!!
+gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 #gem "less-rails"
 
 gem 'bcrypt', '~> 3.1.9'

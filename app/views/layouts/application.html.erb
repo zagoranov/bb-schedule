@@ -63,7 +63,7 @@
 
     <% if @backimage %>
       <STYLE type="text/css">
-        BODY { background: url("<%= asset_path('shtanga.jpg') %>"); 
+        BODY { background: url(image-path('shtanga.jpg')); 
               background-size: cover;  }
       </STYLE>
     <% end %>
@@ -103,7 +103,7 @@
         </li>
   <li><%= link_to t(:log_out), log_out_path %></li>
   <% else %>
-<!-- <li><%= link_to t(:sign_up), '/sign_up' %></li>  -->  
+    <li><%= link_to t(:sign_up), '/sign_up' %></li>
     <li><%= link_to t(:log_in), '/log_in' %></li>
   <% end %>
 

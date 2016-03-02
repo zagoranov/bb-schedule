@@ -16,6 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
+//= require bootstrap
+
 $(document).ready(function() {
 
   $('#fbshare-link').click(function (event) {
