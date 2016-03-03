@@ -38,9 +38,17 @@
   <td><%= exercise.reps %></td>
   <td><%= exercise.maxweight %></td>
   <% if @day.user == current_user %>
-    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="'+image_tag("up4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+
-       image_tag("up4.png")+'"'.html_safe), up_exercise_path(exercise), :method => "post", remote: true %></td>
-    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+image_tag("down4_2.png")+'"'.html_safe, onmouseout: 'this.src="'+image_tag("down4.png")+'"'.html_safe), down_exercise_path(exercise), :method => "post", remote: true %></td>
+
+
+
+    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
+                                          onmouseout: "this.src='#{asset_path('up4.png')}'"), 
+                                          up_exercise_path(exercise), :method => "post", remote: true %></td>
+    
+    <td><%= link_to image_tag("down4.png", onmouseover: "this.src='#{asset_path('down4_2.png')}'", 
+                                           onmouseout: "this.src='#{asset_path('down4.png')}'"), 
+                                           down_exercise_path(exercise), :method => "post", remote: true %></td>
+
     <td><%= button_to(t(:destroy), [exercise.day, exercise],  remote: true, method: :delete, 
              data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
    <% end %>          

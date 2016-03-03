@@ -68,7 +68,6 @@ def faq
 end  
 
 
-
 def form531
   if params[:delt_max] == "" || params[:delt_reps]  == "" || params[:dead_max]  == "" || params[:dead_reps] == "" || params[:bench_max]  == "" || params[:bench_reps]  == "" || params[:sq_max] == "" || params[:sq_reps]  == "" 
     flash.now.alert = t(:need_more_info)

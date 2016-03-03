@@ -24,12 +24,16 @@
     <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 
                     data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
 
-    <td><%= link_to image_tag("up4.png", onmouseover: 'this.src="' + image_tag("up4_2.png") + '"'.html_safe, 
-                                          onmouseout:  'this.src="' + image_tag("up4.png") + '"'.html_safe), 
+
+
+<!--     image_tag("find.png", onmouseover: "this.src='#{asset_path('find_sel.png')}'"  -->
+
+    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
+                                          onmouseout: "this.src='#{asset_path('up4.png')}'"), 
                                           up_day_path(day), :method => "post", remote: true %></td>
     
-    <td><%= link_to image_tag("down4.png", onmouseover: 'this.src="'+image_tag("down4_2.png")+'"'.html_safe, 
-                                           onmouseout: 'this.src="'+ image_tag("down4.png")+'"'.html_safe), 
+    <td><%= link_to image_tag("down4.png", onmouseover: "this.src='#{asset_path('down4_2.png')}'", 
+                                           onmouseout: "this.src='#{asset_path('down4.png')}'"), 
                                            down_day_path(day), :method => "post", remote: true %></td>
 
     </tr>
