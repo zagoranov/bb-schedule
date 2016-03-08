@@ -39,8 +39,6 @@
   <td><%= exercise.maxweight %></td>
   <% if @day.user == current_user %>
 
-
-
     <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
                                           onmouseout: "this.src='#{asset_path('up4.png')}'"), 
                                           up_exercise_path(exercise), :method => "post", remote: true %></td>

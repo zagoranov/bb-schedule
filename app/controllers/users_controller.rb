@@ -10,17 +10,18 @@ end
 
 
 def create
-  @user = User.new(user_params)
-  @user.admin = false
-  @user.lastlogin = DateTime.now
-  if @user.save
-     session[:user_id] = @user.id
-     #UserMailer.newreg_email(@user).deliver    #mail notifacation
-     pontificate(@user)                         #telegram notification
-     redirect_to root_path, :notice => t(:signed_up)
-  else
-    render "new"
-  end
+  #@user = User.new(user_params)
+  #@user.admin = false
+  #@user.lastlogin = DateTime.now
+  #if @user.save
+  #   session[:user_id] = @user.id
+  #   #UserMailer.newreg_email(@user).deliver    #mail notifacation
+  #   pontificate(@user)                         #telegram notification
+  #   redirect_to root_path, :notice => t(:signed_up)
+  #else
+  #  render "new"
+  #end
+  redirect_to calculate531_path, :notice => t(:no_registration)
 end
 
 

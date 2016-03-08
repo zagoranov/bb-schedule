@@ -1,18 +1,18 @@
 <%= form_for @user do |f| %>
   <p>
-    <span style="color:white"><%= t :username %></span><br />
+    <%= t :username %><br />
     <%= f.text_field :username %>
   </p>
   <p>
-    <span style="color:white"><%= t :email_login %></span><br />
+    <%= t :email_login %><br />
     <%= f.text_field :email %>
   </p>
   <p>
-    <span style="color:white"><%= t :password %></span><br />
+    <%= t :password %><br />
     <%= f.password_field :password %>
   </p>
   <p>
-    <span style="color:white"><%= t :password_confirmation %></span><br />
+    <%= t :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
   <br>  
