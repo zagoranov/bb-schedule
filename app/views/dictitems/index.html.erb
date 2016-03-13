@@ -23,7 +23,7 @@
       end %></td>
       <td><%= di.desc_ru %></td>
     <% end %>   
-		<td><%= link_to t(:choose), if params[:from] == "dday" then "/days/"+ params[:id] else "/trainings/"+ params[:id]+"/edit" end + "?chosen="+di.id.to_s, :method => "get", :class => 'btn btn-mini'  %> </td>  
+		<td><%= button_to(t(:choose), if params[:from] == "dday" then "/days/"+ params[:id] else "/trainings/"+ params[:id]+"/edit" end + "?chosen="+di.id.to_s, :method => "get", :class => 'btn btn-large btn-primary')  %> </td>  
 	    	</tr>
      	<% end %>
  </tbody>
