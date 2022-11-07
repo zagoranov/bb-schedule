@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :username%></th>
+    <th><%= t :days%></th>
+    <th><%= t :trainings%></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @ppl.each do |usr| %> 
+    <tr>
+    <td><%= link_to usr.username, usr %></td>
+    <td><%= usr.days.count %></td>
+    <% @trainings = Training.joins(:day).where('days.user_id = ?', usr.id).uniq %>
+    <td><%= @trainings.count %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+

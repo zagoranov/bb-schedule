@@ -1,0 +1,26 @@
+<h4><%= t(:last_notes) %></h4>
+<table class="table table-striped">
+  <tbody>
+  <% @notes.each do |note| %> 
+    <tr>
+    <td><strong><%= link_to note.title, note %></strong><br/><br/>
+    <%= note.created_at.strftime("%d.%m.%Y") %>
+    <% if @user == current_user %> 
+      <br/><%= note.shared2all ?  t(:open_post) : t(:pers_post) %>
+    <% end %>     
+    <% if note.notecomments.size > 0 %> 
+        <br/><br/><%= note.notecomments.size %> <%= t(:comments) %>
+     <% end %>   
+  </td>
+    <td><%= simple_format note.text %></td>
+     <% if @user == current_user %> 
+     <td>
+        <%= link_to t(:edit), edit_note_path(note), :method => "get", :class => 'btn btn-large btn-primary' %><br/><br/>
+       <%= button_to(t(:destroy), note, :method => :delete, remote: true, 
+                 data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %>
+      </td>           
+     <%end%> 
+    </tr>
+  <% end %>
+ </tbody>
+</table>

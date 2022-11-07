@@ -1,0 +1,80 @@
+<h3><%= t(:username) %>: <%= @user.username %></h3>
+<h4><%= t(:here_since) %>: <%= @user.created_at.strftime("%d.%m.%Y") %></h4>
+<% if @user.lastlogin %>
+  <h4><%= t(:last_login) %>: <%= @user.lastlogin.strftime("%d.%m.%Y") %></h4>
+<%end%> 
+<% if @user == current_user %>
+     <h4><%= t(:email)%>: <%= @user.email %></h4>
+       <br />
+      <%= button_to(t(:change_data), edit_user_path(@user), :method => "get",  :class => 'btn btn-primary') %>
+<%else%>       
+  <%= @fr = current_user.friendships.where('friend_id = ?', @user.id).first
+         if @fr
+  link_to t(:fr_remov), byebye_friendship_path(id: @fr.id, from: "prof", who: @user.id), remote: true, method: "post", :class => 'btn btn-mini btn-danger'
+    else
+  link_to t(:fr_add), wellhello_friendship_path(id: @user.id, from: "prof", who: @user.id), remote: true, method: "post",:class => 'btn btn-primary' 
+        end %>
+<%end%> 
+
+
+<br /><br />
+
+<h4><%= t(:friends) %></h4>
+<% if @user.friendships.size > 0 %>
+<table class="table table-striped">
+<tbody>
+  <% for friendship in @user.friendships %>
+    <% if friendship.friend %>
+    <tr>
+      <td><strong><%= if friendship.friend.username 
+          link_to friendship.friend.username, friendship.friend 
+          else
+          link_to friendship.friend.email, friendship.friend 
+          end
+        %></strong></td>
+      <td><%if friendship.friend != current_user %>
+      <%= @fr = current_user.friendships.where('friend_id = ?', friendship.friend.id).first
+         if @fr
+link_to t(:fr_remov), byebye_friendship_path(id: @fr.id, from: "prof", who: @user.id), remote: true, method: "post", :class => 'btn btn-mini btn-danger'          
+    else
+link_to t(:fr_add), wellhello_friendship_path(id: friendship.friend.id, from: "prof", who: @user.id), remote: true, method: "post",:class => 'btn btn-primary' 
+        end %>
+    <%end%></td>  
+   </tr>  
+  <% end %>
+ <% end %>  
+</tbody>
+</table>
+<% else %>
+  <em><%= t :empty %></em><br /><br />
+<% end %>
+
+<% if @user == current_user %>
+  <h4><%= link_to t(:find_friends), users_path, :class => 'btn btn-primary' %></h4>
+<% end %>
+
+<br />
+
+<h4><%= t(:friended_by) %></h4>
+<% if @user.inverse_friends.size > 0 %>
+<table class="table table-striped">
+<tbody>
+  <% for user in @user.inverse_friends %>
+    <tr>
+      <td><strong><%= link_to user.username, user %></strong></td>
+      <td><%if user != current_user %>
+      <%= @fr = current_user.friendships.where('friend_id = ?', user.id).first
+         if @fr
+link_to t(:fr_remov), byebye_friendship_path(id: @fr.id, from: "prof", who: @user.id), remote: true, method: "post", :class => 'btn btn-mini btn-danger'          
+    else
+link_to t(:fr_add), wellhello_friendship_path(id: user.id, from: "prof", who: @user.id), remote: true, method: "post",:class => 'btn btn-primary' 
+        end %>
+     <%end%> </td>        
+    </tr>       
+  <% end %>
+</tbody>
+</table>
+<% else %>
+  <em><%= t :empty %></em><br /><br />
+<% end %>
+

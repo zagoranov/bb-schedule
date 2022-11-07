@@ -1,0 +1,33 @@
+<h3><%= t(:exercises)%></h3>
+
+<br><br>
+
+<table class="table table-striped">
+  <tbody>
+  <% @dictitems.each do |di| %> 
+		<tr>
+    <% if I18n.locale == :en %>
+      <td><img src="<%=di.img%>"></td>  
+      <td><%= if di.url
+        link_to di.name, di.url, :target => "_blank"
+      else
+        di.name
+      end %></td> 
+      <td><%= di.description %></td>
+    <% else %>
+      <td><img src="<%=di.img_ru%>"></td>  
+      <td><%= if di.url_ru
+        link_to di.name_ru, di.url_ru, :target => "_blank"
+      else
+        di.name_ru
+      end %></td>
+      <td><%= di.desc_ru %></td>
+    <% end %>   
+		<td><%=  link_to t(:choose), if params[:from] == "dday" then "/days/"+ params[:id] else "/trainings/"+ params[:id]+"/edit" end + "?chosen="+di.id.to_s, :method => "get"  %> </td>  
+	    	</tr>
+     	<% end %>
+ </tbody>
+</table>
+<% if @dictitems.size == 0 %>
+  <em><%= t :empty%><br><br> </em>
+<% end %>

@@ -1,0 +1,53 @@
+<% if @day.user != current_user %>
+  <h3><%= t(:user) %>: <%= link_to @day.user.username, @day.user %></h3>
+<% end %>
+
+<p>
+  <h3><%= @day.title %></h3>  
+</p>
+<p>
+  <h4><%= simple_format @day.text %></h4>
+</p>
+<p>
+  <%= t :train_type%>:
+        <% case @day.kind %>
+          <% when 0 %>
+            <%= t :weight_tr %>
+          <% when 1 %>
+            <%= t :cardio %>
+          <% when 2 %>
+            <%= t :boxing %>
+          <% when 3 %> 
+            <%= t :mix_trainig %>
+        <% end %> 
+</p>
+
+<br />
+<% if @day.user == current_user %>
+  <%= link_to t(:edit_desc), edit_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary'  %> 
+  <%= link_to t(:train), new_day_training_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %> 
+  <% if !@day.shared2all %> 
+    <%= link_to t(:share4all), share_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %>   
+  <% else %>
+    <%= link_to t(:unshare), unshare_day_path(@day), :method => "get", :class => 'btn btn-mini btn-danger' %>   
+  <% end %>   
+<br /><br />
+<% end %>
+
+<br />
+
+<h4><%= t :exercises %></h4>
+
+<div id="exers_table">
+  <%= render 'exercises/list' %>
+</div>
+
+<br />
+
+<% if @day.user == current_user %>
+  <h4><%= t :add_exercise%></h4>
+  <%= render "exercises/form" %>
+<% else %>
+  <%= link_to t(:copy2me), copy_day_path(@day), :method => "get", :class => 'btn btn-large btn-primary' %> 
+  <%= link_to t(:back), @day.user, :method => "get", :class => 'btn btn-large btn-primary' %> 
+<% end %>

@@ -1,0 +1,19 @@
+<h3><%= t :notes %></h3>
+<h4><%= t :author %>: <%= link_to @user.username, @user %></h4>
+
+<% if @user == current_user %>
+<br><br>
+  <%= form_for([current_user, current_user.notes.build], remote: true) do |f| %>  
+    <%= f.text_field :title, placeholder: t(:title) %><br>
+    <%= f.text_area :text, placeholder: t(:text), :size => '80x5' %><br />
+    <%= f.label :shared2all, t(:pers_post), :value => false %> <%= f.radio_button :shared2all, false %><br />
+    <%= f.label :shared2all, t(:open_post), :value => true %> <%= f.radio_button :shared2all, true %><br /><br />
+    <%= f.submit t(:add), :class => 'btn btn-large btn-primary' %> 
+  <% end %>   
+<br /><br />
+<% end %>   
+<br /><br />
+
+<div id="notes_table">
+  <%= render 'notes/notes_list' %>
+</div>

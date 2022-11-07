@@ -1,0 +1,15 @@
+<h3><%= t :archive %></h3>
+
+<div id = "arch_list">
+   <%= render 'archive_list'%>
+</div>
+ 
+<% if @archive_days.size == 0 %>
+  <em><%= t :empty %></em>
+<% else %>  
+<br><br>
+<br><br>
+<%= link_to t(:kill_all), emptyarchive_days_path, :method => "post", data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger' %> 
+<% end %>
+
+<br><br>

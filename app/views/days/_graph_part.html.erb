@@ -1,0 +1,5 @@
+<% if @trexes_w2 %>
+	<%= line_chart @trexes_w2.map { |e| [e.created_at, e.maxw] } %>
+<% else %>
+  <em><%= t :no_data_for_this %></em>
+<% end %>

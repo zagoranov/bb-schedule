@@ -1,0 +1,24 @@
+<h3><%= t :new_training%></h3>
+
+<br>
+<h4><%= t :day %>: <%= @day.title %></h4>
+<br />
+
+<%= form_for ([@day, @training]) do |f| %>
+  <p>
+    <strong><%= t :body_weight%></strong><br>
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <strong><%= t :description%></strong><br>
+    <%= f.text_area :info, :size => "50x3", :value => @day.title %>
+  </p>
+  <p>
+    <%= f.submit t(:start_training), :class => 'btn btn-large btn-primary' %>
+  </p>
+<% end %>
+
+
+<br /><br /><br />
+
+<%= link_to t(:cancel), days_path, :method => "get", :class => 'btn btn-primary' %>

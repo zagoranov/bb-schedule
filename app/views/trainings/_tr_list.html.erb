@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th><%= t :date_time %></th>
+    <th><%= t :body_weight %></th>
+    <th><%= t :description %></th>
+    <th><%= t :day %></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @trainings.each do |train| %> 
+	<% if train.day.user_id == current_user.id %>
+		<tr>
+		 <td
+        <% case train.kind  
+             when 1 %>
+            bgcolor="#DDFBEE"
+          <% when 2 %>
+            bgcolor="#FBDFDD"
+          <% when 3 %> 
+            bgcolor="#FBDDF9"
+          <% end %> 
+     ><%= link_to train.created_at.strftime("%d.%m.%Y %H:%M"), train %></td>  
+		 <td><%= train.weight %></td>
+		 <td><%= train.info %></td>
+     <td><%= train.day.title + " (" + train.day.text + ")" %></td>
+		 <td><%= button_to(t(:edit), edit_training_path(train), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    <td><%= button_to(t(:destroy), setarchive_training_path(train), remote: true, 
+                    data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+	  </tr>
+     	<% end %>
+  <% end %>
+ </tbody>
+</table>
+<% if @trainings.size == 0 %>
+  <em><%= t :no_trainings%><br><br> </em>
+<% end %>
+

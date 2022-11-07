@@ -1,0 +1,26 @@
+<h3><%= t :edit_exercise%></h3>
+
+<br><br>
+
+<%= form_for ([@day, @training, @trexercise]) do |f| %>
+  <p>
+    <strong><%= t :title%></strong><br>
+    <%= f.text_field :title, :readonly => true, style: "background-color : #E8E8E8" %>
+  </p>
+  <p>
+    <strong><%= t :reps%></strong><br>
+    <%= f.text_field :reps %>
+  </p>
+  <p>
+    <strong><%= t :max_weight%></strong><br>
+    <%= f.text_field :maxweight %>
+  </p>
+  <p>
+    <%= f.submit t(:save), :class => 'btn btn-large btn-primary' %>
+  </p>
+<% end %>
+
+<br><br>
+
+<%= link_to t(:back), :back, :method => "get", :class => 'btn btn-primary' %>
+

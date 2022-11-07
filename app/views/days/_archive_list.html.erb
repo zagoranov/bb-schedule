@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :title%></th>
+    <th><%= t :description%></th>
+    <th><%= t :actions%></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @archive_days.each do |day| %> 
+    <tr>
+    <td><%= link_to day.title, day %></td>
+    <td><%= day.text %></td>
+    <td><%= button_to(t(:restore), unarchive_day_path(day), remote: true, :class => 'btn btn-primary')  %> </td>
+    <td><%= button_to(t(:destroy), erase_day_path(day), remote: true, data: { confirm: t(:confirm) }, 
+              :class => 'btn btn-mini btn-danger')  %> </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+

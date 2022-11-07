@@ -1,0 +1,66 @@
+<p><h3><%= t :training%></h3></p>
+
+<br>
+
+<p>
+  <h5><%= t :date_time%>:</h5> <h4><%= @training.created_at.strftime("%d.%m.%Y %H:%M") %></h4>  
+</p>
+<p>
+  <h5><%= t :body_weight%>:</h5> <h4><%= @training.weight %></h4>  
+</p>
+<p>
+  <h5><%= t :description%>:</h5> <h4><%= simple_format @training.info %></h4>
+</p>
+
+<p><h5><%= t :train_type%>:</h5>
+   <h4> <% case @training.kind 
+             when 0 %>
+            <%= t :weight_tr %>
+          <% when 1 %>
+            <%= t :cardio %>
+          <% when 2 %>
+            <%= t :boxing %>
+          <% when 3 %> 
+            <%= t :mix_trainig %>
+        <% end %> </h4>
+</p>
+
+<br>
+
+<p><h4><%= t :exercises%></h4></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @training.trexercises.order(:number).each do |trex| %> 
+  <tr>
+  <td>
+  <% if trex.dictitem %>
+    <% if I18n.locale == :en%>
+      <img src="<%= trex.dictitem.img %>">
+    <% else %>
+      <img src="<%= trex.dictitem.img_ru %>">
+    <% end %>
+  <% end %>
+  </td>
+  <td><%= trex.title %></td>
+  <td><%= trex.reps %></td>
+  <td><%= trex.maxweight %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @training.trexercises.size == 0 %>
+  <em><%= t :sch_empty %></em>
+<% end %>
+
+<br><br>
+
+<%= link_to t(:edit), edit_training_path(@training), :method => "get", :class => 'btn btn-primary'  %>

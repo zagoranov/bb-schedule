@@ -1,0 +1,66 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th><%= t :title %></th>
+    <th><%= t :reps %></th>
+    <th><%= t :max_weight %></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @training.trexercises.order('number').each do |trex| %> 
+  <tr>
+  <td>
+  <% if trex.dictitem %>
+    <% if I18n.locale == :en%>
+      <img src="<%= trex.dictitem.img %>">
+    <% else %>
+      <img src="<%= trex.dictitem.img_ru %>">
+    <% end %>
+  <% end %>
+  </td>
+  <td><%= if I18n.locale == :en
+          if trex.dictitem && trex.dictitem.url
+             link_to trex.title, trex.dictitem.url, :target => "_blank"
+           else
+             trex.title
+           end
+      else
+          if trex.dictitem && trex.dictitem.url_ru
+             link_to trex.title, trex.dictitem.url_ru, :target => "_blank" 
+           else
+             trex.title
+           end
+  end  %></td>
+
+  <%= form_for(trex, remote: true) do |f| %>
+     <td><%= f.text_field :reps, size: "11x1" %></td>
+     <td><%= f.text_field :maxweight, size: "3x1" %></td>
+     <td><%= if current_user.notific 
+                f.submit t(:save), :name => 'save', :class => 'btn btn-large btn-primary', onclick: "return confirm('Are you sure?')" 
+             else
+                f.submit t(:save), :name => 'save', :class => 'btn btn-large btn-primary' 
+             end
+      %></td>
+     <td><%= if current_user.notific 
+               f.submit t(:savetemplate), :name => 'template', :class => 'btn btn-large btn-primary', onclick: "return confirm('Are you sure?')"  
+             else
+               f.submit t(:savetemplate), :name => 'template', :class => 'btn btn-large btn-primary' 
+             end               
+          %></td>
+  <% end %>
+    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
+                                          onmouseout: "this.src='#{asset_path('up4.png')}'"), 
+                                          up_trexercise_path(trex), :method => "post", remote: true %></td>
+    
+    <td><%= link_to image_tag("down4.png", onmouseover: "this.src='#{asset_path('down4_2.png')}'", 
+                                           onmouseout: "this.src='#{asset_path('down4.png')}'"), 
+                                           down_trexercise_path(trex), :method => "post", remote: true %></td>
+  <td><%= button_to(t(:destroy), trex, remote: true,
+            method: :delete, data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>

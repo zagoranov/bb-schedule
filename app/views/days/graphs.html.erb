@@ -1,0 +1,22 @@
+<h3><%= t :graphs %></h3>
+
+<br><br>
+
+<h4><%= t :ex_progress %></h4>
+
+<%= form_tag("/drawgraph", remote: true) do %> 
+  <%= select_tag 'exer',
+      options_for_select(@trexers.collect(&:title), selected: params[:exer]), include_blank: true %>
+  <%= submit_tag t(:choose), :class => 'btn btn-primary' %>
+<% end %>
+<br><br>
+<% if @trexers.size == 0 %>
+  <em><%= t :graph_empty %></em>
+<% end %>
+
+<div id="graphics">
+  <%= render partial: 'graph_part' %>	
+</div>
+
+<br><br>
+

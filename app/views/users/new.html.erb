@@ -1,0 +1,27 @@
+<h3><%= t :sign_up %></h3>
+
+<br>
+<br>
+
+<%= form_for @user do |f| %>
+  
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= render 'form' %>
+
+<% end %>
+
+<br><br>
+
+<!--
+<%= link_to t(:sign_fb), "/auth/facebook", id: "sign_in" %>
+-->

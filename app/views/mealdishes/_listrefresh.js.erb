@@ -1,0 +1,2 @@
+$("#meals_table").html("<% @meals = current_user.mealdishes.where('dt = ?', @ddate).order('meal_n, number') %><%= escape_javascript(render partial: 'meals_list', locals: { :@ddate => @ddate, :@meals => @meals } ) %>"); 
+

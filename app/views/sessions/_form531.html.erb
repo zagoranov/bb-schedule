@@ -1,0 +1,167 @@
+<h3><%= t :created531 %></h3>
+
+<!--
+<% if !current_user  %>
+   <p><%= t :login_wantu %></p>
+<% end %>
+-->
+
+ <br><br>
+
+<% d_type = [t(:ov_press), t(:deadlift), t(:bench_press), t(:squats)]
+  bbb_type = [t(:chinups), t(:hang_leg), t(:dumb_row), t(:leg_curl)]
+  
+  sst1_type = [t(:close_press), t(:front_squat), t(:incline_press), t(:sl_deadlift)]
+  sst2_type = [[t(:lats), t(:upper_back), t(:triceps), t(:biceps)], [t(:hamstrings), t(:lower_back), t(:abs)]]
+
+  if Rails.env.production?  
+    ids = [164, 192, 203, 252]       #server
+    bbb_ids = [178, 245, 184, 257]   #server
+    sst1_ids = [210, 251, 200, 199]  #server
+  else
+    ids = [1268, 1296, 1309, 1356]       #local
+    bbb_ids = [1282, 1349, 1288, 1361]   #local
+    sst1_ids = [1314, 1355, 1304, 1303]  #local
+  end 
+  warm_p = [40, 50, 60]
+  weights = [[65, 75, 85], [70, 80, 90], [75, 85, 95], [40, 50, 60]]
+  reps = [['5', '5', '5+'], ['3', '3', '3+'], ['5', '3', '1+'], ['5', '5', '5']]
+  pyr_w = [[75, 65], [80, 70], [85, 75]]
+  pyr_r = [['5', '5+'], ['3', '3+'], ['3', '5+']]
+  joker_w = [[95, 105, 110], [100, 105, 115], [105, 115, 120]]
+  joker_r = [['5', '5', '2'], ['3', '5', '1'], ['1', '1', '1']]
+  fsl_w = [65, 70, 75] 
+  fslms_w = [65, 70, 75]  
+  sst_w = [[50, 60, 70], [60, 70, 80], [65, 75, 85], [40, 50, 60]]
+  sst_r = [['10', '10', '10'], ['8', '8', '6'], ['5', '5', '5'], ['5', '5', '5']]
+  sst_n = [3, 4, 1, 2]
+  w_ms = Array.new(4)
+  w_ms[0] = get_workin_max(params[:delt_max], params[:delt_reps]) 
+  w_ms[1] = get_workin_max(params[:dead_max], params[:dead_reps]) 
+  w_ms[2] = get_workin_max(params[:bench_max], params[:bench_reps]) 
+  w_ms[3] = get_workin_max(params[:sq_max], params[:sq_reps]) 
+  if params['shrink'].to_s == "true"
+    round_arr = ['0', '2', '5', '7']
+  else
+    round_arr = ['0', '5']
+  end
+
+  if params['threewks'].to_s == "true"
+    n = 3
+  else
+    n = 4
+  end %>
+
+   <table  width="100%" border="0" cellpadding="5" cellspacing="5">
+   <body>
+
+<% for i in 1..n %>
+  <tr>
+  <%  for j in 1..4  %>
+     
+      <td valign="top" width="400">
+
+      <table class="table table-striped" border="1" bordercolor="#C0C0C0">
+      <tbody>
+
+      <tr><td bgcolor="#D8D8D8" width ="300"><strong><%= t(:week)+ " " + i.to_s + ", " + t(:day) + " " + j.to_s + " (5/3/1)"  %></strong>, <%= d_type[j-1] %></td><td bgcolor="#D8D8D8"  width ="65"></td><td bgcolor="#D8D8D8" width ="35"></td></tr>
+      
+      <% if params['warmup'].to_s == "true" #WARM UP
+        for k in 0..2
+          rps = '5'
+          if k==2 
+            rps = '3'
+          end %>
+          <tr><td><%= d_type[j-1] + " ("+t(:warm_up)+")" %> </td>
+            <td><%= rps %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * warm_p[k]).round, round_arr) %> </td></tr>
+     <% end
+      end
+
+      z = i
+      if params['pwrlift'].to_s == "true" && i < 3
+        z = 3 - i
+      end  
+      for k in 0..2   #BASE 5/3/1    +      POWERLIFTING 3/5/1
+         %> <tr><td><%= d_type[j-1] %> </td>
+            <td><%= reps[z-1][k] %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * weights[z-1][k]).round, round_arr) %> </td></tr>
+    <%  end
+
+      if i < 4 && params['joker'].to_s == "true"   #JOKER
+       for k in 0..2 %>
+          <tr><td><%= d_type[j-1] + " ("+t(:joker_sets)+")" %> </td>
+            <td><%= joker_r[i-1][k] %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * joker_w[i-1][k]).round, round_arr) %> </td></tr>
+  <%    end
+      end        
+      
+      if i < 4 && params['pyramid'].to_s == "true"   #PYRAMID
+       for k in 0..1 %>
+          <tr><td><%= d_type[j-1] + " ("+t(:pyramid)+")" %> </td>
+            <td><%= pyr_r[i-1][k] %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * pyr_w[i-1][k]).round, round_arr) %> </td></tr>
+  <%   end
+      end        
+
+      if i < 4 && params['fsl'].to_s == "true"   #FIRTS SET LAST
+       %><tr><td><%= d_type[j-1] + " ("+t(:firts_set_last)+")" %> </td>
+            <td><%= t(:amrap) %> </td>
+            <td><%= round_w(((w_ms[j-1] / 100) * fsl_w[i-1]).round, round_arr) %> </td></tr>
+    <% end        
+
+      if i < 4 && params['fslms'].to_s == "true"   #FIRTS SET LAST - MULTIPLE SETS
+  %>    <tr><td><%= d_type[j-1] + " ("+t(:firts_set_last_ms)+")" %> </td>
+            <td>3-5x5-8</td>
+            <td><%= round_w(((w_ms[j-1] / 100) * fslms_w[i-1]).round, round_arr) %> </td></tr>
+    <% end        
+
+      if params['is_assist'].to_s == "true" && params['assist'].to_s == "sst"   #SST
+       l = sst_n[j-1]    # веса берутся по другому порядку: if j=1 then l=3   j=2, l=4    j=3, l=1    j=4, l=2   
+       for k in 0..2
+%>    <tr><td><%= sst1_type[j-1] + " ("+t(:simple_st)+")" %></td>
+            <td><%= sst_r[z-1][k] %></td>
+            <td><%= round_w(((w_ms[l-1] / 100) * sst_w[z-1][k]).round, round_arr) %></td></tr>
+    <% end
+       if j == 2 || j == 4
+         jj = 1
+         nn = 2
+       else
+         jj = 0
+         nn = 3
+       end
+       for k in 0..nn
+%>    <tr><td><%= sst2_type[jj][k] + " ("+t(:simple_st)+")" %> </td>
+            <td>3x10-20</td>
+            <td></td></tr>
+    <%  end
+      end        
+
+      if params['is_assist'].to_s == "true" && (params['assist'].to_s == "bbb" || params['assist'].to_s == "bbbandch")   #BBB
+%>    <tr><td><%= d_type[j-1] + " ("+t(:bigbutboring)+")" %></td>
+            <td>5x10</td>
+            <td><%= round_w(((w_ms[j-1] / 100) * 50).round, round_arr) %></td></tr>
+      <tr><td><%= bbb_type[j-1] + " ("+t(:bigbutboring)+")" %> </td>
+            <td>5x10</td>
+            <td></td></tr>
+       <% end %>
+
+  <%  if params['is_assist'].to_s == "true" && (params['assist'].to_s == "ch_f_sch" || params['assist'].to_s == "bbbandch") #Fill from day in schedule!!!
+        s = 'day'+j.to_s
+        if params[s] != "" && Day.find(params[s])
+          day = Day.find(params[s])
+          day.exercises.order("number").each do |exer| %>
+             <tr><td><%= exer.title %></td><td><%= exer.reps %></td><td><%= exer.maxweight %></td></tr>
+      <%  end
+        end 
+      end %>
+
+   </tbody></table> </td>
+   <% if j == 2 %> 
+      </tr><tr><td><br></td></tr>
+   <%  end %>
+
+ <%  end %>
+</tr><tr><td><br></td></tr>
+ <% end %>
+</body></table>

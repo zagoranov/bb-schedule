@@ -1,0 +1,41 @@
+<%= form_for(@day) do |f| %>
+  <% if @day.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@day.errors.count, "error") %> prohibited
+      this Day from being saved:</h2>
+    <ul>
+    <% @day.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <strong><%= t :title %></strong><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <strong><%= t :description %></strong><br>
+    <%= f.text_area :text, :size => "50x3" %>
+  </p>
+ 
+  <p> 
+    <table>
+    <tr>
+    <td width = "250"><%= f.radio_button :kind, 0, :checked => true %> <%= t :weight_tr %> </td>
+    <td width = "250"><%= f.radio_button :kind, 1 %> <%= t :cardio %></td>
+  </tr>
+  <tr>
+    <td><%= f.radio_button :kind, 2 %> <%= t :boxing %></td>
+    <td><%= f.radio_button :kind, 3 %> <%= t :mix_trainig %></td>
+  </tr>    
+  </table>
+  </p>
+
+<br>
+
+  <p>
+    <%= f.submit t(:save), :class => 'btn btn-large btn-primary' %>
+  </p>
+<% end %>

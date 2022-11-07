@@ -1,0 +1,39 @@
+<h3><%= t(:meals)%> <%= @ddate.strftime("%d.%m.%Y") %></h3>
+
+ <br><br>
+
+
+<div id="meals_table">
+  <%= render "meals_list" %>
+</div>
+
+<h4><%= t(:add_new)%></h4>
+
+<%= form_for(current_user.mealdishes.new, remote: true) do |f| %>
+  <p>
+    <%= t :ddate %><br />
+    <%= f.date_select :dt, { :default => @ddate, :use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)], :order => [:day, :month, :year] } %>
+  </p>
+  
+    <p>
+    <%= t :meal_number %><br />
+    <%= f.text_field :meal_n %>
+  </p>
+
+   <p>
+   <%= t :dish %><br />
+   <%= f.collection_select :dictnutr_id, @dictnutrs, :id, :title, { style: "height:26px; width:400px" }  %>
+   <%= link_to t(:add_new), new_dictnutr_path, :method => "get", :class => 'btn btn-default' %> 
+  </p>
+  
+  <p>
+    <%= t :portion_size %> (1 = 100<%= t :gr %>)<br />
+    <%= f.text_field :doze %>
+  </p>
+
+  <br>  
+  <p class="button"><%= f.submit t(:save), :class => 'btn btn-large btn-primary' %></p>
+<% end %>
+
+
+<br><br>

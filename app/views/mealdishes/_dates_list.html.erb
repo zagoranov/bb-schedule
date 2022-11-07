@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :ddate %></th>
+    <th><%= t :calories %></th>
+    <th><%= t :protein %></th>
+    <th><%= t :fat %></th>
+    <th><%= t :carbs %></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @calsanddates.each do |meal| %> 
+    <tr>
+     <td><%= link_to meal.dt.strftime("%d.%m.%Y"), "mealdishes/particdate?date=" + meal.dt.to_s %></td>  
+     <td><%= meal.cals.round(2) %></td>  
+     <td><%= meal.prot.round(2) %></td>  
+     <td><%= meal.fats.round(2) %></td>  
+     <td><%= meal.carb.round(2) %></td>  
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @calsanddates.size == 0 %>
+  <em><%= t :no_mealdishes %><br><br> </em>
+<% end %>

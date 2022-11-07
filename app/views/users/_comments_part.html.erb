@@ -1,0 +1,13 @@
+  <table class="table table-striped">
+  <tbody>
+  <% for comment in @user.received_comments.order('created_at DESC') %>
+    <tr>       
+      <td><strong><%= link_to comment.commenter.username, comment.commenter %></strong><br><%= comment.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td><%= simple_format comment.comment %></td>
+   <% if @user == current_user %>      
+      <td><%= link_to t(:destroy), user_profilecomment_path(@user, comment), :method => :delete, remote: true, :class => 'btn btn-mini btn-danger' %></td>
+   <% end %>
+  </tr> 
+<% end %>
+</tbody>
+</table>

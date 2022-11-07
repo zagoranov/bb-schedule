@@ -1,0 +1,85 @@
+<% if @user == current_user %>
+         <h4> <%= t(:you) %></h4>
+<% end %>
+
+<div id ="prof_details">
+  <%= render 'profile_part' %>
+</div>
+
+
+<% if @notes.size > 0 %>
+  <br />
+  <h4><%= link_to t(:notes), blog_user_path(@user) %>: <%= t(:last_notes) %></h4>
+  <table class="table table-striped">
+  <tbody>
+  <% for note in @notes %>
+    <tr>       
+      <td><%= link_to note.title, note %></td>
+      <td><%= note.created_at.strftime("%d.%m.%Y %H:%M") %></td>      
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+<% end %>
+
+
+
+<% if @shared.size > 0 %>
+  <br />
+  <h4><%= t(:shared_days) %></h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :title %></th>
+    <th><%= t :description %></th>    
+   </tr>
+   </thead>
+  <tbody>
+  <% for sh_d in @shared %>
+    <tr>       
+      <td><%= link_to sh_d.title, sh_d %></td>
+      <td><%= sh_d.text %></td>
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+<% end %>
+
+<br />
+
+<% if @activity.size > 0 %>
+  <h4><%= t(:activity) %></h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :date_time %></th>
+    <th><%= t :title %></th>
+    <th><%= t :body_weight %></th>    
+   </tr>
+   </thead>
+  <tbody>
+  <% for tr in @activity %>
+    <tr>       
+      <td><%= tr.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td>"<%= tr.day.title %>"</td>
+      <td><%= tr.weight %></td>
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+  <br /><br /> 
+<% end %> 
+
+
+<h4><%= t(:wall) %></h4>
+<br>
+    <%= form_for([@user, @user.given_comments.build], remote: true) do |f| %>  
+    <%= f.text_area :comment, placeholder: t(:leave_comment), :size => "50x2" %><br />
+    <%= f.hidden_field :user_id, :value => @user.id %>  <%= f.hidden_field :commenter_id, :value => @current_user.id %>
+      <%= f.submit t(:send), :class => 'btn btn-primary' %>
+<% end %>
+<br />
+
+<div id ="wallochka">
+  <%= render 'comments_part' %>
+</div>

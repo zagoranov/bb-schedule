@@ -1,0 +1,27 @@
+<h3><%= t(:body_measurs) %></h3>
+
+<br><br>
+
+<% if @meases.size > 0 %>
+<%= line_chart [
+  {name: t(:body_weight), data: @meases.map { |m| [m.created_at, m.weight] }},
+  {name: t(:neck), data: @meases.map { |m| [m.created_at, m.neck] }},
+  {name: t(:shoulders), data: @meases.map { |m| [m.created_at, m.shoulders] }},
+  {name: t(:chest), data: @meases.map { |m| [m.created_at, m.chest] }},
+  {name: t(:biceps), data: @meases.map { |m| [m.created_at, m.biceps] }},
+  {name: t(:forearm), data: @meases.map { |m| [m.created_at, m.forearm] }},
+  {name: t(:wrist), data: @meases.map { |m| [m.created_at, m.wrist] }},
+  {name: t(:waist), data: @meases.map { |m| [m.created_at, m.waist] }},
+  {name: t(:thighs), data: @meases.map { |m| [m.created_at, m.thighs] }},
+  {name: t(:calves), data: @meases.map { |m| [m.created_at, m.calves] }} ] %>
+<% end %>
+
+<br><br>
+
+<div id="meas_table">
+  <%= render 'meas_list' %>
+</div>
+
+<br><br>
+
+<%= link_to t(:add_new), new_measurement_path, :method => "get", :class => 'btn btn-primary' %> 

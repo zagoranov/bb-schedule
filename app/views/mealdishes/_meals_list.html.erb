@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :meal_number_h %></th>
+    <th><%= t :dish %></th>
+    <th><%= t :portion_size %></th>
+    <th><%= t :calories %></th>
+    <th><%= t :protein %></th>
+    <th><%= t :fat %></th>
+    <th><%= t :carbs %></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @meals.each do |meal| %> 
+    <tr>
+     <td><%= meal.meal_n %></td>  
+     <td><%= meal.dictnutr.title %></td>  
+     <td><%= meal.doze %></td>  
+     <td><%= (meal.dictnutr.calories * meal.doze).round(2) %></td>  
+     <td><%= (meal.dictnutr.protein * meal.doze).round(2) %></td>  
+     <td><%= (meal.dictnutr.fat * meal.doze).round(2) %></td>  
+     <td><%= (meal.dictnutr.carbs * meal.doze).round(2) %></td>  
+     <td><%= link_to t(:destroy), meal, remote: true, method: :delete, data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger' %> 
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @meals.size == 0 %>
+  <em><%= t :no_data_for_this %><br><br> </em>
+<% end %>

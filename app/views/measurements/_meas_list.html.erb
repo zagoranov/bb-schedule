@@ -1,0 +1,39 @@
+<table class="table table-striped">
+    <thead>
+  <tr>
+    <th><%= t :ddate %></th>
+    <th><%= t :body_weight %></th>
+    <th><%= t :neck %></th>
+    <th><%= t :shoulders %></th>
+    <th><%= t :chest %></th>
+    <th><%= t :biceps %></th>
+    <th><%= t :forearm %></th>
+    <th><%= t :wrist %></th>
+    <th><%= t :waist %></th>
+    <th><%= t :thighs %></th>
+    <th><%= t :calves %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @meases.each do |meas| %> 
+    <tr>
+    <td><%= meas.created_at.strftime("%d.%m.%Y") %></td>
+    <td><%= meas.weight %></td>
+	<td><%= meas.neck %></td>
+	<td><%= meas.shoulders %></td>
+	<td><%= meas.chest %></td>
+	<td><%= meas.biceps %></td>
+	<td><%= meas.forearm %></td>
+	<td><%= meas.wrist %></td>
+	<td><%= meas.waist %></td>
+	<td><%= meas.thighs %></td>
+	<td><%= meas.calves %></td>
+    <td><%= button_to(t(:destroy), meas, :method => :delete, remote: true, 
+                    data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @meases.size == 0 %>
+  <em><%= t :empty %></em>
+<% end %>

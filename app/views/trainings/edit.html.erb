@@ -1,0 +1,50 @@
+<p><h3><%= t :training%></h3></p>
+
+<br>
+
+<%= form_for([@day, @training], remote: true) do |f| %>
+  <p>
+    <strong><%= t :date_time %></strong><br />
+    <%= f.datetime_select :created_at, {:use_month_names => [t(:jan), t(:feb), t(:mar), t(:apr), t(:may), t(:jun), t(:jul), t(:aug), t(:sep), t(:oct), t(:nov), t(:dec)], :order => [:day, :month, :year, :hour, :minute] } %>
+  </p>
+  <p>
+    <strong><%= t :body_weight%></strong><br />
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <strong><%= t :today_tr_desc%></strong><br />
+    <%= f.text_area :info, :size => "50x3" %>
+  </p>
+  <p> 
+    <table>
+    <tr>
+      <td width = "250"><%= f.radio_button :kind, 0, :checked => true %> <%= t :weight_tr %> </td>
+      <td width = "250"><%= f.radio_button :kind, 1 %> <%= t :cardio %></td>
+    </tr>
+    <tr>
+      <td><%= f.radio_button :kind, 2 %> <%= t :boxing %></td>
+      <td><%= f.radio_button :kind, 3 %> <%= t :mix_trainig %></td>
+    </tr>    
+  </table>
+  </p>
+
+  <p>
+    <%= f.submit t(:save), :class => 'btn btn-large btn-primary' %>
+  </p>
+<% end %>
+
+<br /><br />
+
+<h4><%= t :exercises%></h4>
+<div id="trex_table">
+  <%= render "trexers_list" %>
+</div>
+
+<br />
+
+<h4><%= t :add_exercise %></h4>
+<%= render "trexercises/trexercise" %>  
+
+<br /><br /><br /><br />
+
+<%= link_to t(:fbshare), "#", :id => 'fbshare-link', :class => 'btn btn-large btn-primary' %>

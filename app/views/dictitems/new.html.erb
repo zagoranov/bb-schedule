@@ -1,0 +1,38 @@
+<%= form_for @dictitem do |f| %>
+
+  <p>
+    <strong>Name</strong><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <strong>Description</strong><br>
+    <%= f.text_area :description, :size => "50x3" %>
+  </p>
+
+  <p>
+    <strong> Name_ru</strong><br>
+    <%= f.text_field :name_ru %>
+  </p>
+ 
+  <p>
+    <strong> Description_ru </strong><br>
+    <%= f.text_area :desc_ru, :size => "50x3" %>
+  </p>
+
+  <p>
+    <strong> url </strong><br>
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <strong> url_ru </strong><br>
+    <%= f.text_field :url_ru %>
+  </p>
+
+ 
+  <p>
+    <%= f.submit t(:save), :class => 'btn btn-large btn-primary' %>
+  </p>
+
+<% end %>

@@ -1,0 +1,42 @@
+<div class="container">
+ <div class="row">
+ <div class="col-lg-3">
+
+
+<h3><%= t(:body_measurs) %></h3>
+
+<br><br>
+
+<%= form_for ([@meas]) do |f| %>
+<table width="220">
+  <tr><td width="65%"><%= t :body_weight %></td><td width="35%"><%= f.text_field :weight , size: "3x1" %></td></tr>
+  <tr><td><%= t :neck %></td><td><%= f.text_field :neck, size: "3x1" %></td></tr>
+  <tr><td><%= t :shoulders %></td><td><%= f.text_field :shoulders, size: "3x1" %></td></tr>
+  <tr><td><%= t :chest %></td><td><%= f.text_field :chest, size: "3x1" %></td></tr>
+  <tr><td><%= t :biceps %></td><td><%= f.text_field :biceps, size: "3x1" %></td></tr>
+  <tr><td><%= t :forearm %></td><td><%= f.text_field :forearm, size: "3x1" %></td></tr>
+  <tr><td><%= t :wrist %></td><td><%= f.text_field :wrist, size: "3x1" %></td></tr>
+  <tr><td><%= t :waist %></td><td><%= f.text_field :waist, size: "3x1" %></td></tr>
+  <tr><td><%= t :thighs %></td><td><%= f.text_field :thighs, size: "3x1" %></td></tr>
+  <tr><td><%= t :calves %></td><td><%= f.text_field :calves, size: "3x1" %></td></tr>
+</table>
+
+<br><br><br>
+  <p><%= f.submit t(:save), :class => 'btn btn-large btn-primary' %></p>
+<% end %>
+
+<br><br>
+
+<%= link_to t(:back), :back, :method => "get", :class => 'btn btn-primary' %>
+
+</div>
+
+
+<div class="col-lg-3">
+<div class="well sidebar-nav">
+  <img src=<%= asset_path('meas_guy.png') %>
+</div>
+</div>
+
+</div>
+</div>

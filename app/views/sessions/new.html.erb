@@ -1,0 +1,21 @@
+<h3><%=t(:log_in)%></h3>
+
+<br><br>
+
+<%= form_tag sessions_path do %>
+  <p>
+    <%= t :email %><br />
+    <%= text_field_tag :email, params[:email] %>
+  </p>
+  <p>
+    <%= t :password %><br />
+    <%= password_field_tag :password %>
+  </p>
+  <br><br>
+  <p class="button"><%= submit_tag t(:log_in), :class => 'btn btn-large btn-primary' %></p>
+<% end %>
+
+
+<!--
+<%= link_to t(:sign_fb), "/auth/facebook", id: "sign_in" %>
+-->

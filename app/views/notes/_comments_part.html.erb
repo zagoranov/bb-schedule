@@ -1,0 +1,13 @@
+<table class="table table-striped">
+  <tbody>
+  <% for comment in @note.notecomments.order('created_at DESC') %>
+    <tr>       
+      <td><strong><%= link_to comment.user.username, comment.user %></strong><br><%= comment.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td><%= simple_format comment.comment %></td>
+   <% if @note.user == current_user %>      
+      <td><%= link_to t(:destroy), note_notecomment_path(@note, comment), :method => :delete, remote: true, :class => 'btn btn-mini btn-danger' %></td>
+   <% end %>
+  </tr> 
+<% end %>
+</tbody>
+</table>

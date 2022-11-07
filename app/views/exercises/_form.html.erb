@@ -1,0 +1,43 @@
+<% case @day.kind
+      when 0
+        if I18n.locale == :en
+          dictitems = Dictitem.select(:name, :id, :kind).where.not(kind: 2).order(:kind, :name)
+        else
+          dictitems = Dictitem.select('name_ru as name', :id, :kind).where.not(kind: 2).order(:kind, :name)
+        end
+      when 1 
+        if I18n.locale == :en
+          dictitems = Dictitem.select(:name, :id, :kind).where(kind: 1).order(:name)
+        else
+          dictitems = Dictitem.select('name_ru as name', :id, :kind).where(kind: 1).order(:name)
+        end
+      when 2 
+        if I18n.locale == :en
+          dictitems = Dictitem.select(:name, :id, :kind).where(kind: 2).order(:name)
+        else
+          dictitems = Dictitem.select('name_ru as name', :id, :kind).where(kind: 2).order(:name)
+        end
+      when 3 
+        if I18n.locale == :en
+          dictitems = Dictitem.select(:name, :id, :kind).order(:kind, :name)
+        else
+          dictitems = Dictitem.select('name_ru as name', :id, :kind).order(:kind, :name)
+        end
+    end %>
+
+<%= form_for([@day, @day.exercises.build]) do |f| %>
+<table  class="table table-striped">
+  <tr>
+    <td><%= link_to t(:choose), '/dictitems?from=dday&id=' + @day.id.to_s %></td>
+    <td><%= f.collection_select :dictitem_id, dictitems, :id, :name, { include_blank: true, selected: params[:chosen] }, { style: "height:26px; width:400px" } %></td>
+    <td><%= t :custom%></td><td><%= f.text_field :title, style: "width:270px" %></td>
+  </tr>
+  <tr>
+    <td><%= t :reps%></td><td><%= f.text_field :reps, style: "width:160px" %></td>
+    <td><%= t :max_weight%></td><td><%= f.text_field :maxweight, style: "width:160px" %></td>
+  </tr>
+</table>
+  <%= f.submit t(:add), :class => 'btn btn-large btn-primary' %>
+<% end %>
+<br/><br/>
+<br/><br/>

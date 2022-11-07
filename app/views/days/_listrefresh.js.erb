@@ -1,0 +1,2 @@
+$("#days_table").html("<% @days = current_user.days.where.not(archived: true).order('number') %><%= escape_javascript(render partial: 'days_list' ) %>"); 
+

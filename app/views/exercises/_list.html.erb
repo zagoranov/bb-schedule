@@ -1,0 +1,61 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th><%= t :title%></th>
+    <th><%= t :reps%></th>
+    <th><%= t :max_weight%></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+<% @day.exercises.order("number").each do |exercise| %> 
+
+<tr>
+  <td>  
+  <% if exercise.dictitem %>
+    <% if I18n.locale == :en %>
+      <img src="<%= exercise.dictitem.img %>">
+    <% else %>
+      <img src="<%= exercise.dictitem.img_ru %>">
+    <% end %>
+<% end %>
+</td>
+<td><%= if I18n.locale == :ru
+          if exercise.dictitem && exercise.dictitem.url_ru
+             link_to exercise.title, exercise.dictitem.url_ru, :target => "_blank"
+           else
+             exercise.title
+           end
+        else
+          if exercise.dictitem && exercise.dictitem.url
+         	   link_to exercise.title, exercise.dictitem.url, :target => "_blank"
+           else
+         	   exercise.title
+           end
+  end  %></td>
+  <td><%= exercise.reps %></td>
+  <td><%= exercise.maxweight %></td>
+  <% if @day.user == current_user %>
+
+    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
+                                          onmouseout: "this.src='#{asset_path('up4.png')}'"), 
+                                          up_exercise_path(exercise), :method => "post", remote: true %></td>
+    
+    <td><%= link_to image_tag("down4.png", onmouseover: "this.src='#{asset_path('down4_2.png')}'", 
+                                           onmouseout: "this.src='#{asset_path('down4.png')}'"), 
+                                           down_exercise_path(exercise), :method => "post", remote: true %></td>
+
+    <td><%= button_to(t(:destroy), [exercise.day, exercise],  remote: true, method: :delete, 
+             data: { confirm: t(:confirm) }, class: 'btn btn-mini btn-danger')  %> </td>
+   <% end %>          
+</tr>
+
+<% end %>
+
+ </tbody>
+</table>
+<% if @day.exercises.size == 0 %>
+  <em><%= t :empty %></em>
+<% end %>

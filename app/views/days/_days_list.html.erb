@@ -1,0 +1,54 @@
+<table class="table ">
+  <thead>
+  <tr>
+    <th><%= t :title%></th>
+    <th><%= t :description%></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @days.each do |day| %> 
+    <tr>
+    <td
+        <% case day.kind
+             when 1 %>
+            bgcolor="#DDFBEE"
+          <% when 2 %>
+            bgcolor="#FBDFDD"
+          <% when 3 %> 
+            bgcolor="#FBDDF9"
+          <% end %> 
+    ><%= link_to day.title, day %></td>
+    <td> <%= day.text %> </td>
+    <td><%= button_to(t(:train), new_day_training_path(day), :method => "get", :class => 'btn btn-large btn-primary') %> </td>
+    <td><%= button_to(t(:setarchive), setarchive_day_path(day), remote: true, 
+                    data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger')  %> </td>
+
+
+
+<!--     image_tag("find.png", onmouseover: "this.src='#{asset_path('find_sel.png')}'"  -->
+
+    <td><%= link_to image_tag("up4.png", onmouseover: "this.src='#{asset_path('up4_2.png')}'", 
+                                          onmouseout: "this.src='#{asset_path('up4.png')}'"), 
+                                          up_day_path(day), :method => "post", remote: true %></td>
+    
+    <td><%= link_to image_tag("down4.png", onmouseover: "this.src='#{asset_path('down4_2.png')}'", 
+                                           onmouseout: "this.src='#{asset_path('down4.png')}'"), 
+                                           down_day_path(day), :method => "post", remote: true %></td>
+
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+<% if @days.size == 0 %>
+  <em><%= t :sch_empty %></em>
+<% end %>
+
+<br><br>
+
+<%= link_to t(:add_new_day), new_day_path, :method => "get", :class => 'btn btn-primary' %> 
+<% if @days.size > 0 %>
+<%= link_to t(:archive_all), purge_days_path, :method => "post", data: { confirm: t(:confirm) }, :class => 'btn btn-mini btn-danger' %> 
+<% end %>
+
+<br><br>

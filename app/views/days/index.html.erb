@@ -1,0 +1,41 @@
+<h3><%= t :schedule %></h3>
+ 
+<div id="days_table">
+  <%= render "days_list" %>
+</div>
+
+<br /><br />
+<% if @activity.size > 0 %>
+  <h4><%= t(:last_trains) %></h4>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t :date_time %></th>
+    <th><%= t :title %></th>
+    <th><%= t :body_weight %></th>    
+   </tr>
+   </thead>
+  <tbody>
+  <% for tr in @activity %>
+    <tr>       
+      <td><%= tr.created_at.strftime("%d.%m.%Y %H:%M")%></td>
+      <td>"<%= tr.day.title %>"</td>
+      <td><%= tr.weight %></td>
+      <td><%= button_to(t(:show), edit_training_path(tr), :method => "get", :class => 'btn btn-large btn-primary')  %> </td>
+    </tr>       
+  <% end %>
+  </tbody>
+  </table>
+  <br /><br /> 
+<% end %> 
+
+<br><br>
+<% if @trainings.size < 2 %>
+  <em><%= t :therebechart %></em>
+<% else %>
+  <h4><%= t(:body_weight) %>:</h4>
+  <%= line_chart @trainings.map { |e| [e.created_at, e.weight] }, min: @trainings.minimum(:weight) - 1, max: @trainings.maximum(:weight) + 1 %>
+<% end %>
+<br><br>
+<br><br>
+           

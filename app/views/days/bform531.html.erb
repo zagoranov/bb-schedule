@@ -1,0 +1,60 @@
+<h3><%= t(:c531) %></h3>
+
+<br>
+
+ <%=  form_tag('/draw531', remote: true, id: "form-531") do %>
+
+<table width="320">
+<tr>
+    <td width="54%"><%= t(:ov_press) %></td><td width="23%"><%= text_field_tag 'delt_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %></td>
+    <td width="23%"><%= text_field_tag 'delt_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %></td>
+</tr>
+<tr><td><%= t(:deadlift) %></td><td><%= text_field_tag 'dead_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %></td><td>
+    	<%= text_field_tag 'dead_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %></td>
+</tr>
+<tr><td><%= t(:bench_press) %></td><td><%= text_field_tag 'bench_max', nil, placeholder: t(:kilos), size: 5, class: "span2" %></td><td> 
+    	<%= text_field_tag 'bench_reps', nil, placeholder: t(:reps) ,size: 5, class: "span2" %></td>
+</tr>
+<tr><td><%= t(:squats) %></td><td> <%= text_field_tag 'sq_max', nil, placeholder: t(:kilos) ,size: 5, class: "span2" %></td><td> 
+    	<%= text_field_tag 'sq_reps', nil, placeholder: t(:reps), size: 5, class: "span2" %> </td>
+ </tr>
+ </table>
+
+<br>
+<br>
+
+<p><strong><%= t(:base_stuff) %></strong></p>
+    <p><%= check_box_tag 'warmup', 'true', true %> <%= t(:warm_up)%></p>
+    <p><%= check_box_tag 'pwrlift', 'true', false %> <%= t(:powerlift351)%></p>
+    <p><%= check_box_tag 'threewks', 'true', false %> <%= t(:threeweeks)%></p>
+    <p><%= check_box_tag 'shrink', 'true', true %> <%= t(:howweround)%></p>
+<br><p><strong><%= t(:down_sets) %></strong></p>
+    <p><%= check_box_tag 'joker', 'true', false %> <%= t(:joker_sets)%></p>
+    <p><%= check_box_tag 'pyramid', 'true', false %> <%= t(:pyramid)%></p>
+    <p><%= check_box_tag 'fsl', 'true', false %> <%= t(:firts_set_last)%></p>
+    <p><%= check_box_tag 'fslms', 'true', false %> <%= t(:firts_set_last_ms)%></p>
+<br><p><strong><%= check_box_tag 'is_assist', 'true', true %> <%= t(:assis_template) %></strong></p>    
+    <p><%= radio_button_tag 'assist', 'bbb', true %> <%= t(:bigbutboring)%> <br>
+    <%= radio_button_tag 'assist', 'sst' %> <%= t(:simple_st)%><br>
+    <% if current_user %>
+      <%= radio_button_tag 'assist', 'ch_f_sch'%> <%= t(:fiilfromday)%>  <br>
+          <%= radio_button_tag 'assist', 'bbbandch' %> <%= t(:bbb_and_ch)%></p><br>
+      <p> 
+      <%= t(:day)%> 1: <%= select_tag "day1", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %>
+      <%= t(:day)%> 2: <%= select_tag "day2", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %></p>
+      <p><%= t(:day)%> 3: <%= select_tag "day3", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %>
+      <%= t(:day)%> 4: <%= select_tag "day4", options_from_collection_for_select(@days, "id", "title"), {include_blank: true, style: "height:26px" } %></p>
+     </p> 
+      <br><p><strong><%= check_box_tag 'movitmo', 'true', false %> <%= t(:move_to_sch) %></strong></p>
+   <% else %>      
+     </p> 
+    <% end %>
+ </br></br>
+
+  <%= submit_tag t(:calculate), :name => nil, :class => 'btn btn-primary' %>
+<% end %>
+<br>
+
+<div id="table531">
+</div>
+
