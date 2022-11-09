@@ -1,5 +1,5 @@
 # Bodybuilding diary for 'Big But Boring' programs
-ruby on rails + sqlite
+Ruby on rails + Sqlite
 
 ## Env stuff
 * Interface mostly in russian, sorry.
@@ -7,9 +7,11 @@ ruby on rails + sqlite
 * If you want use telegtam notifications, you should fill app/controller/application_controller.rb telegram chat data in method def pontificate(mess)
 * Replace my email with yours in app/mailer/mailers
 
-## Creating DB
+## Preparing to start
 ```console
+bundle install
 rake db:migrate
+bundle exec rake rails:update:bin
 ```
 
 ## Run
